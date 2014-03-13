@@ -1,0 +1,75 @@
+v1.09 - 03/10/14
+	- New Feature: Allow product upgrading/downgrading in WHMCS
+	--- Changed Files ----
+	modules/addons/sitebuilder/hooks.php
+	modules/addons/sitebuilder/sitebuilder.php
+	modules/addons/sitebuilder/sitebuilder_functions.php
+	modules/addons/sitebuilder/templates/globalsettings.tpl
+
+v1.08 - 10/03/13
+	- Bug fix: Fixed an issue where the trial to active conversion was not working correctly under custom server module option.
+	--- Changed Files ----
+	modules/addons/sitebuilder/hooks.php
+
+v1.07 - 07/26/13
+	- Bug fix: Fixed an issue where the trial to active conversion was not working correctly under some instances.
+	- Bug fix: Fixed an issue where the API would return only one trial account record and it would not parse correctly.
+	- New Feature: WHMCS Trial Product Expire Date Warning now displayed in Client Area.
+	--- Changed Files ----
+	modules/addons/sitebuilder/hooks.php
+	modules/addons/sitebuilder/sitebuilder.php
+	modules/addons/sitebuilder/sitebuilder_functions.php
+
+v1.06 - 07/02/13
+	- New Feature: WHMCS Trial Product Support And Trial To Active Upgrade Support
+	- Bug fix: Updated Readme.txt file clientareaproductdetails.tpl code to not recall the same function over without parameters.
+	- Bug fix: Changed the settings table to allow a more dynamic storage of module settings.
+	--- Changed Files ----
+	modules/addons/sitebuilder/hooks.php
+	modules/addons/sitebuilder/sitebuilder.php
+	modules/addons/sitebuilder/sitebuilder_functions.php
+	modules/addons/sitebuilder/templates/globalsettings.tpl
+	modules/addons/sitebuilder/templates/manageproducts.tpl
+	modules/addons/sitebuilder/lang/English.txt
+
+v1.05 - 05/06/13
+	- Bug fix: Fixed an issue where during add-on deactivation and deleting db tables was set to yes, the db tables would not be deleted.
+	--- Changed Files ----
+	modules/addons/sitebuilder/sitebuilder.php
+
+v1.04 - 04/03/13
+	- Bug fix: Fixed an issue where some times error messages where not displayed to the user.
+	--- Changed Files ----
+	modules/addons/sitebuilder/sitebuilder_functions.php
+	modules/addons/sitebuilder/templates/message.tpl
+
+v1.03 - 02/26/13
+	- Bug fix: Fixed an issue where the correct function was not being called depending on the user input.
+	--- Changed Files ----
+	modules/addons/sitebuilder/sitebuilder.php
+	modules/addons/sitebuilder/sitebuilder_functions.php
+
+v1.02 - 02/25/13
+	- Change: Wording change for main menu page to fix word overlap issue for some admin templates
+	--- Changed Files ----
+	modules/addons/sitebuilder/sitebuilder.php
+	modules/addons/sitebuilder/templates/sidebarmenu.tpl
+
+v1.01 - 02/14/13
+	- Bug fix: Fixed an issue that can occur when terminating a WHMCS plan and the topline account not being deleted.
+	--- Changed Files ----
+	modules/addons/sitebuilder/hooks.php
+	modules/addons/sitebuilder/sitebuilder.php
+
+v1.0 - 02/07/13
+	Initial Release
+	Current features include:
+		- Global custom field names & FTP server settings
+		- Per server FTP server settings
+		- Per module custom field names
+		- Sitebuilder account creation after server create
+		- Sitebuilder account deletion after server terminate
+		- cPanel support
+		- Custom WHMCS Server module support
+		- One click Auto-login to the customers sitebuilder account via WHMCS Client area
+		- Multiple WHMCS Products can be assigned to a Topline sitebuilder bundle
