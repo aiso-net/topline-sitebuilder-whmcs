@@ -227,15 +227,27 @@ function sitebuilder_after_module_create($vars)
 			// Get Server Info From WHMCS
 			//--------------
 			$table = "tblservers";
-			$fields = "ipaddress,username,password,accesshash,localipaddress";
+			$fields = "ipaddress,username,password,accesshash";
 			$where = array("id"=>$intServerRID);
-			$result = select_query($table,$fields,$where,"","","","");
-			$data = mysql_fetch_array($result);
-			$strServerIPAddress = $data["ipaddress"];
-			$strServerUsername = $data["username"];
-			$strServerPassword = decrypt($data["password"]);
-			$strServerAccessHash = $data["accesshash"];
-			$strServerLocalIPAddress = $data["localipaddress"];
+			$result = select_query($table,$fields,$where);
+			$serverdata = mysql_fetch_array($result);
+			$strServerIPAddress = $serverdata["ipaddress"];
+			$strServerUsername = $serverdata["username"];
+			$strServerPassword = decrypt($serverdata["password"]);
+			$strServerAccessHash = $serverdata["accesshash"];
+
+			$table = "tblservers";
+			$fields = "localipaddress";
+			$where = array("id"=>$intServerRID);
+			$result = select_query($table,$fields,$where);
+			$serverdata2 = mysql_fetch_array($result);
+			$strServerLocalIPAddress = $serverdata2["localipaddress"];
+
+			if(!is_numeric($intServerRID))
+			{
+				logActivity("Topline Creation <font color=\"red\">FAILED</font>. Server RID not defined ($intServerRID).");
+				logModuleCall("sitebuilder","after_module_create","Topline Create FAILED, Server RID not defined ($intServerRID).");
+			}
 			//-----------------------------
 			// Get Custom Module Product Custom Field Names Used For Username & FTP Info Storage From DB
 			//-----------------------------
@@ -260,7 +272,7 @@ function sitebuilder_after_module_create($vars)
 				$strYolaFTPUsernameProductCustomFieldName = $globalcustomfieldnamesdata["txtGlobalYolaFTPUsernameProductCustomFieldName"];
 				$strYolaFTPPasswordProductCustomFieldName = $globalcustomfieldnamesdata["txtGlobalYolaFTPPasswordProductCustomFieldName"];
 			}
-			logModuleCall("sitebuilder","after_module_create","Function Settings Before Variable Change: FTP IP Address: " . $strServerFTPIPAddress . ", FTP Directory: " . $strFTPDirectory . ", FTP Port: " . $strFTPPort . ", FTP Mode: " . $intFTPMode . ", User ID PCFN: " . $strYolaUserIDProductCustomFieldName . ", Topline FTP Username PCFN: " . $strYolaFTPUsernameProductCustomFieldName . ", Topline FTP Password PCFN: " . $strYolaFTPPasswordProductCustomFieldName);
+			logModuleCall("sitebuilder","after_module_create","Function Settings Before Variable Change: Server Address: " . $strServerIPAddress . ", FTP IP Address: " . $strServerFTPIPAddress . ", FTP Directory: " . $strFTPDirectory . ", FTP Port: " . $strFTPPort . ", FTP Mode: " . $intFTPMode . ", User ID PCFN: " . $strYolaUserIDProductCustomFieldName . ", Topline FTP Username PCFN: " . $strYolaFTPUsernameProductCustomFieldName . ", Topline FTP Password PCFN: " . $strYolaFTPPasswordProductCustomFieldName);
 			//-----------------------------
 			// Make the changes to the settings if there is a variable in it
 			//-----------------------------
@@ -325,7 +337,7 @@ function sitebuilder_after_module_create($vars)
 				$strCustomFieldChangeResult .= "GetFTPP: yes";
 			else
 				$strCustomFieldChangeResult .= "GetFTPP: no";
-			logModuleCall("sitebuilder","after_module_create","Function Settings After Variable Change: FTP IP Address: " . $strServerFTPIPAddress . ", FTP Directory: " . $strFTPDirectory . ", FTP Port: " . $strFTPPort . ", FTP Mode: " . $intFTPMode . ", User ID PCFN: " . $strYolaUserIDProductCustomFieldName . ", Topline FTP Username PCFN: " . $strYolaFTPUsernameProductCustomFieldName . ", Topline FTP Password PCFN: " . $strYolaFTPPasswordProductCustomFieldName . ". " . $strCustomFieldChangeResult);
+			logModuleCall("sitebuilder","after_module_create","Function Settings After Variable Change: Server Address: " . $strServerIPAddress . ", FTP IP Address: " . $strServerFTPIPAddress . ", FTP Directory: " . $strFTPDirectory . ", FTP Port: " . $strFTPPort . ", FTP Mode: " . $intFTPMode . ", User ID PCFN: " . $strYolaUserIDProductCustomFieldName . ", Topline FTP Username PCFN: " . $strYolaFTPUsernameProductCustomFieldName . ", Topline FTP Password PCFN: " . $strYolaFTPPasswordProductCustomFieldName . ". " . $strCustomFieldChangeResult);
 
 			//-----------------------------
 			// cPanel Server Module
@@ -333,6 +345,11 @@ function sitebuilder_after_module_create($vars)
 			$blnFTPAccountOk = false;
 			if($strServerModuleName == "cpanel")
 			{
+				if(strlen($strServerIPAddress) < 7)
+				{
+					logActivity("Topline Creation <font color=\"red\">FAILED</font>. cPanel Server IP not defined ($strServerIPAddress).");
+					logModuleCall("sitebuilder","after_module_create","Topline Create FAILED, cPanel Server IP not defined ($strServerIPAddress).");
+				}
 				//-----------------------------
 				// Create new FTP account for Topline to use
 				//-----------------------------
@@ -1212,7 +1229,7 @@ function sitebuilder_after_module_change_package($vars)
 		// Get Server Info From WHMCS
 		//--------------
 		$table = "tblservers";
-		$fields = "ipaddress,username,password,accesshash,localipaddress";
+		$fields = "ipaddress,username,password,accesshash";
 		$where = array("id"=>$intServerRID);
 		$result = select_query($table,$fields,$where);
 		$data = mysql_fetch_array($result);
@@ -1220,7 +1237,14 @@ function sitebuilder_after_module_change_package($vars)
 		$strServerUsername = $data["username"];
 		$strServerPassword = decrypt($data["password"]);
 		$strServerAccessHash = $data["accesshash"];
+
+		$table = "tblservers";
+		$fields = "localipaddress";
+		$where = array("id"=>$intServerRID);
+		$result = select_query($table,$fields,$where);
+		$data = mysql_fetch_array($result);
 		$strServerLocalIPAddress = $data["localipaddress"];
+
 		//--------------
 		// Get FTP Username, Password And Yola User ID
 		//--------------
@@ -1399,14 +1423,20 @@ function sitebuilder_addon_module_create($vars)
 			// Get Server Info From WHMCS
 			//--------------
 			$table = "tblservers";
-			$fields = "ipaddress,username,password,accesshash,localipaddress";
+			$fields = "ipaddress,username,password,accesshash";
 			$where = array("id"=>$intServerRID);
-			$result = select_query($table,$fields,$where,"","","","");
+			$result = select_query($table,$fields,$where);
 			$data = mysql_fetch_array($result);
 			$strServerIPAddress = $data["ipaddress"];
 			$strServerUsername = $data["username"];
 			$strServerPassword = decrypt($data["password"]);
 			$strServerAccessHash = $data["accesshash"];
+
+			$table = "tblservers";
+			$fields = "localipaddress";
+			$where = array("id"=>$intServerRID);
+			$result = select_query($table,$fields,$where);
+			$data = mysql_fetch_array($result);
 			$strServerLocalIPAddress = $data["localipaddress"];
 			//-----------------------------
 			// Get Custom Module Product Custom Field Names Used For Username & FTP Info Storage From DB
@@ -1845,6 +1875,43 @@ function sitebuilder_addon_delete($vars)
 	}
 }
 
+function sitebuilder_trial_hook_pre_send_email($vars) {
+	$strEmailTemplateName = $vars['messagename']; # Email template name being sent
+	$strRelatedID = $vars['relid']; # Related ID it's being sent for - client ID, invoice ID, etc...
+
+	$hostingtable = "tblhosting";
+	$hostingfields = "packageid,regdate";
+	$hostingwhere = array("id"=>$strRelatedID);
+	$hostingresult = select_query($hostingtable,$hostingfields,$hostingwhere);
+	$hostingdata = mysql_fetch_array($hostingresult);
+	$intProductRID = $hostingdata['packageid'];
+	$strProductRegDate = $hostingdata['regdate'];
+	if(is_numeric($intProductRID))
+		$intProductRID = (int)$intProductRID;
+	else
+		$intProductRID = 0;
+	if($intProductRID > 0)
+	{
+		$producttable = "tblproducts";
+		$productfields = "autoterminatedays";
+		$productwhere = array("id"=>$intProductRID);
+		$productresult = select_query($producttable,$productfields,$productwhere);
+		$productdata = mysql_fetch_array($productresult);
+		$intAutoTerminateDays = $productdata['autoterminatedays'];
+		if(is_numeric($intAutoTerminateDays))
+		{
+			$strWHMCSDateFormat = str_replace("MM","m",$GLOBALS['CONFIG']['DateFormat']);
+			$strWHMCSDateFormat = str_replace(".","-",$strWHMCSDateFormat);
+			$strWHMCSDateFormat = str_replace("/","-",$strWHMCSDateFormat);
+			$strWHMCSDateFormat = str_replace("YYYY","Y",$strWHMCSDateFormat);
+			$strWHMCSDateFormat = str_replace("DD","d",$strWHMCSDateFormat);
+			$merge_fields = array();
+			$merge_fields['autoterminateday'] = Topline_dateadd($strProductRegDate,$intAutoTerminateDays,0,0,False,$strWHMCSDateFormat);
+			return $merge_fields;
+		}
+	}
+}
+
 add_hook("ClientAreaPage",5,"sitebuilder_client_area_page");
 add_hook("AfterModuleCreate",5,"sitebuilder_after_module_create");
 add_hook("AfterModuleChangePackage",5,"sitebuilder_after_module_change_package");
@@ -1852,6 +1919,8 @@ add_hook("PreModuleTerminate",5,"sitebuilder_pre_module_terminate");
 add_hook("ServerDelete",5,"sitebuilder_server_delete");
 add_hook("ProductDelete",5,"sitebuilder_product_delete");
 add_hook("AfterProductUpgrade",5,"sitebuilder_after_product_upgrade");
+add_hook("EmailPreSend",11,"sitebuilder_trial_hook_pre_send_email");
+
 //add_hook("AddonActivation",5,"sitebuilder_addon_module_create");
 //add_hook("AddonActivated",5,"sitebuilder_addon_module_create");
 //add_hook("AddonTerminated",5,"sitebuilder_addon_module_terminate");

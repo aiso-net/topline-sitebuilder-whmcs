@@ -81,3 +81,27 @@ This module after a server setup will then see the curly brackets and retreive t
 customers' service that the custom module should have filled in. With that information it will setup a sitebuilder account with the
 sitebuilder id and ftp information retreived from their service to be used for the customers sitebuilder account in the topline system.
 See Readme-3.jpg and Readme-4.jpg for an example.
+
+----------------------------------------------
+Topline Trial Support Setup
+----------------------------------------------
+Follow these steps for setting up a trial plan that does not publish to an FTP server, this is the recommened setup.
+1. Create a WHMCS product that you want to be the trial for the sitebuilder. You can create a product for each of the sitebuilder plans Topline offers.
+2. Under the Module Settings tab of the product in WHMCS, set the Module Name to Autorelease and leave everything else under this tab set to None. Check the 'Automatically setup the product as soon as an order is placed' radio button.
+3. Under the Custom Fields tab of the product in WHMCS, create a custom field that the module uses to save the sitebuilder id, sitebuilder ftp username and sitebuilder ftp password. For the field name enter in what you want, such as 
+   Sitebuilder User ID. For the field type select Text Box. For the description enter what ever you want. For Validation and Select Options you can leave them blank. And Select the Admin Only check box. See Readme-1.jpg file.
+4. Under the Upgrades tab of the product in WHMCS, in the Package Upgrades box select the site builder plans that are the acutal paid plans the user can upgrade to for paid hosting.
+5. Now you need to link the Sitebuilder bundle from topline to the WHMCS trial product you created by clicking on the Addons tab in WHMCS, click Topline Sitebuilder Module, then click Manage Product Settings, then click edit next to 
+   the Topline bundle and select which WHMCS product/service trial that you created to assign to that bundle.
+6. Click on the Addons tab in WHMCS, click Topline Sitebuilder Module, then click on the Global settings link. In the Trial Word text box enter the word that is common between all your sitebuilder trial plans. Usually this would be 
+   the word Trial. This allows the module to setup the sitebuilder trial correctly when it sees a WHMCS plan ordered that has the word you enter in this text box in the WHMCS plan/service name or description.
+7. Click on the Addons tab in WHMCS, click Topline Sitebuilder Module, then click on the Global settings link. In the drop down box for WHMCS Upgrade Plan Function, please select AfterProductUpgrade. If clients are upgrading and the
+   topline account is not being converted from a trial to a regular plan they purchased, then select AfterModuleChangePackage instead.
+
+Follow these steps for setting up a trial plan that does publish to an FTP server.
+1. Follow all the trial steps 1-7 above
+2. Click on the Addons tab in WHMCS, click Topline Sitebuilder Module, then click on the Global settings link. In the Trial FTP Hostname, Trial FTP Username, Trial FTP Password, Trial FTP Home Directory, Trial FTP Port and Trial FTP Mode,
+   please enter in the trial FTP server info that the trial site should be publisted to.
+
+
+You can use the following e-mail template variable {$autoterminateday} for use in a WHMCS email template. This variable will display the date the trial will expire in an email, based on the auto terminate days setting in the whmcs product.

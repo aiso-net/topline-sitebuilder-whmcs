@@ -1,3 +1,9 @@
+v1.10 - 03/19/14
+	- Bug fix: Fixed an issue where during a cPanel setup the server info from whmcs would not be pulled from the whmcs db correctly.
+	- New Feature: WHMCS Trial Product Expire Date e-mail template variable. To display the trial product expire date in a email, use the email template variable {$autoterminateday}
+	--- Changed Files ----
+	modules/addons/sitebuilder/hooks.php
+
 v1.09 - 03/10/14
 	- New Feature: Allow product upgrading/downgrading in WHMCS
 	--- Changed Files ----
@@ -38,7 +44,7 @@ v1.05 - 05/06/13
 	modules/addons/sitebuilder/sitebuilder.php
 
 v1.04 - 04/03/13
-	- Bug fix: Fixed an issue where some times error messages where not displayed to the user.
+	- Bug fix: Fixed an issue where some times error messages did not display to the user.
 	--- Changed Files ----
 	modules/addons/sitebuilder/sitebuilder_functions.php
 	modules/addons/sitebuilder/templates/message.tpl
