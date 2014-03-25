@@ -401,7 +401,15 @@ function Topline_DisplayErrorMessage($strErrorMessage)
 
 function Topline_GetClientAreaProductLoginLinkHTML()
 {
-
+	$line = "";
+	if (file_exists(dirname(__FILE__) . "/templates/editsitelinkhtml.tpl")) {
+		$file_handle = fopen(dirname(__FILE__) . "/templates/editsitelinkhtml.tpl", "r");
+		while (!feof($file_handle)) {
+			$line = $line . fgets($file_handle);
+		}
+		fclose($file_handle);
+	}
+	return $line;
 }
 
 function Topline_ConvertCPanelXMLToArray($xmldata)
@@ -668,7 +676,7 @@ function Topline_SaveWHMCSCustomFieldValue($strFieldName,$intPackageRID,$intServ
 	$table = "tblcustomfields";
 	$fields = "id";
 	$where = array("fieldname"=>$strFieldName,"relid"=>$intPackageRID);
-	$result = select_query($table,$fields,$where,$sort,$sortorder,$limits,$join);
+	$result = select_query($table,$fields,$where);
 	$data = mysql_fetch_array($result);
 	$intCustomFieldRID = $data[0];
 	if(!empty($intCustomFieldRID))
@@ -690,7 +698,7 @@ function Topline_GetWHMCSCustomFieldValue($strFieldName,$intPackageRID,$intServi
 	$table = "tblcustomfields";
 	$fields = "id";
 	$where = array("fieldname"=>$strFieldName,"relid"=>$intPackageRID);
-	$result = select_query($table,$fields,$where,$sort,$sortorder,$limits,$join);
+	$result = select_query($table,$fields,$where);
 	$data = mysql_fetch_array($result);
 	$intCustomFieldRID = $data[0];
 	if(!empty($intCustomFieldRID))
@@ -698,7 +706,7 @@ function Topline_GetWHMCSCustomFieldValue($strFieldName,$intPackageRID,$intServi
 		$table = "tblcustomfieldsvalues";
 		$fields = "value";
 		$where = array("relid"=>$intServiceRID,"fieldid"=>$intCustomFieldRID);
-		$result = select_query($table,$fields,$where,$sort,$sortorder,$limits,$join);
+		$result = select_query($table,$fields,$where);
 		$data = mysql_fetch_array($result);
 		return $data[0];
 	}
@@ -733,6 +741,17 @@ function Topline_GetModuleSettings()
 		$strDeleteDBTablesOnUninstall = "no";
 
 	return Array($strParterGUID,$strParterID,$strDeleteDBTablesOnUninstall);
+}
+//-------------------------------------------------
+// Convert SimpleXML object into php array
+//-------------------------------------------------
+function Topline_SimpleXML2Array($xmlObject,$out = array())
+{
+	foreach((array)$xmlObject as $index => $node)
+	{
+		$out[$index] = ( is_object ( $node ) ) ? xml2array ( $node ) : $node;
+	}
+	return $out;
 }
 
 //-------------------------------------------------
@@ -795,7 +814,10 @@ class ToplineAPI {
 			'bundle_id' => urlencode($strBundleID)
 		);
 		if(strlen($strWHMCSServiceRID) > 0)
+		{
 			$fields['host_id'] = urlencode($strWHMCSServiceRID);
+			$fields['host_userid'] = urlencode($strWHMCSServiceRID);
+		}
 		if(strlen($strFTPAddress) > 0)
 			$fields['ftp_address'] = urlencode($strFTPAddress);
 		if(strlen($strFTPUsername) > 0)
@@ -839,7 +861,7 @@ class ToplineAPI {
 		return false;
 	}
 
-	public function ModifyCustomer($strUserID,$strPassword = "",$strFirstName = "",$strLastName = "",$strEmail = "",$strPhone = "",$strFTPAddress,$strFTPUsername,$strFTPPassword,$intFTPPort = 21,$strFTPWWWRoot,$intFTPMode,$strDomain,$intStatus,$intBundleID,$strOldUserID = "",$strOldPartnerID = "",$intMoveFlag = 0,$intFTPProtocol = 1)
+	public function ModifyCustomer($strUserID,$strPassword = "",$strFirstName = "",$strLastName = "",$strEmail = "",$strPhone = "",$strFTPAddress,$strFTPUsername,$strFTPPassword,$intFTPPort = 21,$strFTPWWWRoot,$intFTPMode,$strDomain,$intStatus,$intBundleID,$strOldUserID = "",$strOldPartnerID = "",$intMoveFlag = 0,$intFTPProtocol = 1,$strWHMCSServiceRID = "")
 	{
 		if($intFTPMode == 1)
 			$intFTPMode = "Active";
@@ -878,6 +900,11 @@ class ToplineAPI {
 			$fields['olduserid'] = urlencode($strOldUserID);
 			$fields['oldpartnerid'] = urlencode($strOldPartnerID);
 			$fields['moveflag'] = urlencode($intMoveFlag);
+		}
+		if(strlen($strWHMCSServiceRID) > 0)
+		{
+			$fields['host_id'] = urlencode($strWHMCSServiceRID);
+			$fields['host_userid'] = urlencode($strWHMCSServiceRID);
 		}
 		$xmldata = $this->CallService(2,$fields);
 		$xmldata = $this->CleanUpFrontOfXML($xmldata);
@@ -975,35 +1002,68 @@ class ToplineAPI {
 		{
 			$xmldata = $this->CleanUpFrontOfXML($result);
 			$xmldata = str_replace('<?xml version="1.0" encoding="UTF-8"?>','',$xmldata);
-			$aryResult = simplexml_load_string($xmldata);
+			$aryResult = Topline_SimpleXML2Array(simplexml_load_string($xmldata));
 		}else{
 			$aryResult = json_decode($result,true);
 		}
-		logModuleCall("sitebuilder","ToplineAPI:GetTokenLoginURL",$fields,$aryResult);
-		if($aryResult["code"] == "201")
+		if(is_array($aryResult))
+			logModuleCall("sitebuilder","ToplineAPI:GetTokenLoginURL",$fields,$aryResult);
+		else
+			logModuleCall("sitebuilder","ToplineAPI:GetTokenLoginURL ERROR",$fields,$xmldata);
+		if(!isset($aryResult["code"]))
+			if(isset($aryResult["@attributes"]["code"]))
+				$aryResult["code"] = $aryResult["@attributes"]["code"];
+		if(isset($aryResult["code"]))
 		{
-			$strToken = $aryResult["token"];
-			if(strlen($strToken) > 1)
+			if($aryResult["code"] == "201")
 			{
-				$urlfields = array(
-					'sbstkn' => $strToken
-				);
-				$urlresult = $this->CallService(5,$urlfields);
-				logModuleCall("sitebuilder","ToplineAPI:GetTokenLoginURL 2",$urlfields,$urlresult);
-				if(strpos($urlresult,"<?xml") !== false)
+				$strToken = $aryResult["token"];
+				if(strlen($strToken) > 1)
 				{
-					$xmldata = $this->CleanUpFrontOfXML($urlresult);
-					$xmldata = str_replace('<?xml version="1.0" encoding="UTF-8"?>','',$xmldata);
-					$aryURLResult = simplexml_load_string($xmldata);
-				}else{
-					$aryURLResult = json_decode($urlresult,true);
+					$urlfields = array(
+						'sbstkn' => $strToken
+					);
+					$urlresult = $this->CallService(5,$urlfields);
+					if(strlen($urlresult) > 0)
+						logModuleCall("sitebuilder","ToplineAPI:GetTokenLoginURL 2",$urlfields,$urlresult);
+					else
+						logModuleCall("sitebuilder","ToplineAPI:GetTokenLoginURL 2",$urlfields,$this->headers);
+					if(strpos($urlresult,"<?xml") !== false)
+					{
+						$xmldata = $this->CleanUpFrontOfXML($urlresult);
+						$xmldata = str_replace('<?xml version="1.0" encoding="UTF-8"?>','',$xmldata);
+						$aryURLResult = Topline_SimpleXML2Array(simplexml_load_string($xmldata));
+					}else{
+						$aryURLResult = json_decode($urlresult,true);
+					}
+					if(is_array($aryURLResult))
+					{
+						if(!isset($aryURLResult["code"]))
+						{
+							if(isset($aryURLResult["@attributes"]["code"]))
+								$aryURLResult["code"] = $aryURLResult["@attributes"]["code"];
+						}
+						if($aryURLResult["code"] == "303")
+						{
+							if(strpos(strtolower("  ".$aryURLResult["location"]),"error") === false)
+								$strURL = $aryURLResult["location"];
+						}
+					}
+					elseif(isset($this->headers['location']))
+					{
+						if(isset($this->headers["code"]))
+						{
+							if($this->headers["code"] == "302")
+							{
+								if(strlen($this->headers['location']) > 5)
+									$strURL = $this->headers['location'];
+							}
+						}
+					}
 				}
-				if($aryURLResult["code"] == "303")
-					if(strpos(strtolower("  ".$aryURLResult["location"]),"error") === false)
-						$strURL = $aryURLResult["location"];
 			}
+			return $strURL;
 		}
-		return $strURL;
 	}
 
 	public function DoDirectLoginURL($strUserID,$strPassword)
@@ -1093,10 +1153,11 @@ class ToplineAPI {
 		//logModuleCall("sitebuilder","ToplineAPI:CallService","Calling Service ID: $intCallType, with fields:",$aryFields);
 
 		$this->curl = curl_init();
-		curl_setopt($this->curl,CURLOPT_RETURNTRANSFER,true);
-		curl_setopt($this->curl,CURLOPT_AUTOREFERER,true); // This make sure will follow redirects
-		curl_setopt($this->curl,CURLOPT_FOLLOWLOCATION,true); // This too
-		curl_setopt($this->curl,CURLOPT_HEADER,true); // This verbose option for extracting the headers
+		curl_setopt($this->curl,CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($this->curl,CURLOPT_AUTOREFERER, false); // This make sure will follow redirects
+		curl_setopt($this->curl,CURLOPT_FOLLOWLOCATION, false); // This too
+		curl_setopt($this->curl,CURLOPT_HEADER, true); // This verbose option for extracting the headers
+		curl_setopt($this->curl,CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Linux x86_64; rv:21.0) Gecko/20100101 Firefox/21.0"); // Necessary. The server checks for a valid User-Agent.
 		//url-ify the data for the POST
 		$fields_string = "";
 		foreach($aryFields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
@@ -1138,6 +1199,8 @@ class ToplineAPI {
 		curl_setopt($this->curl,CURLOPT_URL, $url);
 		curl_setopt($this->curl,CURLOPT_POST,true);
 		curl_setopt($this->curl,CURLOPT_POSTFIELDS, $fields_string);
+		curl_setopt($this->curl,CURLOPT_CONNECTTIMEOUT, 5); //timeout in seconds
+		curl_setopt($this->curl,CURLOPT_TIMEOUT, 20); //timeout in seconds
 		if(substr($url,0,8) == "https://")
 		{
 			curl_setopt($this->curl,CURLOPT_SSL_VERIFYPEER, false);
@@ -1159,7 +1222,7 @@ class ToplineAPI {
 		//close connection
 		curl_close($this->curl);
 
-		//logModuleCall("sitebuilder","ToplineAPI:CallService","Calling Service ID: $intCallType, with results:",$this->response);
+		//logModuleCall("sitebuilder","ToplineAPI:CallService","Calling Service ID: $intCallType, with results:",$this->headers);
 
 		return $this->response;
 	}
@@ -1197,6 +1260,11 @@ class ToplineAPI {
         	preg_match("@Content-Type: ([a-zA-Z0-9-]+/?[a-zA-Z0-9-]*)@",$parts[0],$reg);// This extract the content type
 	        $this->headers['content-type'] = $reg[1];
         	preg_match("@HTTP/1.[0-1] ([0-9]{3}) ([a-zA-Z ]+)@",$parts[0],$reg); // This extracts the response header Code and Message
+		preg_match_all('/^Location:(.*)$/mi', $r, $matches); // This extracts the response location header
+		if(!empty($matches[1]))
+			$this->headers['location'] = trim($matches[1][0]);
+		else
+			$this->headers['location'] = "";
 	        $this->headers['code'] = $reg[1];
         	$this->headers['message'] = $reg[2];
 	        $this->response = "";

@@ -1,3 +1,19 @@
+v1.11 - 03/25/13
+	- Changed: Updated Readme.txt file to remove step 10 so you dont need to change the active template to display the edit site link anymore.
+	- Changed: Updated Readme.txt file to add directions on how to setup a trial product in whmcs for a trial site builder account.
+	- New Feature: Added the ability to inject the editsitelinkhtml.tpl edit site link code directly into the client area template.
+	- Bug fix: Fixed an issue where the API would return different formatting during a site builder login request causing the client not to be able to login to their sitebuilder.
+	- Bug fix: Fixed an issue where the if the API would not return right away it would hang the php process, put in a curl timeout.
+	- Bug fix: Fixed an issue where the if the API would not return a login url json response, to get the 302 redirect URL header instead.
+	- Other minor bug fixes
+	--- Changed Files ----
+	modules/addons/sitebuilder/hooks.php
+	modules/addons/sitebuilder/sitebuilder.php
+	modules/addons/sitebuilder/sitebuilder_functions.php
+	modules/addons/sitebuilder/templates/editsitelinkhtml.tpl
+	modules/addons/sitebuilder/lang/English.txt
+	modules/addons/sitebuilder/templates/globalsettings.tpl
+
 v1.10 - 03/19/14
 	- Bug fix: Fixed an issue where during a cPanel setup the server info from whmcs would not be pulled from the whmcs db correctly.
 	- New Feature: WHMCS Trial Product Expire Date e-mail template variable. To display the trial product expire date in a email, use the email template variable {$autoterminateday}

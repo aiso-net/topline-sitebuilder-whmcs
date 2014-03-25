@@ -16,7 +16,7 @@ Global Topline FTP Username Product Custom Field Name:&nbsp;<input type="text" s
 <br/><br/>
 Global Topline FTP Password Product Custom Field Name:&nbsp;<input type="text" size="50" maxlength="100" name="strGlobalYolaFTPPasswordProductCustomFieldName" value="{$strGlobalYolaFTPPasswordProductCustomFieldName}">&nbsp;<i>To grab the value from the field name, enclose the Field Name in Curly Brackets.</i>
 <br/><br/>
-Global FTP Hostname: &nbsp;<input type="text" size="50" maxlength="100" name="strGlobalFTPHostname" value="{$strGlobalFTPHostname}">
+Global FTP Hostname: &nbsp;<input type="text" size="50" maxlength="100" name="strGlobalFTPHostname" value="{$strGlobalFTPHostname}">&nbsp;<i>Value can have either $domainname or $serverip for auto fill in.</i>
 <br/><br/>
 Global FTP Home Directory: &nbsp;<input type="text" size="50" maxlength="100" name="strGlobalFTPHomeDirectory" value="{$strGlobalFTPHomeDirectory}">&nbsp;<i>Value can have either $domainname or $username (username field in whmcs service) for auto fill in.</i>
 <br/><br/>

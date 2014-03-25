@@ -48,29 +48,6 @@ Install Instructions
 	- WHMCS Product being ordered by client must have FTP settings setup for the server module assigned to the product in either
 	  the Topline Sitebuilder module Global Settings area or Manage Server Settings area.
 
-10) In templates/ACTIVE-TEMPLATE/clientareaproductdetails.tpl do the following to allow a user to one click signin to the site builder:
-
-on around line 101 after:
-
-{if $moduleclientarea}<div class="moduleoutput">{$moduleclientarea|replace:'modulebutton':'btn'}</div>{/if}
-
-add:
-
-		{if $loggedin}
-		{php}
-			require_once dirname(dirname(__FILE__)) ."/modules/addons/sitebuilder/sitebuilder_functions.php";
-			$blnLoginURLValid = Topline_DisplayProductDetailsLoginLink($GLOBALS['smarty']->_tpl_vars['clientsdetails']['userid'],$GLOBALS['smarty']->_tpl_vars['id'],true);
-			if($blnLoginURLValid == true)
-			{
-				$strURLToPrintData = Topline_GetClientAreaProductLoginLinkHTML();
-				if(strlen($strURLToPrintData) == 0)
-					$strURLToPrintData = '<a target="_blank" href="{loginurl}"><b>Edit Your Site</b></a><br/>';
-				$strURLToPrintData = str_replace('{loginurl}','index.php?m=sitebuilder&t=2&a=login&id=' . $GLOBALS['smarty']->_tpl_vars['id'],$strURLToPrintData);
-				print $strURLToPrintData;
-			}
-		{/php}
-		{/if}
-
 ----------------------------------------------
 WHMCS Custom Server Module Support
 ----------------------------------------------

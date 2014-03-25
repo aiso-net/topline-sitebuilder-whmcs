@@ -1,2 +1,3 @@
+$_LANG["toplineloginlinktext"] = "Edit Your Site";
 $_LANG["toplinetrialloginlinktext"] = "Edit Your Trial Site";
 $_LANG["toplinetrialexpirestext"] = "<br/><b>NOTICE:</b> Your Trial Site will expire on $DATE$. Upgrade to the paid version before this date to prevent deletion of your site by clicking on the above Management Actions tab, then Upgrade/Downgrade.";

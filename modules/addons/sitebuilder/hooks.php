@@ -8,6 +8,7 @@ function sitebuilder_client_area_page($vars)
 	$intServiceRID = $vars['id'];
 	$intProductRID = $vars['pid'];
 	$intClientRID = $vars['clientsdetails']['id'];
+	$strModuleClientAreaText = $vars['moduleclientarea'];
 	//-----------------------------
 	// See If WHMCS Product Is Tied To A Topline Bundle
 	//-----------------------------
@@ -44,15 +45,17 @@ function sitebuilder_client_area_page($vars)
 		$strTrialWord = Topline_GetGlobalModuleSetting('txtTrialWord',true);
 		if(strpos($strProductName,$strTrialWord) !== false || strpos($strProductDescription,$strTrialWord) !== false)
 		{
+			// Inject Trial Login Link
 			$blnLoginURLValid = Topline_DisplayProductDetailsLoginLink($intClientRID,$intServiceRID,true);
 			if($blnLoginURLValid == true)
 			{
 				$strTrialLoginLinkText = $_LANG["toplinetrialloginlinktext"];
 				$strTrialExpiresText = $_LANG["toplinetrialexpirestext"];
 				$strURLToPrintData = Topline_GetClientAreaProductLoginLinkHTML();
-				if(strlen($strURLToPrintData) == 0)
-					$strURLToPrintData = '<a target="_blank" href="{loginurl}"><b>' . $strTrialLoginLinkText . '</b></a><br/>';
+				if(strlen($strURLToPrintData) < 2)
+					$strURLToPrintData = '<a target="_blank" href="{loginurl}"><b>{loginlinktext}</b></a><br/>';
 				$strURLToPrintData = str_replace('{loginurl}','index.php?m=sitebuilder&t=2&a=login&id=' . $intServiceRID,$strURLToPrintData);
+				$strURLToPrintData = str_replace('{loginlinktext}',$strTrialLoginLinkText,$strURLToPrintData);
 				if(strlen($strTrialExpiresText) > 0)
 				{
 					$table = "tblhosting";
@@ -72,7 +75,22 @@ function sitebuilder_client_area_page($vars)
 						$strURLToPrintData = str_replace("$DATE$",$strTrialExpirationDate,"$strURLToPrintData$strTrialExpiresText");
 					}
 				}
-				return array('moduleclientarea'=> $strURLToPrintData);
+				return array('moduleclientarea'=> $strURLToPrintData . "\n" . $strModuleClientAreaText);
+			}
+		}
+		else
+		{
+			// Inject Regular Login Link
+			$blnLoginURLValid = Topline_DisplayProductDetailsLoginLink($intClientRID,$intServiceRID,true);
+			if($blnLoginURLValid == true)
+			{
+				$strLoginLinkText = $_LANG["toplineloginlinktext"];
+				$strURLToPrintData = Topline_GetClientAreaProductLoginLinkHTML();
+				if(strlen($strURLToPrintData) < 2)
+					$strURLToPrintData = '<a target="_blank" href="{loginurl}"><b>' . $strTrialLoginLinkText . '</b></a><br/>';
+				$strURLToPrintData = str_replace('{loginurl}','index.php?m=sitebuilder&t=2&a=login&id=' . $intServiceRID,$strURLToPrintData);
+				$strURLToPrintData = str_replace('{loginlinktext}',$strLoginLinkText,$strURLToPrintData);
+				return array('moduleclientarea'=> $strURLToPrintData . "\n" . $strModuleClientAreaText);
 			}
 		}
 	}
@@ -532,7 +550,7 @@ function sitebuilder_after_module_create($vars)
 					if($blnGetYolaUserID != true)
 					{
 						Topline_SaveWHMCSCustomFieldValue($strYolaUserIDProductCustomFieldNameToLookup,$intPackageRID,$intServiceRID,$strNewYolaUserID);
-						logModuleCall("sitebuilder","after_module_create","Custom Server Module, Saving Topline User ID To WHMCS Service");
+						logModuleCall("sitebuilder","after_module_create","Custom Server Module, Saving Topline User ID To WHMCS Service","$strYolaUserIDProductCustomFieldNameToLookup,$intPackageRID,$intServiceRID,$strNewYolaUserID");
 					}
 				}
 
@@ -562,7 +580,7 @@ function sitebuilder_after_module_create($vars)
 				$Topline->SetPartnerID($aryModuleSettings[1]);
 				if($blnHasCurrentTrialAccount == true)
 				{
-					$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModifyFromTrial,$strNewYolaUserPassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelected);
+					$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModifyFromTrial,$strNewYolaUserPassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelected,"","","","",$intServiceRID);
 					if($blnYolaModifyResult == true)
 					{
 						logActivity("Topline Trial User Account Converted To Active Mode Successfully");
@@ -1136,7 +1154,7 @@ function sitebuilder_after_product_upgrade($vars)
 								$intYolaAccountStatus = 0;
 							//-----------------------------
 							logModuleCall("sitebuilder","after_product_upgrade","Modifing Topline User ($strToplineUserIDToModify) To New Bundle ID: $strYolaBundleIDSelectedForNewPlan","");
-							$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModify,$strServicePassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelectedForNewPlan);
+							$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModify,$strServicePassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelectedForNewPlan,"","","","",$intServiceRID);
 							if($blnYolaModifyResult == true)
 							{
 								logActivity("Topline User Account Plan Type Modified Successfully");
@@ -1275,7 +1293,7 @@ function sitebuilder_after_module_change_package($vars)
 						logActivity("Topline Trial User Account Conversion Not Needed, Already Converted");
 						logModuleCall("sitebuilder","after_module_change_package","Topline Trial User Account Conversion Not Needed, Already Converted","ID To Modify From WHMCS Service: $strYolaUserID, Received ID: $strToplineUserIDToModify, Received ID Status: $intYolaAccountStatus");
 				}else{
-					$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModify,$strServicePassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$intYolaProductBundleRID);
+					$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModify,$strServicePassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$intYolaProductBundleRID,"","","","",$intServiceRID);
 					if($blnYolaModifyResult == true)
 					{
 						logActivity("Topline Trial User Account Converted To Active Mode Successfully");
