@@ -155,6 +155,23 @@ function sitebuilder_after_module_create($vars)
 			$intYolaAccountStatus = 1;	// Account Is Active
 		}
 		//-----------------------------
+		// If Trial Account And Domain Empty, Create Temp One And Save To WHMCS
+		//-----------------------------
+		if(strlen($strDomainName) < 3 && $intYolaAccountStatus == 2)
+		{
+			// Account is a trial, domain is empty so create a random temp domain.
+			$strTempDomainToUse = $GLOBALS["CONFIG"]["Domain"];
+			if(strlen($strTempDomainToUse) < 3)
+				$strTempDomainToUse = $_SERVER["HTTP_HOST"];
+			$strTempDomainToUse = Topline_GetDomainFromURL($strTempDomainToUse);
+			$strTempSubDomainToUse = strtolower(Topline_GenerateRandomPassword(12,true));
+			$strDomainName = $strTempSubDomainToUse . "." . $strTempDomainToUse;
+			$table = "tblhosting";
+			$update = array("domain"=>$strDomainName);
+			$where = array("id"=>$intServiceRID);
+			update_query($table,$update,$where);
+		}
+		//-----------------------------
 		// Get Package RecordID And User ID For Hosting Product
 		//-----------------------------
 		$table = "tblhosting";
@@ -492,7 +509,8 @@ function sitebuilder_after_module_create($vars)
 						$strNewYolaUserID = $strYolaUserIDProductCustomFieldName;
 					}else{
 						// Save The Custom Field Value To WHMCS
-						$strYolaUserIDProductCustomFieldNameToLookup = $strYolaUserIDProductCustomFieldName;
+						if(strlen($strYolaUserIDProductCustomFieldName) > 1)
+							$strYolaUserIDProductCustomFieldNameToLookup = $strYolaUserIDProductCustomFieldName;
 						$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 						$length = 10;
 						if(strlen($strServiceUsername) < 1)

@@ -1,10 +1,22 @@
-v1.11 - 03/25/13
+v1.12 - 04/21/14
+	- Bug fix: Fixed an issue where the generated site builder user id was not saving to WHMCS under custom server module option.
+	- New Feature: Added the ability for the module to check for new versions when you go to the main menu of the WHMCS add-on menu screen.
+	- New Feature: Added the ability for the module to create a unique domain name based on your WHMCS Config Domain field if the domain name is not passed during a trial plan order.
+	- Minor bug fixes
+	--- Changed Files ----
+	modules/addons/sitebuilder/hooks.php
+	modules/addons/sitebuilder/sitebuilder.php
+	modules/addons/sitebuilder/sitebuilder_functions.php
+	modules/addons/sitebuilder/effectiveTLDs.inc.php
+	modules/addons/sitebuilder/templates/sidebarmenu.tpl
+
+v1.11 - 03/25/14
 	- Changed: Updated Readme.txt file to remove step 10 so you dont need to change the active template to display the edit site link anymore.
 	- Changed: Updated Readme.txt file to add directions on how to setup a trial product in whmcs for a trial site builder account.
 	- New Feature: Added the ability to inject the editsitelinkhtml.tpl edit site link code directly into the client area template.
 	- Bug fix: Fixed an issue where the API would return different formatting during a site builder login request causing the client not to be able to login to their sitebuilder.
-	- Bug fix: Fixed an issue where the if the API would not return right away it would hang the php process, put in a curl timeout.
-	- Bug fix: Fixed an issue where the if the API would not return a login url json response, to get the 302 redirect URL header instead.
+	- Bug fix: Fixed an issue that if the API would not return right away it would hang the php process, put in a curl timeout.
+	- Bug fix: Fixed an issue that if the API would not return a login url json response, to get the 302 redirect URL header instead.
 	- Other minor bug fixes
 	--- Changed Files ----
 	modules/addons/sitebuilder/hooks.php

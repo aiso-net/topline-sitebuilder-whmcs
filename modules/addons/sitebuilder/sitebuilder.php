@@ -1,6 +1,6 @@
 <?php
 //-----------------------------------------
-// Version 1.11 - 3/21/14
+// Version 1.12 - 4/11/14
 // cPanel 11.27.x and later. 
 // WHMCS 5.0 or later.
 //-----------------------------------------
@@ -14,7 +14,7 @@ function sitebuilder_config() {
 	$configarray = array(
 			"name" => "Topline SiteBuilder Module",
 			"description" => "This module allows integration with the topline sitebuilder.",
-			"version" => "1.11",
+			"version" => "1.12",
 			"author" => "Topline",
 			"language" => "english",
 			"fields" => array(
@@ -157,6 +157,9 @@ function sitebuilder_output($vars) {
 			$smarty->assign('modulelink', $modulelink);
 			$smarty->assign('version', $version);
 			$smarty->assign('sidebardisabled', "1");
+			$blnUpgradePossible = Topline_CheckForModuleUpdate($version);
+			if($blnUpgradePossible == true)
+				$smarty->assign('updatemessage', "1");
 			$smarty->caching = false;
 			$smarty->compile_dir = $GLOBALS['templates_compiledir'];
 			$smarty->display(dirname(__FILE__) . '/templates/sidebarmenu.tpl');
@@ -185,6 +188,9 @@ function sitebuilder_sidebar($vars) {
 	$smarty = new Smarty;
 	$smarty->assign('modulelink', $modulelink);
 	$smarty->assign('version', $version);
+	$blnUpgradePossible = Topline_CheckForModuleUpdate($version);
+	if($blnUpgradePossible == true)
+		$smarty->assign('updatemessage', "1");
 	$smarty->caching = false;
 	$smarty->compile_dir = $GLOBALS['templates_compiledir'];
 	$sidebar .= $smarty->fetch(dirname(__FILE__) . '/templates/sidebarmenu.tpl');
