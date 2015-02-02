@@ -1,3 +1,20 @@
+v1.14 - 02/01/15
+ 	- Minor bug fixes
+	--- Changed Files ----
+	modules/addons/sitebuilder/hooks.php
+	modules/addons/sitebuilder/sitebuilder.php
+	modules/addons/sitebuilder/sitebuilder_functions.php
+	modules/addons/sitebuilder/lang/English.txt
+
+v1.13 - 11/11/14
+	- New Feature: Added the ability for the module to use the default cPanel FTP account for yola instead of creating a seperate account. This is useful if the user doesnt have FTP access to the hosting account.
+	- Minor bug fixes
+	--- Changed Files ----
+	modules/addons/sitebuilder/hooks.php
+	modules/addons/sitebuilder/sitebuilder.php
+	modules/addons/sitebuilder/sitebuilder_functions.php
+	modules/addons/sitebuilder/templates/globalsettings.tpl
+
 v1.12 - 04/21/14
 	- Bug fix: Fixed an issue where the generated site builder user id was not saving to WHMCS under custom server module option.
 	- New Feature: Added the ability for the module to check for new versions when you go to the main menu of the WHMCS add-on menu screen.

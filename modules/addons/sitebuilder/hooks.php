@@ -72,7 +72,7 @@ function sitebuilder_client_area_page($vars)
 						$strWHMCSDateFormat = str_replace("YYYY","Y",$strWHMCSDateFormat);
 						$strWHMCSDateFormat = str_replace("DD","d",$strWHMCSDateFormat);
 						$strTrialExpirationDate = Topline_dateadd($strRegDate,$intAutoTerminateDays,0,0,False,$strWHMCSDateFormat);
-						$strURLToPrintData = str_replace("$DATE$",$strTrialExpirationDate,"$strURLToPrintData$strTrialExpiresText");
+						$strURLToPrintData = str_replace("#DATE#",$strTrialExpirationDate,"$strURLToPrintData$strTrialExpiresText");
 					}
 				}
 				return array('moduleclientarea'=> $strURLToPrintData . "\n" . $strModuleClientAreaText);

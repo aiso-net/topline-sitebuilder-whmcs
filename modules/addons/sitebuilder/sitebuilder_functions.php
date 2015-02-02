@@ -1431,6 +1431,8 @@ function Topline_GetCurrentVersionFromGithub()
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10); 
+	curl_setopt($curl, CURLOPT_TIMEOUT, 10);
 	curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13');
 	$cont = curl_exec($curl);
 	curl_close($curl);
@@ -1446,6 +1448,8 @@ function Topline_GetCurrentVersionFromGithub()
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10); 
+		curl_setopt($curl, CURLOPT_TIMEOUT, 10);
 		curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13');
 		$cont2 = curl_exec($curl);
 		curl_close($curl);
@@ -1540,9 +1544,10 @@ function Topline_load_language() {
 	};
 
 	closedir ($dh);
-
-	$language = $_SESSION['Language'];
-
+	if(isset($_SESSION['Language']))
+		$language = $_SESSION['Language'];
+	else
+		$language = Array();
 	if ( ! in_array ($language, $arrayoflanguagefiles) )
 		$language =  "English";
 	if ( file_exists( dirname(__FILE__) . "/lang/$language.txt" ) ) {

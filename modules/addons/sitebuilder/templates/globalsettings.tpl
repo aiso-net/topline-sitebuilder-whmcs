@@ -40,6 +40,8 @@ Trial FTP Mode: &nbsp;<select name="strTrialFTPMode"><option value="1" {if $strT
 <br/><br/>
 WHMCS Upgrade Plan Function: &nbsp;<select name="strUpgradeFunctionToRun"><option value="1" {if $strUpgradeFunctionToRun eq "" || $strUpgradeFunctionToRun eq "1"} selected{/if}>AfterModuleChangePackage</option><option value="2" {if $strUpgradeFunctionToRun eq "2"} selected{/if}>AfterProductUpgrade</option></select>
 <br/><br/>
+Use Default cPanel FTP Account For Topline FTP Access &nbsp;<select name="strUsecPanelFirstFTPAcct"><option value="0" {if $strUsecPanelFirstFTPAcct eq "" || $strUsecPanelFirstFTPAcct eq "0"} selected{/if}>No</option><option value="1" {if $strUsecPanelFirstFTPAcct eq "1"} selected{/if}>Yes</option></select>
+<br/><br/>
 
 <input type="submit" name="submit" value="Save">
 </form>
