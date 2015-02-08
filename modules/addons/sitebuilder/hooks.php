@@ -1,5 +1,8 @@
 <?php
 
+if (!defined("WHMCS"))
+	die("This file cannot be accessed directly");
+
 require_once dirname(__FILE__) . '/sitebuilder_functions.php';
 
 function sitebuilder_client_area_page($vars)

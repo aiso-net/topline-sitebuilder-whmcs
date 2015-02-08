@@ -7,6 +7,9 @@ global $mstrModuleName,$mstrModuleLink;
 $mstrModuleName = "sitebuilder";
 $mstrModuleLink = "addonmodules.php?module=".$mstrModuleName;
 
+if (!defined("WHMCS"))
+	die("This file cannot be accessed directly");
+
 Topline_load_language();
 
 //-------------------------------------------------
@@ -78,6 +81,7 @@ function Topline_DisplayProductDetailsLoginLink($intClientRID,$intServiceRID,$bl
 					$strErrorMessage = "<script>alert('There was a login issue trying to log you in to the site builder, please contact us for help.');window.close();</script>";
 				}
 			}else{
+				logModuleCall("sitebuilder","Topline_DisplayProductDetailsLoginLink","ERROR: Could not get your site builder account information for SID: $intServiceRID, Yola ID Empty: $strYolaUserID");
 				$strErrorMessage = "ERROR: Could not get your site builder account information, please contact us.";
 			}
 			if($blnReturnIfLoginURLCanBeCreated == true)
@@ -104,6 +108,9 @@ function Topline_DisplayProductDetailsLoginLink($intClientRID,$intServiceRID,$bl
 //-----------------------------------------------
 function Topline_GetYolaUserIDFromWHMCSService($intServiceRID)
 {
+	if(!is_numeric($intServiceRID))
+		return "";
+	$strYolaUserID = "";
 	//-----------------------------
 	// Get Serivce From WHMCS
 	//-----------------------------
@@ -153,6 +160,7 @@ function Topline_GetYolaUserIDFromWHMCSService($intServiceRID)
 			$where = array("txtSetting"=>"txtGlobalYolaUserIDProductCustomFieldName");
 			$result = select_query($table,$fields,$where);
 			$globalcustomfieldnamesdata = mysql_fetch_array($result);
+			//logModuleCall("sitebuilder","Topline_GetYolaUserIDFromWHMCSService","Global Product Custom Field Names Used For Yola User ID:",$globalcustomfieldnamesdata);
 			//-----------------------------
 			// Get Custom Module Product Custom Field Names Used For Yola User ID
 			//-----------------------------
@@ -161,6 +169,7 @@ function Topline_GetYolaUserIDFromWHMCSService($intServiceRID)
 			$where = array("txtModuleName"=>$strServerModuleName);
 			$result = select_query($table,$fields,$where);
 			$modulecustomfieldnamesdata = mysql_fetch_array($result);
+			//logModuleCall("sitebuilder","Topline_GetYolaUserIDFromWHMCSService","Custom Module Product Custom Field Names Used For Yola User ID (Module Name: $strServerModuleName):",$modulecustomfieldnamesdata);
 			if(is_numeric($modulecustomfieldnamesdata["intRecordID"]))
 				$intModuleCustomFieldDataRID = (int)$modulecustomfieldnamesdata["intRecordID"];
 			else
@@ -173,6 +182,7 @@ function Topline_GetYolaUserIDFromWHMCSService($intServiceRID)
 				// Use Global Custom Field Names
 				$strYolaUserIDProductCustomFieldName = $globalcustomfieldnamesdata["txtValue"];
 			}
+			//logModuleCall("sitebuilder","Topline_GetYolaUserIDFromWHMCSService","Custom Field Name To Get: $strYolaUserIDProductCustomFieldName");
 			//-----------------------------
 			// Do Work On The Custom Field Names To Determine If We Are Getting Values From WHMCS, Or Creating Our Own And Saving Them To WHMCS
 			//-----------------------------
@@ -286,6 +296,10 @@ function Topline_GetCustomFTPLoginInfo($intPackageRID,$intServiceRID,$blnInclude
 //-----------------------------------------------
 function Topline_GetCustomFTPServerSettings($intServerRID,$intServiceRID)
 {
+	if(!is_numeric($intServerRID))
+		return array();
+	if(!is_numeric($intServiceRID))
+		return array();
 	logModuleCall("sitebuilder","Topline_GetCustomFTPServerSettings","Function call with Server ID: $intServerRID, Service ID: $intServiceRID","");
 	//-----------------------------	
 	// Get Global Product Custom Field Names Used For Username & FTP Info Storage From DB & Global Server Settings
