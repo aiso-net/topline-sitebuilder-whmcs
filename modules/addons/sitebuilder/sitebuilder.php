@@ -207,8 +207,11 @@ function sitebuilder_clientarea($vars) {
 	$strParterID = $vars['PartnerID'];
 	$LANG = $vars['_lang'];
 
-	$intClientRID = $GLOBALS['clientsdetails']['userid'];
- 
+	if(isset($GLOBALS['clientsdetails']))
+		$intClientRID = $GLOBALS['clientsdetails']['userid'];
+ 	elseif(isset($_SESSION['uid']))
+		$intClientRID = $_SESSION['uid'];
+
 	$strAction = $_GET['a'];
 	if(strlen($strAction) < 1)
 		$strAction = $_POST['a'];

@@ -1,3 +1,8 @@
+v1.15 - 02/10/16
+	- New Feature: Updated code to support WHMCS v6
+	--- Changed Files ----
+	modules/addons/sitebuilder/sitebuilder.php
+
 v1.14 - 02/01/15
  	- Minor bug fixes
 	--- Changed Files ----
