@@ -1,6 +1,7 @@
 v2.00 - 05/20/17
 	- New Feature: Updated code to support Toplines new API
 	- New Feature: Updated code to support WHMCS v7
+	- New Feature: Updated code to allow to run on sandbox API or live API
  	- Minor bug fixes
 	--- Changed Files ----
 	modules/addons/sitebuilder/effectiveTLDs.inc.php
