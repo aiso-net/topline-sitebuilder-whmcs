@@ -1,6 +1,6 @@
 <?php
 //-----------------------------------------
-// Version 1.15 - 2/18/17
+// Version 2.01 - 5/20/17
 // cPanel 11.27.x and later. 
 // WHMCS 5.0 or later.
 //-----------------------------------------
@@ -14,7 +14,7 @@ function sitebuilder_config() {
 	$configarray = array(
 			"name" => "Topline SiteBuilder Module",
 			"description" => "This module allows integration with the topline sitebuilder.",
-			"version" => "1.15",
+			"version" => "2.01",
 			"author" => "Topline",
 			"language" => "english",
 			"fields" => array(
