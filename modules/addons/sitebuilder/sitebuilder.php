@@ -1,6 +1,6 @@
 <?php
 //-----------------------------------------
-// Version 1.14 - 2/2/15
+// Version 1.15 - 2/18/17
 // cPanel 11.27.x and later. 
 // WHMCS 5.0 or later.
 //-----------------------------------------
@@ -14,16 +14,18 @@ function sitebuilder_config() {
 	$configarray = array(
 			"name" => "Topline SiteBuilder Module",
 			"description" => "This module allows integration with the topline sitebuilder.",
-			"version" => "1.14",
+			"version" => "1.15",
 			"author" => "Topline",
 			"language" => "english",
 			"fields" => array(
-			        "PartnerGUID" => array ("FriendlyName" => "Partner GUID", "Type" => "text", "Size" => "35",
-                        	 "Description" => "Your Partner GUID given to you by Topline", "Default" => "" ),
-				"PartnerID" => array ("FriendlyName" => "Partner ID", "Type" => "text", "Size" => "25",
-				 "Description" => "Your Partner ID given to you by Topline", "Default" => "" ),
+			        "PartnerAuthKey" => array ("FriendlyName" => "Partner AuthKey", "Type" => "text", "Size" => "50",
+                        	 "Description" => "Your Partner API AuthKey given to you by Topline", "Default" => "" ),
+				"BrandID" => array ("FriendlyName" => "Brand ID", "Type" => "text", "Size" => "30",
+				 "Description" => "Your Brand ID given to you by Topline", "Default" => "" ),
 				"DeleteDBTablesOnUninstall" => array ("FriendlyName" => "Delete DB Tables On Uninstall", "Type" => "yesno", "Size" => "1",
-				 "Description" => "Delete DB Tables On Uninstall")
+				 "Description" => "Delete DB Tables On Uninstall"),
+				"StagingMode" => array ("FriendlyName" => "Use Sandbox API", "Type" => "yesno", "Size" => "1",
+				 "Description" => "Use Sandbox/Staging API Instead Of Production")
 			)
 	);
 	return $configarray;
@@ -136,8 +138,8 @@ function sitebuilder_upgrade($vars) {
 function sitebuilder_output($vars) {
 	$modulelink = $vars['modulelink'];
 	$version = $vars['version'];
-	$strParterGUID = $vars['PartnerGUID'];
-	$strParterID = $vars['PartnerID'];
+	$strPartnerAuthKey = $vars['PartnerAuthKey'];
+	$strPartnerBrand = $vars['BrandID'];
 	$LANG = $vars['_lang'];
 
 	if($_POST['action'] == "")
@@ -203,8 +205,8 @@ function sitebuilder_clientarea($vars) {
 
 	$modulelink = $vars['modulelink'];
     	$version = $vars['version'];
-	$strParterGUID = $vars['PartnerGUID'];
-	$strParterID = $vars['PartnerID'];
+	$strPartnerAuthKey = $vars['PartnerAuthKey'];
+	$strPartnerBrand = $vars['BrandID'];
 	$LANG = $vars['_lang'];
 
 	if(isset($GLOBALS['clientsdetails']))
@@ -235,8 +237,8 @@ function sitebuilder_manageservers($vars) {
 	global $mstrModuleLink;
 	$modulelink = $vars['modulelink'];
     	$version = $vars['version'];
-	$strParterGUID = $vars['PartnerGUID'];
-	$strParterID = $vars['PartnerID'];
+	$strPartnerAuthKey = $vars['PartnerAuthKey'];
+	$strPartnerBrand = $vars['BrandID'];
 	$LANG = $vars['_lang'];
 
 	$strAction2 = $_POST['action2'];
@@ -328,8 +330,8 @@ function sitebuilder_managemodules($vars) {
 	global $mstrModuleLink;
 	$modulelink = $vars['modulelink'];
     	$version = $vars['version'];
-	$strParterGUID = $vars['PartnerGUID'];
-	$strParterID = $vars['PartnerID'];
+	$strPartnerAuthKey = $vars['PartnerAuthKey'];
+	$strPartnerBrand = $vars['BrandID'];
 	$LANG = $vars['_lang'];
 
 	$strAction2 = $_POST['action2'];
@@ -430,8 +432,10 @@ function sitebuilder_managemodules($vars) {
 function sitebuilder_manageproducts($vars) {
 	$modulelink = $vars['modulelink'];
     	$version = $vars['version'];
-	$strParterGUID = $vars['PartnerGUID'];
-	$strParterID = $vars['PartnerID'];
+	$strPartnerAuthKey = $vars['PartnerAuthKey'];
+	$strPartnerBrand = $vars['BrandID'];
+	$strAPIStagingMode = $vars['StagingMode'];
+
 	$LANG = $vars['_lang'];
 
 	$strAction2 = $_POST['action2'];
@@ -448,8 +452,9 @@ function sitebuilder_manageproducts($vars) {
 			$strBundleID = $_GET["bundle_id"];
 
 		$Topline = new ToplineAPI;
-		$Topline->SetPartnerGUID($strParterGUID);
-		$Topline->SetPartnerID($strParterID);
+		$Topline->SetPartnerAuthKey($strPartnerAuthKey);
+		$Topline->SetPartnerBrand($strPartnerBrand);
+		$Topline->TurnOnStatingMode($strAPIStagingMode);
 		$strBundleName = $Topline->GetBundleName($strBundleID);
 
 		// Get Products Selected For This Bundle
@@ -520,8 +525,9 @@ function sitebuilder_manageproducts($vars) {
 			$strBundleID = $_GET["bundle_id"];
 		$strBundleID = Topline_db_escape($strBundleID);
 		$Topline = new ToplineAPI;
-		$Topline->SetPartnerGUID($strParterGUID);
-		$Topline->SetPartnerID($strParterID);
+		$Topline->SetPartnerAuthKey($strPartnerAuthKey);
+		$Topline->SetPartnerBrand($strPartnerBrand);
+		$Topline->TurnOnStatingMode($strAPIStagingMode);
 		if($Topline->VerifyBundleIDAllowed($strBundleID))
 		{
 			//-------------------------------------------------
@@ -681,19 +687,36 @@ function sitebuilder_manageproducts($vars) {
 		$aryBundleData = "";
 		// Get all the product bundles and list them
 		$Topline = new ToplineAPI;
-		$Topline->SetPartnerGUID($strParterGUID);
-		$Topline->SetPartnerID($strParterID);
-		$aryBundle = $Topline->GetBundles();
-		foreach($aryBundle->bundle as $bundle)
+		$Topline->SetPartnerAuthKey($strPartnerAuthKey);
+		$Topline->SetPartnerBrand($strPartnerBrand);
+		$Topline->TurnOnStatingMode($strAPIStagingMode);
+		$aryBundles = $Topline->GetBundles();
+		foreach($aryBundles as $aryBundle)
 		{
-			$strDiskSpace = "0";
-			if(is_numeric(trim($bundle->space)))
-				$strDiskSpace = Topline_human_filesize((int)$bundle->space,2,true);
-			$strYolaBundleID = $bundle->Attributes()->id;
-			$select_countassignedproducts = "SELECT intRecordID FROM mod_sitebuilder_bundlexproducts WHERE txtYolaBundleID = '$strYolaBundleID'";
-			$countassignedproducts_rows = full_query($select_countassignedproducts);
-			$intNumberOfWHMCSProductsAssigned = mysql_num_rows($countassignedproducts_rows);
-			$aryBundleData[] = Array("id"=>$strYolaBundleID,"name"=>$bundle->bundlename,"diskspace"=>$strDiskSpace,"monthlyfee"=>$bundle->monthlyfee,"pages"=>$bundle->pages,"numofproductsassigned"=>$intNumberOfWHMCSProductsAssigned);
+			$blnIsCorePlan = false;
+			if(is_numeric($aryBundle["isCore"]))
+				if((int)$aryBundle["isCore"] == 1)
+					$blnIsCorePlan = true;
+			if($blnIsCorePlan == true) {
+				$strDiskSpace = "0";
+				if(isset($aryBundle["space"])) {
+					if(is_numeric(trim($aryBundle["space"])))
+						$strDiskSpace = Topline_human_filesize((int)$aryBundle["space"],2,true);
+				}else{
+					$strDiskSpace = "N/A";
+				}
+				$strYolaBundleID = $aryBundle["planID"];
+				$select_countassignedproducts = "SELECT intRecordID FROM mod_sitebuilder_bundlexproducts WHERE txtYolaBundleID = '$strYolaBundleID'";
+				$countassignedproducts_rows = full_query($select_countassignedproducts);
+				$intNumberOfWHMCSProductsAssigned = mysql_num_rows($countassignedproducts_rows);
+				if(isset($aryBundle["pages"]))
+					$strPages = $aryBundle["pages"];
+				else
+					$strPages = "";
+				$currencyData = getCurrency($_SESSION["adminid"]);
+				$strMonhtlyFee = formatCurrency($aryBundle["spCost"], $currencyData);
+				$aryBundleData[] = Array("id"=>$strYolaBundleID,"name"=>$aryBundle["planName"],"diskspace"=>$strDiskSpace,"monthlyfee"=>$strMonhtlyFee,"pages"=>$strPages,"numofproductsassigned"=>$intNumberOfWHMCSProductsAssigned);
+			}
 		}
 		display_template(Array("strLinkBack"=>$mstrModuleLink,"bundledata" => $aryBundleData),"manageproducts.tpl");
 	}
@@ -702,8 +725,8 @@ function sitebuilder_manageproducts($vars) {
 function sitebuilder_globalsettings($vars) {
 	$modulelink = $vars['modulelink'];
     	$version = $vars['version'];
-	$strParterGUID = $vars['PartnerGUID'];
-	$strParterID = $vars['PartnerID'];
+	$strPartnerAuthKey = $vars['PartnerAuthKey'];
+	$strPartnerBrand = $vars['BrandID'];
 	$LANG = $vars['_lang'];
 	$strAction2 = $_POST['action2'];
 

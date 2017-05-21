@@ -133,9 +133,9 @@ function sitebuilder_after_module_create($vars)
 	//-----------------------------
 	if($intYolaProductBundleRID > 0)
 	{
-		logModuleCall("sitebuilder","after_module_create","Topline Product Bundle Assigned To This Product. PID: " . $intProductRID . " , YBID: " . $strYolaBundleIDSelected);
+		logModuleCall("sitebuilder","after_module_create","Topline Product Bundle Assigned To This Product. WHMCSYPBRID: $intYolaProductBundleRID, PID: $intProductRID, YBID: $strYolaBundleIDSelected",$vars);
 		//-----------------------------
-		// If its a Topline trial create a trial account instead. Tthe trial product has the autorelease module assigned, since we dont want to create anything on the server yet.
+		// If its a Topline trial create a trial account instead. The trial product has the autorelease module assigned, since we dont want to create anything on the server yet.
 		//-----------------------------
 		// Grab The Product Name To Search For Trial Word
 		//-----------------------------
@@ -212,8 +212,9 @@ function sitebuilder_after_module_create($vars)
 		// Check To See If The Topline User Account Already Exists, If It Does, Then We Dont Need To Save A New Topline User Id
 		//-----------------------------
 		$Topline = new ToplineAPI;
-		$Topline->SetPartnerGUID($aryModuleSettings[0]);
-		$Topline->SetPartnerID($aryModuleSettings[1]);
+		$Topline->SetPartnerAuthKey($aryModuleSettings[0]);
+		$Topline->SetPartnerBrand($aryModuleSettings[1]);
+		$Topline->TurnOnStatingMode($aryModuleSettings[3]);
 		$blnHasCurrentTrialAccount = False;
 		$aryCurrentToplineUserResult = $Topline->GetAccountInfo($strDomainName);
 		if(isset($aryCurrentToplineUserResult["status"]))
@@ -226,6 +227,15 @@ function sitebuilder_after_module_create($vars)
 			}
 		}
 		unset($Topline);
+		//-----------------------------
+		// Backup since some times the server id is not present in the passed function vars
+		//-----------------------------
+		if(!is_numeric($intServerRID))
+			$intServerRID = 0;
+		if($intServerRID < 1) {
+			$aryProductData = mysql_fetch_array(select_query("tblhosting","server",array("id"=>$intProductRID)));
+			$intServerRID = $aryProductData["server"];
+		}
 		//-----------------------------
 		// Do Topline Creation Of Topline Account And Extra FTP Account As Needed
 		//-----------------------------
@@ -597,11 +607,12 @@ function sitebuilder_after_module_create($vars)
 			{
 				logModuleCall("sitebuilder","after_module_create","Creating Topline Account.");
 				$Topline = new ToplineAPI;
-				$Topline->SetPartnerGUID($aryModuleSettings[0]);
-				$Topline->SetPartnerID($aryModuleSettings[1]);
+				$Topline->SetPartnerAuthKey($aryModuleSettings[0]);
+				$Topline->SetPartnerBrand($aryModuleSettings[1]);
+				$Topline->TurnOnStatingMode($aryModuleSettings[3]);
 				if($blnHasCurrentTrialAccount == true)
 				{
-					$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModifyFromTrial,$strNewYolaUserPassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelected,"","","","",$intServiceRID);
+					$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModifyFromTrial,$strNewYolaUserPassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelected,"",$intServiceRID);
 					if($blnYolaModifyResult == true)
 					{
 						logActivity("Topline Trial User Account Converted To Active Mode Successfully");
@@ -611,7 +622,7 @@ function sitebuilder_after_module_create($vars)
 						logModuleCall("sitebuilder","after_module_create","Topline Trial User Account Conversion FAILED");
 					}
 				}else{
-					$blnYolaCreateResult = $Topline->AddNewCustomer($strNewYolaUserID,$strNewYolaUserPassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelected,"","",0,$intFTPProtocol,$intServiceRID);
+					$blnYolaCreateResult = $Topline->AddNewCustomer($strNewYolaUserID,$strNewYolaUserPassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$strYolaBundleIDSelected,$intServiceRID,$intFTPProtocol,$intYolaAccountStatus);
 					if($blnYolaCreateResult == true)
 					{
 						logActivity("Topline User Account Created Successfully");
@@ -746,9 +757,10 @@ function sitebuilder_after_module_create($vars)
 			//-----------------------------
 			logModuleCall("sitebuilder","after_module_create","Creating Topline Account.");
 			$Topline = new ToplineAPI;
-			$Topline->SetPartnerGUID($aryModuleSettings[0]);
-			$Topline->SetPartnerID($aryModuleSettings[1]);
-			$blnYolaCreateResult = $Topline->AddNewCustomer($strNewYolaUserID,$strNewYolaUserPassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"","","","","","","",$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelected,"","",0,$intFTPProtocol,$intServiceRID);
+			$Topline->SetPartnerAuthKey($aryModuleSettings[0]);
+			$Topline->SetPartnerBrand($aryModuleSettings[1]);
+			$Topline->TurnOnStatingMode($aryModuleSettings[3]);
+			$blnYolaCreateResult = $Topline->AddNewCustomer($strNewYolaUserID,$strNewYolaUserPassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"","","","","","","",$strDomainName,$strYolaBundleIDSelected,$intServiceRID,$intFTPProtocol,$intYolaAccountStatus);
 			if($blnYolaCreateResult == true)
 			{
 				logActivity("Topline User Account (Trial) Created Successfully");
@@ -873,8 +885,9 @@ function sitebuilder_pre_module_terminate($vars)
 				return;
 			}
 			$Topline = new ToplineAPI;
-			$Topline->SetPartnerGUID($aryModuleSettings[0]);
-			$Topline->SetPartnerID($aryModuleSettings[1]);
+			$Topline->SetPartnerAuthKey($aryModuleSettings[0]);
+			$Topline->SetPartnerBrand($aryModuleSettings[1]);
+			$Topline->TurnOnStatingMode($aryModuleSettings[3]);
 			$blnYolaDeleteResult = $Topline->DeleteCustomer($strYolaUserID);
 			if($blnYolaDeleteResult == true)
 			{
@@ -1159,8 +1172,9 @@ function sitebuilder_after_product_upgrade($vars)
 						if(strlen($strToplineUserIDToModify) > 0)
 						{
 							$Topline = new ToplineAPI;
-							$Topline->SetPartnerGUID($aryModuleSettings[0]);
-							$Topline->SetPartnerID($aryModuleSettings[1]);
+							$Topline->SetPartnerAuthKey($aryModuleSettings[0]);
+							$Topline->SetPartnerBrand($aryModuleSettings[1]);
+							$Topline->TurnOnStatingMode($aryModuleSettings[3]);
 							//-----------------------------
 							// Get Account Status
 							//-----------------------------
@@ -1175,7 +1189,7 @@ function sitebuilder_after_product_upgrade($vars)
 								$intYolaAccountStatus = 0;
 							//-----------------------------
 							logModuleCall("sitebuilder","after_product_upgrade","Modifing Topline User ($strToplineUserIDToModify) To New Bundle ID: $strYolaBundleIDSelectedForNewPlan","");
-							$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModify,$strServicePassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelectedForNewPlan,"","","","",$intServiceRID);
+							$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModify,$strServicePassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelectedForNewPlan,"",$intServiceRID);
 							if($blnYolaModifyResult == true)
 							{
 								logActivity("Topline User Account Plan Type Modified Successfully");
@@ -1229,26 +1243,11 @@ function sitebuilder_after_module_change_package($vars)
 	//-----------------------------
 	if($intYolaProductBundleRID > 0)
 	{
-		logModuleCall("sitebuilder","after_module_change_package","Topline Product Bundle Assigned To This Product. PID: " . $intProductRID . " , YBID: " . $strYolaBundleIDSelected);
+		logModuleCall("sitebuilder","after_module_change_package","Topline Product Bundle Assigned To This Product. WHMCSYPBRID: $intYolaProductBundleRID, New PID: $intProductRID, YBID: $strYolaBundleIDSelected");
 		//-----------------------------
 		// Get Serivce Password
 		//-----------------------------
 		$strNewYolaUserPassword = $strServicePassword;
-		//-----------------------------
-		// Get Package RecordID And User ID For Hosting Product
-		//-----------------------------
-		$table = "tblhosting";
-		$fields = "packageid,userid,password";
-		$where = array("id"=>$intServiceRID);
-		$result = select_query($table,$fields,$where);
-		$servicedata = mysql_fetch_array($result);
-		$intPackageRID = $servicedata["packageid"];
-		$intUserRID = $servicedata["userid"];
-		$strServicePassword = decrypt($servicedata["password"]);
-		if(is_numeric($intPackageRID))
-			$intPackageRID = (int)$intPackageRID;
-		else
-			$intPackageRID = 0;
 		//-----------------------------
 		// Get Client Details
 		//-----------------------------
@@ -1283,7 +1282,21 @@ function sitebuilder_after_module_change_package($vars)
 		$result = select_query($table,$fields,$where);
 		$data = mysql_fetch_array($result);
 		$strServerLocalIPAddress = $data["localipaddress"];
-
+		//-----------------------------
+		// Get Package RecordID And User ID For Hosting Product
+		//-----------------------------
+		$table = "tblhosting";
+		$fields = "packageid,userid,password";
+		$where = array("id"=>$intServiceRID);
+		$result = select_query($table,$fields,$where);
+		$servicedata = mysql_fetch_array($result);
+		$intPackageRID = $servicedata["packageid"];
+		$intUserRID = $servicedata["userid"];
+		$strServicePassword = decrypt($servicedata["password"]);
+		if(is_numeric($intPackageRID))
+			$intPackageRID = (int)$intPackageRID;
+		else
+			$intPackageRID = 0;
 		//--------------
 		// Get FTP Username, Password And Yola User ID
 		//--------------
@@ -1299,8 +1312,9 @@ function sitebuilder_after_module_change_package($vars)
 		}
 		//-----------------------------
 		$Topline = new ToplineAPI;
-		$Topline->SetPartnerGUID($aryModuleSettings[0]);
-		$Topline->SetPartnerID($aryModuleSettings[1]);
+		$Topline->SetPartnerAuthKey($aryModuleSettings[0]);
+		$Topline->SetPartnerBrand($aryModuleSettings[1]);
+		$Topline->TurnOnStatingMode($aryModuleSettings[3]);
 		$blnHasCurrentTrialAccount = false;
 		$aryUserResult = $Topline->GetAccountInfo($strDomainName);
 		if(isset($aryUserResult["status"]))
@@ -1311,10 +1325,24 @@ function sitebuilder_after_module_change_package($vars)
 			{
 				if($intYolaAccountStatus == 1)
 				{
-						logActivity("Topline Trial User Account Conversion Not Needed, Already Converted");
-						logModuleCall("sitebuilder","after_module_change_package","Topline Trial User Account Conversion Not Needed, Already Converted","ID To Modify From WHMCS Service: $strYolaUserID, Received ID: $strToplineUserIDToModify, Received ID Status: $intYolaAccountStatus");
+					if($aryUserResult["planid"] == $strYolaBundleIDSelected) {
+						logActivity("Topline User Account Subscription Switch Not Needed");
+						logModuleCall("sitebuilder","after_module_change_package","Topline User Account Subscription Switch Not Needed","ID To Modify From WHMCS Service: $strYolaUserID, Received ID: $strToplineUserIDToModify, Received ID Status: $intYolaAccountStatus, Current Subscription: " . $aryUserResult["planid"] . ", New Subscription: $strYolaBundleIDSelected");
+					}else{
+						logActivity("Topline User Account Subscription Switch Needed");
+						logModuleCall("sitebuilder","after_module_change_package","Topline User Account Subscription Switch Needed","ID To Modify From WHMCS Service: $strYolaUserID, Received ID: $strToplineUserIDToModify, Received ID Status: $intYolaAccountStatus, Current Subscription: " . $aryUserResult["planid"] . ", New Subscription: $strYolaBundleIDSelected");
+						$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModify,$strServicePassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelected,"",$intServiceRID);
+						if($blnYolaModifyResult == true)
+						{
+							logActivity("Topline User Account Subscription Switched Successfully");
+							logModuleCall("sitebuilder","after_module_change_package","Topline User Account Subscription Switched Successfully","");
+						}else{
+							logActivity("Topline User Account Subscription Switch <font color=\"red\">FAILED</font>");
+							logModuleCall("sitebuilder","after_module_change_package","Topline User Account Subscription Switch FAILED","");
+						}
+					}
 				}else{
-					$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModify,$strServicePassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$intYolaProductBundleRID,"","","","",$intServiceRID);
+					$blnYolaModifyResult = $Topline->ModifyCustomer($strToplineUserIDToModify,$strServicePassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelected,"",$intServiceRID);
 					if($blnYolaModifyResult == true)
 					{
 						logActivity("Topline Trial User Account Converted To Active Mode Successfully");
@@ -1711,9 +1739,10 @@ function sitebuilder_addon_module_create($vars)
 					return;
 				}
 				$Topline = new ToplineAPI;
-				$Topline->SetPartnerGUID($aryModuleSettings[0]);
-				$Topline->SetPartnerID($aryModuleSettings[1]);
-				$blnYolaCreateResult = $Topline->AddNewCustomer($strNewYolaUserID,$strNewYolaUserPassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$intYolaAccountStatus,$strYolaBundleIDSelected,"","",0,$intFTPProtocol,$intServiceRID);
+				$Topline->SetPartnerAuthKey($aryModuleSettings[0]);
+				$Topline->SetPartnerBrand($aryModuleSettings[1]);
+				$Topline->TurnOnStatingMode($aryModuleSettings[3]);
+				$blnYolaCreateResult = $Topline->AddNewCustomer($strNewYolaUserID,$strNewYolaUserPassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"",$strServerFTPIPAddress,$strNewFTPUsername,$strNewFTPPassword,$strFTPPort,$strFTPDirectory,$intFTPMode,$strDomainName,$strYolaBundleIDSelected,$intServiceRID,$intFTPProtocol,$intYolaAccountStatus);
 				if($blnYolaCreateResult == true)
 				{
 					logActivity("Topline User Account Created Successfully");
@@ -1853,9 +1882,10 @@ function sitebuilder_addon_module_create($vars)
 			//-----------------------------
 			logModuleCall("sitebuilder","after_module_create","Creating Topline Account.");
 			$Topline = new ToplineAPI;
-			$Topline->SetPartnerGUID($aryModuleSettings[0]);
-			$Topline->SetPartnerID($aryModuleSettings[1]);
-			$blnYolaCreateResult = $Topline->AddNewCustomer($strNewYolaUserID,$strNewYolaUserPassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"","","","","","","","",$intYolaAccountStatus,$strYolaBundleIDSelected,"","",0,$intFTPProtocol,$intServiceRID);
+			$Topline->SetPartnerAuthKey($aryModuleSettings[0]);
+			$Topline->SetPartnerBrand($aryModuleSettings[1]);
+			$Topline->TurnOnStatingMode($aryModuleSettings[3]);
+			$blnYolaCreateResult = $Topline->AddNewCustomer($strNewYolaUserID,$strNewYolaUserPassword,$strClientFirstName,$strClientLastName,$strClientEmailAddress,"","","","","","","","",$strYolaBundleIDSelected,$intServiceRID,$intFTPProtocol,$intYolaAccountStatus);
 			if($blnYolaCreateResult == true)
 			{
 				logActivity("Topline User Account (Trial) Created Successfully");

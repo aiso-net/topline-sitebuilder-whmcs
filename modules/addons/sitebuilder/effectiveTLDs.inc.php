@@ -1,932 +1,8 @@
 <?php
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// ===BEGIN ICANN DOMAINS===
-// ac : http://en.wikipedia.org/wiki/.ac
-// ad : http://en.wikipedia.org/wiki/.ad
-// ae : http://en.wikipedia.org/wiki/.ae
-// see also: "Domain Name Eligibility Policy" at http://www.aeda.ae/eng/aepolicy.php
-// aero : see http://www.information.aero/index.php?id=66
-// af : http://www.nic.af/help.jsp
-// ag : http://www.nic.ag/prices.htm
-// ai : http://nic.com.ai/
-// al : http://www.ert.gov.al/ert_alb/faq_det.html?Id=31
-// am : http://en.wikipedia.org/wiki/.am
-// an : http://www.una.an/an_domreg/default.asp
-// ao : http://en.wikipedia.org/wiki/.ao
-// http://www.dns.ao/REGISTR.DOC
-// aq : http://en.wikipedia.org/wiki/.aq
-// ar : https://nic.ar/normativa-vigente.xhtml
-// arpa : http://en.wikipedia.org/wiki/.arpa
-// Confirmed by registry <iana-questions@icann.org> 2008-06-18
-// as : http://en.wikipedia.org/wiki/.as
-// asia : http://en.wikipedia.org/wiki/.asia
-// at : http://en.wikipedia.org/wiki/.at
-// Confirmed by registry <it@nic.at> 2008-06-17
-// au : http://en.wikipedia.org/wiki/.au
-// http://www.auda.org.au/
-// 2LDs
-// Historic 2LDs (closed to new registration, but sites still exist)
-// CGDNs - http://www.cgdn.org.au/
-// 3LDs
-// nsw.gov.au  Bug 547985 - Removed at request of <Shae.Donelan@services.nsw.gov.au>
-// nt.gov.au  Bug 940478 - Removed at request of Greg Connors <Greg.Connors@nt.gov.au>
-// aw : http://en.wikipedia.org/wiki/.aw
-// ax : http://en.wikipedia.org/wiki/.ax
-// az : http://en.wikipedia.org/wiki/.az
-// ba : http://en.wikipedia.org/wiki/.ba
-// bb : http://en.wikipedia.org/wiki/.bb
-// bd : http://en.wikipedia.org/wiki/.bd
-// be : http://en.wikipedia.org/wiki/.be
-// Confirmed by registry <tech@dns.be> 2008-06-08
-// bf : http://en.wikipedia.org/wiki/.bf
-// bg : http://en.wikipedia.org/wiki/.bg
-// https://www.register.bg/user/static/rules/en/index.html
-// bh : http://en.wikipedia.org/wiki/.bh
-// bi : http://en.wikipedia.org/wiki/.bi
-// http://whois.nic.bi/
-// biz : http://en.wikipedia.org/wiki/.biz
-// bj : http://en.wikipedia.org/wiki/.bj
-// bm : http://www.bermudanic.bm/dnr-text.txt
-// bn : http://en.wikipedia.org/wiki/.bn
-// bo : http://www.nic.bo/
-// br : http://registro.br/dominio/categoria.html
-// Submitted by registry <fneves@registro.br> 2014-03-04
-// bs : http://www.nic.bs/rules.html
-// bt : http://en.wikipedia.org/wiki/.bt
-// bv : No registrations at this time.
-// Submitted by registry <jarle@uninett.no> 2006-06-16
-// bw : http://en.wikipedia.org/wiki/.bw
-// http://www.gobin.info/domainname/bw.doc
-// list of other 2nd level tlds ?
-// by : http://en.wikipedia.org/wiki/.by
-// http://tld.by/rules_2006_en.html
-// list of other 2nd level tlds ?
-// Official information does not indicate that com.by is a reserved
-// second-level domain, but it's being used as one (see www.google.com.by and
-// www.yahoo.com.by, for example), so we list it here for safety's sake.
-// http://hoster.by/
-// bz : http://en.wikipedia.org/wiki/.bz
-// http://www.belizenic.bz/
-// ca : http://en.wikipedia.org/wiki/.ca
-// ca geographical names
-// gc.ca: http://en.wikipedia.org/wiki/.gc.ca
-// see also: http://registry.gc.ca/en/SubdomainFAQ
-// cat : http://en.wikipedia.org/wiki/.cat
-// cc : http://en.wikipedia.org/wiki/.cc
-// cd : http://en.wikipedia.org/wiki/.cd
-// see also: https://www.nic.cd/domain/insertDomain_2.jsp?act=1
-// cf : http://en.wikipedia.org/wiki/.cf
-// cg : http://en.wikipedia.org/wiki/.cg
-// ch : http://en.wikipedia.org/wiki/.ch
-// ci : http://en.wikipedia.org/wiki/.ci
-// http://www.nic.ci/index.php?page=charte
-// ck : http://en.wikipedia.org/wiki/.ck
-// cl : http://en.wikipedia.org/wiki/.cl
-// cm : http://en.wikipedia.org/wiki/.cm
-// cn : http://en.wikipedia.org/wiki/.cn
-// Submitted by registry <tanyaling@cnnic.cn> 2008-06-11
-// cn geographic names
-// co : http://en.wikipedia.org/wiki/.co
-// Submitted by registry <tecnico@uniandes.edu.co> 2008-06-11
-// com : http://en.wikipedia.org/wiki/.com
-// coop : http://en.wikipedia.org/wiki/.coop
-// cr : http://www.nic.cr/niccr_publico/showRegistroDominiosScreen.do
-// cu : http://en.wikipedia.org/wiki/.cu
-// cv : http://en.wikipedia.org/wiki/.cv
-// cw : http://www.una.cw/cw_registry/
-// Confirmed by registry <registry@una.net> 2013-03-26
-// cx : http://en.wikipedia.org/wiki/.cx
-// list of other 2nd level tlds ?
-// cy : http://en.wikipedia.org/wiki/.cy
-// cz : http://en.wikipedia.org/wiki/.cz
-// de : http://en.wikipedia.org/wiki/.de
-// Confirmed by registry <ops@denic.de> (with technical
-// reservations) 2008-07-01
-// dj : http://en.wikipedia.org/wiki/.dj
-// dk : http://en.wikipedia.org/wiki/.dk
-// Confirmed by registry <robert@dk-hostmaster.dk> 2008-06-17
-// dm : http://en.wikipedia.org/wiki/.dm
-// do : http://en.wikipedia.org/wiki/.do
-// dz : http://en.wikipedia.org/wiki/.dz
-// ec : http://www.nic.ec/reg/paso1.asp
-// Submitted by registry <vabboud@nic.ec> 2008-07-04
-// edu : http://en.wikipedia.org/wiki/.edu
-// ee : http://www.eenet.ee/EENet/dom_reeglid.html#lisa_B
-// eg : http://en.wikipedia.org/wiki/.eg
-// er : http://en.wikipedia.org/wiki/.er
-// es : https://www.nic.es/site_ingles/ingles/dominios/index.html
-// et : http://en.wikipedia.org/wiki/.et
-// eu : http://en.wikipedia.org/wiki/.eu
-// fi : http://en.wikipedia.org/wiki/.fi
-// aland.fi : http://en.wikipedia.org/wiki/.ax
-// This domain is being phased out in favor of .ax. As there are still many
-// domains under aland.fi, we still keep it on the list until aland.fi is
-// completely removed.
-// TODO: Check for updates (expected to be phased out around Q1/2009)
-// fj : http://en.wikipedia.org/wiki/.fj
-// fk : http://en.wikipedia.org/wiki/.fk
-// fm : http://en.wikipedia.org/wiki/.fm
-// fo : http://en.wikipedia.org/wiki/.fo
-// fr : http://www.afnic.fr/
-// domaines descriptifs : http://www.afnic.fr/obtenir/chartes/nommage-fr/annexe-descriptifs
-// domaines sectoriels : http://www.afnic.fr/obtenir/chartes/nommage-fr/annexe-sectoriels
-// ga : http://en.wikipedia.org/wiki/.ga
-// gb : This registry is effectively dormant
-// Submitted by registry <Damien.Shaw@ja.net> 2008-06-12
-// gd : http://en.wikipedia.org/wiki/.gd
-// ge : http://www.nic.net.ge/policy_en.pdf
-// gf : http://en.wikipedia.org/wiki/.gf
-// gg : http://www.channelisles.net/register-domains/
-// Confirmed by registry <nigel@channelisles.net> 2013-11-28
-// gh : http://en.wikipedia.org/wiki/.gh
-// see also: http://www.nic.gh/reg_now.php
-// Although domains directly at second level are not possible at the moment,
-// they have been possible for some time and may come back.
-// gi : http://www.nic.gi/rules.html
-// gl : http://en.wikipedia.org/wiki/.gl
-// http://nic.gl
-// gm : http://www.nic.gm/htmlpages%5Cgm-policy.htm
-// gn : http://psg.com/dns/gn/gn.txt
-// Submitted by registry <randy@psg.com> 2008-06-17
-// gov : http://en.wikipedia.org/wiki/.gov
-// gp : http://www.nic.gp/index.php?lang=en
-// gq : http://en.wikipedia.org/wiki/.gq
-// gr : https://grweb.ics.forth.gr/english/1617-B-2005.html
-// Submitted by registry <segred@ics.forth.gr> 2008-06-09
-// gs : http://en.wikipedia.org/wiki/.gs
-// gt : http://www.gt/politicas_de_registro.html
-// gu : http://gadao.gov.gu/registration.txt
-// gw : http://en.wikipedia.org/wiki/.gw
-// gy : http://en.wikipedia.org/wiki/.gy
-// http://registry.gy/
-// hk : https://www.hkdnr.hk
-// Submitted by registry <hk.tech@hkirc.hk> 2008-06-11
-// hm : http://en.wikipedia.org/wiki/.hm
-// hn : http://www.nic.hn/politicas/ps02,,05.html
-// hr : http://www.dns.hr/documents/pdf/HRTLD-regulations.pdf
-// ht : http://www.nic.ht/info/charte.cfm
-// hu : http://www.domain.hu/domain/English/sld.html
-// Confirmed by registry <pasztor@iszt.hu> 2008-06-12
-// id : https://register.pandi.or.id/
-// ie : http://en.wikipedia.org/wiki/.ie
-// il : http://en.wikipedia.org/wiki/.il
-// im : https://www.nic.im/
-// Submitted by registry <info@nic.im> 2013-11-15
-// in : http://en.wikipedia.org/wiki/.in
-// see also: http://www.inregistry.in/policies/
-// Please note, that nic.in is not an offical eTLD, but used by most
-// government institutions.
-// info : http://en.wikipedia.org/wiki/.info
-// int : http://en.wikipedia.org/wiki/.int
-// Confirmed by registry <iana-questions@icann.org> 2008-06-18
-// io : http://www.nic.io/rules.html
-// list of other 2nd level tlds ?
-// iq : http://www.cmc.iq/english/iq/iqregister1.htm
-// ir : http://www.nic.ir/Terms_and_Conditions_ir,_Appendix_1_Domain_Rules
-// Also see http://www.nic.ir/Internationalized_Domain_Names
-// Two <iran>.ir entries added at request of <tech-team@nic.ir>, 2010-04-16
-// xn--mgba3a4f16a.ir (<iran>.ir, Persian YEH)
-// xn--mgba3a4fra.ir (<iran>.ir, Arabic YEH)
-// is : http://www.isnic.is/domain/rules.php
-// Confirmed by registry <marius@isgate.is> 2008-12-06
-// it : http://en.wikipedia.org/wiki/.it
-// Reserved geo-names:
-// http://www.nic.it/documenti/regolamenti-e-linee-guida/regolamento-assegnazione-versione-6.0.pdf
-// There is also a list of reserved geo-names corresponding to Italian municipalities
-// http://www.nic.it/documenti/appendice-c.pdf, but it is not included here.
-// Regions
-// Provinces
-// je : http://www.channelisles.net/register-domains/
-// Confirmed by registry <nigel@channelisles.net> 2013-11-28
-// jm : http://www.com.jm/register.html
-// jo : http://www.dns.jo/Registration_policy.aspx
-// jobs : http://en.wikipedia.org/wiki/.jobs
-// jp : http://en.wikipedia.org/wiki/.jp
-// http://jprs.co.jp/en/jpdomain.html
-// Submitted by registry <info@jprs.jp> 2014-02-28
-// jp organizational type names
-// jp preficture type names
-// jp geographic type names
-// http://jprs.jp/doc/rule/saisoku-1.html
-// 4th level registration
-// ke : http://www.kenic.or.ke/index.php?option=com_content&task=view&id=117&Itemid=145
-// kg : http://www.domain.kg/dmn_n.html
-// kh : http://www.mptc.gov.kh/dns_registration.htm
-// ki : http://www.ki/dns/index.html
-// km : http://en.wikipedia.org/wiki/.km
-// http://www.domaine.km/documents/charte.doc
-// These are only mentioned as proposed suggestions at domaine.km, but
-// http://en.wikipedia.org/wiki/.km says they're available for registration:
-// kn : http://en.wikipedia.org/wiki/.kn
-// http://www.dot.kn/domainRules.html
-// kp : http://www.kcce.kp/en_index.php
-// kr : http://en.wikipedia.org/wiki/.kr
-// see also: http://domain.nida.or.kr/eng/registration.jsp
-// kr geographical names
-// kw : http://en.wikipedia.org/wiki/.kw
-// ky : http://www.icta.ky/da_ky_reg_dom.php
-// Confirmed by registry <kysupport@perimeterusa.com> 2008-06-17
-// kz : http://en.wikipedia.org/wiki/.kz
-// see also: http://www.nic.kz/rules/index.jsp
-// la : http://en.wikipedia.org/wiki/.la
-// Submitted by registry <gavin.brown@nic.la> 2008-06-10
-// lb : http://en.wikipedia.org/wiki/.lb
-// Submitted by registry <randy@psg.com> 2008-06-17
-// lc : http://en.wikipedia.org/wiki/.lc
-// see also: http://www.nic.lc/rules.htm
-// li : http://en.wikipedia.org/wiki/.li
-// lk : http://www.nic.lk/seclevpr.html
-// lr : http://psg.com/dns/lr/lr.txt
-// Submitted by registry <randy@psg.com> 2008-06-17
-// ls : http://en.wikipedia.org/wiki/.ls
-// lt : http://en.wikipedia.org/wiki/.lt
-// gov.lt : http://www.gov.lt/index_en.php
-// lu : http://www.dns.lu/en/
-// lv : http://www.nic.lv/DNS/En/generic.php
-// ly : http://www.nic.ly/regulations.php
-// ma : http://en.wikipedia.org/wiki/.ma
-// http://www.anrt.ma/fr/admin/download/upload/file_fr782.pdf
-// mc : http://www.nic.mc/
-// md : http://en.wikipedia.org/wiki/.md
-// me : http://en.wikipedia.org/wiki/.me
-// mg : http://www.nic.mg/tarif.htm
-// mh : http://en.wikipedia.org/wiki/.mh
-// mil : http://en.wikipedia.org/wiki/.mil
-// mk : http://en.wikipedia.org/wiki/.mk
-// see also: http://dns.marnet.net.mk/postapka.php
-// ml : http://www.gobin.info/domainname/ml-template.doc
-// see also: http://en.wikipedia.org/wiki/.ml
-// mm : http://en.wikipedia.org/wiki/.mm
-// mn : http://en.wikipedia.org/wiki/.mn
-// mo : http://www.monic.net.mo/
-// mobi : http://en.wikipedia.org/wiki/.mobi
-// mp : http://www.dot.mp/
-// Confirmed by registry <dcamacho@saipan.com> 2008-06-17
-// mq : http://en.wikipedia.org/wiki/.mq
-// mr : http://en.wikipedia.org/wiki/.mr
-// ms : http://www.nic.ms/pdf/MS_Domain_Name_Rules.pdf
-// mt : https://www.nic.org.mt/go/policy
-// Submitted by registry <help@nic.org.mt> 2013-11-19
-// mu : http://en.wikipedia.org/wiki/.mu
-// museum : http://about.museum/naming/
-// http://index.museum/
-// mv : http://en.wikipedia.org/wiki/.mv
-// "mv" included because, contra Wikipedia, google.mv exists.
-// mw : http://www.registrar.mw/
-// mx : http://www.nic.mx/
-// Submitted by registry <farias@nic.mx> 2008-06-19
-// my : http://www.mynic.net.my/
-// mz : http://www.gobin.info/domainname/mz-template.doc
-// na : http://www.na-nic.com.na/
-// http://www.info.na/domain/
-// name : has 2nd-level tlds, but there's no list of them
-// nc : http://www.cctld.nc/
-// ne : http://en.wikipedia.org/wiki/.ne
-// net : http://en.wikipedia.org/wiki/.net
-// nf : http://en.wikipedia.org/wiki/.nf
-// ng : http://psg.com/dns/ng/
-// ni : http://www.nic.ni/dominios.htm
-// nl : http://www.domain-registry.nl/ace.php/c,728,122,,,,Home.html
-// Confirmed by registry <Antoin.Verschuren@sidn.nl> (with technical
-// reservations) 2008-06-08
-// BV.nl will be a registry for dutch BV's (besloten vennootschap)
-// no : http://www.norid.no/regelverk/index.en.html
-// The Norwegian registry has declined to notify us of updates. The web pages
-// referenced below are the official source of the data. There is also an
-// announce mailing list:
-// https://postlister.uninett.no/sympa/info/norid-diskusjon
-// Norid generic domains : http://www.norid.no/regelverk/vedlegg-c.en.html
-// Non-Norid generic domains : http://www.norid.no/regelverk/vedlegg-d.en.html
-// no geographical names : http://www.norid.no/regelverk/vedlegg-b.en.html
-// counties
-// primary and lower secondary schools per county
-// cities
-// communities
-// np : http://www.mos.com.np/register.html
-// nr : http://cenpac.net.nr/dns/index.html
-// Confirmed by registry <technician@cenpac.net.nr> 2008-06-17
-// nu : http://en.wikipedia.org/wiki/.nu
-// nz : http://en.wikipedia.org/wiki/.nz
-// om : http://en.wikipedia.org/wiki/.om
-// org : http://en.wikipedia.org/wiki/.org
-// pa : http://www.nic.pa/
-// Some additional second level "domains" resolve directly as hostnames, such as
-// pannet.pa, so we add a rule for "pa".
-// pe : https://www.nic.pe/InformeFinalComision.pdf
-// pf : http://www.gobin.info/domainname/formulaire-pf.pdf
-// pg : http://en.wikipedia.org/wiki/.pg
-// ph : http://www.domains.ph/FAQ2.asp
-// Submitted by registry <jed@email.com.ph> 2008-06-13
-// pk : http://pk5.pknic.net.pk/pk5/msgNamepk.PK
-// pl : http://www.dns.pl/english/
-// NASK functional domains (nask.pl / dns.pl) : http://www.dns.pl/english/dns-funk.html
-// ICM functional domains (icm.edu.pl)
-// Government domains (administred by ippt.gov.pl)
-// other functional domains
-// NASK geographical domains : http://www.dns.pl/english/dns-regiony.html
-// TASK geographical domains (www.task.gda.pl/uslugi/dns)
-// other geographical domains
-// pm : http://www.afnic.fr/medias/documents/AFNIC-naming-policy2012.pdf
-// pn : http://www.government.pn/PnRegistry/policies.htm
-// post : http://en.wikipedia.org/wiki/.post
-// pr : http://www.nic.pr/index.asp?f=1
-// these aren't mentioned on nic.pr, but on http://en.wikipedia.org/wiki/.pr
-// pro : http://www.nic.pro/support_faq.htm
-// ps : http://en.wikipedia.org/wiki/.ps
-// http://www.nic.ps/registration/policy.html#reg
-// pt : http://online.dns.pt/dns/start_dns
-// pw : http://en.wikipedia.org/wiki/.pw
-// py : http://www.nic.py/pautas.html#seccion_9
-// Confirmed by registry 2012-10-03
-// qa : http://domains.qa/en/
-// re : http://www.afnic.re/obtenir/chartes/nommage-re/annexe-descriptifs
-// ro : http://www.rotld.ro/
-// rs : http://en.wikipedia.org/wiki/.rs
-// ru : http://www.cctld.ru/ru/docs/aktiv_8.php
-// Industry domains
-// Geographical domains
-// More geographical domains
-// State domains
-// Technical domains
-// rw : http://www.nic.rw/cgi-bin/policy.pl
-// sa : http://www.nic.net.sa/
-// sb : http://www.sbnic.net.sb/
-// Submitted by registry <lee.humphries@telekom.com.sb> 2008-06-08
-// sc : http://www.nic.sc/
-// sd : http://www.isoc.sd/sudanic.isoc.sd/billing_pricing.htm
-// Submitted by registry <admin@isoc.sd> 2008-06-17
-// se : http://en.wikipedia.org/wiki/.se
-// Submitted by registry <patrik.wallstrom@iis.se> 2014-03-18
-// sg : http://www.nic.net.sg/page/registration-policies-procedures-and-guidelines
-// sh : http://www.nic.sh/registrar.html
-// si : http://en.wikipedia.org/wiki/.si
-// sj : No registrations at this time.
-// Submitted by registry <jarle@uninett.no> 2008-06-16
-// sk : http://en.wikipedia.org/wiki/.sk
-// list of 2nd level domains ?
-// sl : http://www.nic.sl
-// Submitted by registry <adam@neoip.com> 2008-06-12
-// sm : http://en.wikipedia.org/wiki/.sm
-// sn : http://en.wikipedia.org/wiki/.sn
-// so : http://www.soregistry.com/
-// sr : http://en.wikipedia.org/wiki/.sr
-// st : http://www.nic.st/html/policyrules/
-// su : http://en.wikipedia.org/wiki/.su
-// sv : http://www.svnet.org.sv/niveldos.pdf
-// sx : http://en.wikipedia.org/wiki/.sx
-// Confirmed by registry <jcvignes@openregistry.com> 2012-05-31
-// sy : http://en.wikipedia.org/wiki/.sy
-// see also: http://www.gobin.info/domainname/sy.doc
-// sz : http://en.wikipedia.org/wiki/.sz
-// http://www.sispa.org.sz/
-// tc : http://en.wikipedia.org/wiki/.tc
-// td : http://en.wikipedia.org/wiki/.td
-// tel: http://en.wikipedia.org/wiki/.tel
-// http://www.telnic.org/
-// tf : http://en.wikipedia.org/wiki/.tf
-// tg : http://en.wikipedia.org/wiki/.tg
-// http://www.nic.tg/
-// th : http://en.wikipedia.org/wiki/.th
-// Submitted by registry <krit@thains.co.th> 2008-06-17
-// tj : http://www.nic.tj/policy.html
-// tk : http://en.wikipedia.org/wiki/.tk
-// tl : http://en.wikipedia.org/wiki/.tl
-// tm : http://www.nic.tm/local.html
-// tn : http://en.wikipedia.org/wiki/.tn
-// http://whois.ati.tn/
-// to : http://en.wikipedia.org/wiki/.to
-// Submitted by registry <egullich@colo.to> 2008-06-17
-// tp : No registrations at this time.
-// Submitted by Ryan Sleevi <ryan.sleevi@gmail.com> 2014-01-03
-// tr : http://en.wikipedia.org/wiki/.tr
-// Used by government in the TRNC
-// http://en.wikipedia.org/wiki/.nc.tr
-// travel : http://en.wikipedia.org/wiki/.travel
-// tt : http://www.nic.tt/
-// tv : http://en.wikipedia.org/wiki/.tv
-// Not listing any 2LDs as reserved since none seem to exist in practice,
-// Wikipedia notwithstanding.
-// tw : http://en.wikipedia.org/wiki/.tw
-// tz : http://www.tznic.or.tz/index.php/domains
-// Confirmed by registry <manager@tznic.or.tz> 2013-01-22
-// ua : https://hostmaster.ua/policy/?ua
-// Submitted by registry <dk@cctld.ua> 2012-04-27
-// ua 2LD
-// ua geographic names
-// https://hostmaster.ua/2ld/
-// Private registries in .ua
-// ug : https://www.registry.co.ug/
-// uk : http://en.wikipedia.org/wiki/.uk
-// Submitted by registry <noc@nominet.org.uk> 2012-10-02
-// and tweaked by us pending further consultation.
-// us : http://en.wikipedia.org/wiki/.us
-// us geographic names
-// The registrar notes several more specific domains available in each state,
-// such as state.*.us, dst.*.us, etc., but resolution of these is somewhat
-// haphazard; in some states these domains resolve as addresses, while in others
-// only subdomains are available, or even nothing at all. We include the
-// most common ones where it's clear that different sites are different
-// entities.
-// k12.hi.us  Bug 614565 - Hawaii has a state-wide DOE login
-// k12.sd.us  Bug 934131 - Removed at request of James Booze <James.Booze@k12.sd.us>
-// k12.wv.us  Bug 947705 - Removed at request of Verne Britton <verne@wvnet.edu>
-// lib.wv.us  Bug 941670 - Removed at request of Larry W Arnold <arnold@wvlc.lib.wv.us>
-// k12.ma.us contains school districts in Massachusetts. The 4LDs are
-//  managed indepedently except for private (PVT), charter (CHTR) and
-//  parochial (PAROCH) schools.  Those are delegated dorectly to the
-//  5LD operators.   <k12-ma-hostmaster _ at _ rsuc.gweep.net>
-// uy : http://www.nic.org.uy/
-// uz : http://www.reg.uz/
-// va : http://en.wikipedia.org/wiki/.va
-// vc : http://en.wikipedia.org/wiki/.vc
-// Submitted by registry <kshah@ca.afilias.info> 2008-06-13
-// ve : https://registro.nic.ve/
-// Confirmed by registry 2012-10-04
-// vg : http://en.wikipedia.org/wiki/.vg
-// vi : http://www.nic.vi/newdomainform.htm
-// http://www.nic.vi/Domain_Rules/body_domain_rules.html indicates some other
-// TLDs are "reserved", such as edu.vi and gov.vi, but doesn't actually say they
-// are available for registration (which they do not seem to be).
-// vn : https://www.dot.vn/vnnic/vnnic/domainregistration.jsp
-// vu : http://en.wikipedia.org/wiki/.vu
-// list of 2nd level tlds ?
-// wf : http://www.afnic.fr/medias/documents/AFNIC-naming-policy2012.pdf
-// ws : http://en.wikipedia.org/wiki/.ws
-// http://samoanic.ws/index.dhtml
-// yt : http://www.afnic.fr/medias/documents/AFNIC-naming-policy2012.pdf
-// IDN ccTLDs
-// Please sort by ISO 3166 ccTLD, then punicode string
-// when submitting patches and follow this format:
-// <Punicode> ("<english word>" <language>) : <ISO 3166 ccTLD>
-// [optional sponsoring org]
-// <URL>
-// xn--mgbaam7a8h ("Emerat" Arabic) : AE
-// http://nic.ae/english/arabicdomain/rules.jsp
-// xn--54b7fta0cc ("Bangla" Bangla) : BD
-// xn--fiqs8s ("China" Chinese-Han-Simplified <.Zhongguo>) : CN
-// CNNIC
-// http://cnnic.cn/html/Dir/2005/10/11/3218.htm
-// xn--fiqz9s ("China" Chinese-Han-Traditional <.Zhongguo>) : CN
-// CNNIC
-// http://cnnic.cn/html/Dir/2005/10/11/3218.htm
-// xn--lgbbat1ad8j ("Algeria / Al Jazair" Arabic) : DZ
-// xn--wgbh1c ("Egypt" Arabic .masr) : EG
-// http://www.dotmasr.eg/
-// xn--node ("ge" Georgian (Mkhedruli)) : GE
-// xn--j6w193g ("Hong Kong" Chinese-Han) : HK
-// https://www2.hkirc.hk/register/rules.jsp
-// xn--h2brj9c ("Bharat" Devanagari) : IN
-// India
-// xn--mgbbh1a71e ("Bharat" Arabic) : IN
-// India
-// xn--fpcrj9c3d ("Bharat" Telugu) : IN
-// India
-// xn--gecrj9c ("Bharat" Gujarati) : IN
-// India
-// xn--s9brj9c ("Bharat" Gurmukhi) : IN
-// India
-// xn--45brj9c ("Bharat" Bengali) : IN
-// India
-// xn--xkc2dl3a5ee0h ("India" Tamil) : IN
-// India
-// xn--mgba3a4f16a ("Iran" Persian) : IR
-// xn--mgba3a4fra ("Iran" Arabic) : IR
-// xn--mgbayh7gpa ("al-Ordon" Arabic) : JO
-// National Information Technology Center (NITC)
-// Royal Scientific Society, Al-Jubeiha
-// xn--3e0b707e ("Republic of Korea" Hangul) : KR
-// xn--80ao21a ("Kaz" Kazakh) : KZ
-// xn--fzc2c9e2c ("Lanka" Sinhalese-Sinhala) : LK
-// http://nic.lk
-// xn--xkc2al3hye2a ("Ilangai" Tamil) : LK
-// http://nic.lk
-// xn--mgbc0a9azcg ("Morocco / al-Maghrib" Arabic) : MA
-// xn--l1acc ("mon" Mongolian) : MN
-// xn--mgbx4cd0ab ("Malaysia" Malay) : MY
-// xn--mgb9awbf ("Oman" Arabic) : OM
-// xn--ygbi2ammx ("Falasteen" Arabic) : PS
-// The Palestinian National Internet Naming Authority (PNINA)
-// http://www.pnina.ps
-// xn--90a3ac ("srb" Cyrillic) : RS
-// xn--p1ai ("rf" Russian-Cyrillic) : RU
-// http://www.cctld.ru/en/docs/rulesrf.php
-// xn--wgbl6a ("Qatar" Arabic) : QA
-// http://www.ict.gov.qa/
-// xn--mgberp4a5d4ar ("AlSaudiah" Arabic) : SA
-// http://www.nic.net.sa/
-// xn--mgberp4a5d4a87g ("AlSaudiah" Arabic) variant : SA
-// xn--mgbqly7c0a67fbc ("AlSaudiah" Arabic) variant : SA
-// xn--mgbqly7cvafr ("AlSaudiah" Arabic) variant : SA
-// xn--ogbpf8fl ("Syria" Arabic) : SY
-// xn--mgbtf8fl ("Syria" Arabic) variant : SY
-// xn--yfro4i67o Singapore ("Singapore" Chinese-Han) : SG
-// xn--clchc0ea0b2g2a9gcd ("Singapore" Tamil) : SG
-// xn--o3cw4h ("Thai" Thai) : TH
-// http://www.thnic.co.th
-// xn--pgbs0dh ("Tunis") : TN
-// http://nic.tn
-// xn--kpry57d ("Taiwan" Chinese-Han-Traditional) : TW
-// http://www.twnic.net/english/dn/dn_07a.htm
-// xn--kprw13d ("Taiwan" Chinese-Han-Simplified) : TW
-// http://www.twnic.net/english/dn/dn_07a.htm
-// xn--nnx388a ("Taiwan") variant : TW
-// xn--j1amh ("ukr" Cyrillic) : UA
-// xn--mgb2ddes ("AlYemen" Arabic) : YE
-// xxx : http://icmregistry.com
-// ye : http://www.y.net.ye/services/domain_name.htm
-// za : http://www.zadna.org.za/slds.html
-// zm : http://en.wikipedia.org/wiki/.zm
-// zw : http://en.wikipedia.org/wiki/.zw
-// xn--80asehdb : 2013-07-14 CORE Association
-// xn--80aswg : 2013-07-14 CORE Association
-// xn--ngbc5azd : 2013-07-14 International Domain Registry Pty. Ltd.
-// xn--unup4y : 2013-07-14 Spring Fields, LLC
-// xn--vhquv : 2013-08-28 Dash McCook, LLC
-// camera : 2013-08-28 Atomic Maple, LLC
-// clothing : 2013-08-28 Steel Lake, LLC
-// lighting : 2013-08-28 John McCook, LLC
-// singles : 2013-08-28 Fern Madison, LLC
-// ventures : 2013-08-28 Binky Lake, LLC
-// voyage : 2013-08-28 Ruby House, LLC
-// guru : 2013-08-28 Pioneer Cypress, LLC
-// holdings : 2013-08-28 John Madison, LLC
-// equipment : 2013-08-28 Corn Station, LLC
-// bike : 2013-08-28 Grand Hollow, LLC
-// estate : 2013-08-28 Trixy Park, LLC
-// tattoo : 2013-08-30 Uniregistry,Corp.
-// xn--3ds443g : 2013-09-09 TLD Registry Limited
-// xn--fiq228c5hs : 2013-09-09 TLD Registry Limited
-// land : 2013-09-10 Pine Moon, LLC
-// plumbing : 2013-09-10 Spring Tigers, LLC
-// contractors : 2013-09-10 Magic Woods, LLC
-// sexy : 2013-09-11 Uniregistry,Corp.
-// menu : 2013-09-11 Wedding TLD2, LLC
-// xn--rhqv96g : 2013-09-11 Stable Tone Limited
-// uno : 2013-09-11 Dot Latin, LLC
-// gallery : 2013-09-13 Sugar House, LLC
-// technology : 2013-09-13 Auburn Falls
-// xn--3bst00m : 2013-09-13 Eagle Horizon Limited
-// reviews : 2013-09-13 Extra Cover, LLC
-// guide : 2013-09-13 Snow Moon, LLC
-// xn--6qq986b3x1 : 2013-09-13 Tycoon Treasure Limited
-// graphics : 2013-09-13 Over Madison, LLC
-// construction : 2013-09-13 Fox Dynamite, LLC
-// onl : 2013-09-16 I-Registry Ltd.
-// xn--q9jyb4c : 2013-09-17 Charleston Road Registry
-// diamonds : 2013-09-23 John Edge, LLC
-// kiwi : 2013-09-23 Dot Kiwi Limited
-// enterprises : 2013-09-23 Snow Oaks LLC
-// today : 2013-09-23 Pearl Woods, LLC
-// futbol : 2013-09-23 Atomic Falls, LLC
-// photography : 2013-09-23 Sugar Glen, LLC
-// tips : 2013-09-23 Corn Willow, LLC
-// directory : 2013-09-23 Extra Madison, LLC
-// kitchen : 2013-09-23 Just Goodbye, LLC
-// xn--6frz82g : 2013-09-24 Afilias Limited
-// kim : 2013-09-24 Afilias Limited
-// xn--cg4bki : 2013-09-27 Samsung SDS Co., LTD
-// monash : 2013-10-01 Monash University
-// wed : 2013-10-02 Atgron, Inc.
-// pink : 2013-10-02 Afilias Limited
-// ruhr : 2013-10-02 regiodot GmbH & Co. KG
-// buzz : 2013-10-03 DOTSTRATEGY CO.
-// careers : 2013-10-03 Wild Corner, LLC
-// shoes : 2013-10-03 Binky Galley, LLC
-// xn--4gbrim : 2013-10-07 Suhub Electronic Establishment
-// career : 2013-10-09 dotCareer, LLC
-// otsuka : 2013-10-11 Otsuka Holdings Co. Ltd.
-// xn--fiQ64b : 2013-10-14 CITIC Group Corporation
-// gift : 2013-10-18 Uniregistry Corp.
-// recipes : 2013-10-18 Grand Island, LLC
-// coffee : 2013-10-18 Trixy Cover, LLC
-// luxury : 2013-10-18 Luxury Partners, LLC
-// domains : 2013-10-18 Sugar Cross, LLC
-// photos : 2013-10-18 Sea Corner, LLC
-// limo : 2013-10-18 Hidden Frostbite, LLC
-// viajes : 2013-10-18 Black Madison, LLC
-// wang : 2013-10-24 Zodiac Leo Limited
-// democrat : 2013-10-24 United TLD Holdco Ltd.
-// mango : 2013-10-25 PUNTO FA S.L.
-// cab : 2013-10-25 Half Sunset, LLC
-// support : 2013-10-25 Grand Orchard, LLC
-// dance : 2013-10-25 United TLD Holdco Ltd.
-// nagoya : 2013-10-25 GMO Registry, Inc.
-// computer : 2013-10-25 Pine Mill, LLC
-// wien : 2013-10-28 punkt.wien GmbH
-// berlin : 2013-10-31 dotBERLIN GmbH & Co. KG
-// codes : 2013-10-31 Puff Willow, LLC
-// email : 2013-10-31 Spring Madison, LLC
-// xn--mgbab2bd : 2013-10-31 CORE Association
-// repair : 2013-11-07 Lone Sunset, LLC
-// holiday : 2013-11-07 Goose Woods, LLC
-// center : 2013-11-07 Tin Mill, LLC
-// systems : 2013-11-07 Dash Cypress, LLC
-// wiki : 2013-11-07 Top Level Design, LLC
-// ceo : 2013-11-07 CEOTLD Pty Ltd
-// international : 2013-11-07 Wild Way, LLC
-// solar : 2013-11-07 Ruby Town, LLC
-// company : 2013-11-07 Silver Avenue, LLC
-// education : 2013-11-07 Brice Way, LLC
-// training : 2013-11-07 Wild Willow, LLC
-// academy : 2013-11-07 Half Oaks, LLC
-// marketing : 2013-11-07 Fern Pass, LLC
-// florist : 2013-11-08 Half Cypress, LLC
-// solutions : 2013-11-07 Silver Cover, LLC
-// build : 2013-11-07 Plan Bee LLC
-// institute : 2013-11-07 Outer Maple, LLC
-// builders : 2013-11-07 Atomic Madison, LLC
-// red : 2013-11-07 Afilias Limited
-// blue : 2013-11-07 Afilias Limited
-// ninja : 2013-11-07 United TLD Holdco Ltd.
-// business : 2013-11-07 Spring Cross, LLC
-// gal : 2013-11-07 Asociación puntoGAL
-// social : 2013-11-07 United TLD Holdco Ltd.
-// house : 2013-11-07 Sugar Park, LLC
-// camp : 2013-11-07 Delta Dynamite, LLC
-// immobilien : 2013-11-07 United TLD Holdco Ltd.
-// moda : 2013-11-07 United TLD Holdco Ltd.
-// glass : 2013-11-07 Black Cover, LLC
-// management : 2013-11-07 John Goodbye, LLC
-// kaufen : 2013-11-07 United TLD Holdco Ltd.
-// farm : 2013-11-07 Just Maple, LLC
-// xn--55qw42g : 2013-11-08 China Organizational Name Administration Center
-// xn--zfr164b : 2013-11-08 China Organizational Name Administration Center
-// club : 2013-11-08 .CLUB DOMAINS, LLC
-// voting : 2013-11-13 Valuetainment Corp.
-// TOKYO : 2013-11-13 GMO Registry, Inc.
-// moe : 2013-11-13 Interlink Co., Ltd.
-// guitars : 2013-11-14 Uniregistry, Corp.
-// bargains : 2013-11-14 Half Hallow, LLC
-// xn--nqv7fs00ema : 2013-11-14 Public Interest Registry
-// desi : 2013-11-14 Desi Networks LLC
-// cool : 2013-11-14 Koko Lake, LLC
-// boutique : 2013-11-14 Over Galley, LLC
-// pics : 2013-11-14 Uniregistry, Corp.
-// xn--c1avg : 2013-11-14 Public Interest Registry
-// xn--55qx5d : 2013-11-14 Computer Network Information Center of Chinese Academy of Sciences （China Internet Network Information Center）
-// xn--io0a7i : 2013-11-14 Computer Network Information Center of Chinese Academy of Sciences （China Internet Network Information Center）
-// cheap : 2013-11-14 Sand Cover, LLC
-// xn--xhq521b : 2013-11-14 Guangzhou YU Wei Information Technology Co., Ltd.
-// photo : 2013-11-14 Uniregistry, Corp.
-// network : 2013-11-14 Trixy Manor, LLC
-// zone : 2013-11-14 Outer Falls, LLC
-// xn--nqv7f : 2013-11-14 Public Interest Registry
-// link : 2013-11-14 Uniregistry, Corp.
-// QPON : 2013-11-14 dotCOOL, Inc.
-// xn--i1b6b1a6a2e : 2013-11-14 Public Interest Registry
-// agency : 2013-11-14 Steel Falls, LLC
-// tienda : 2013-11-14 Victor Manor, LLC
-// works : 2013-11-14 Little Dynamite, LLC
-// london : 2013-11-14 Dot London Domains Limited
-// watch : 2013-11-14 Sand Shadow, LLC
-// rocks : 2013-11-14 Ruby Moon, LLC
-// SHIKSHA : 2013-11-14 Afilias Limited
-// xn--d1acj3b : 2013-11-21 The Foundation for Network Initiatives “The Smart Internet”
-// budapest : 2013-11-21 Top Level Domain Holdings Limited
-// nrw : 2013-11-21 Minds + Machines GmbH
-// VOTE : 2013-11-21 Monolith Registry LLC
-// fishing : 2013-11-21 Top Level Domain Holdings Limited
-// expert : 2013-11-21 Magic Pass, LLC
-// horse : 2013-11-21 Top Level Domain Holdings Limited
-// christmas : 2013-11-21 Uniregistry, Corp.
-// cooking : 2013-11-21 Top Level Domain Holdings Limited
-// xn--czru2d : 2013-11-21 Zodiac Capricorn Limited
-// casa : 2013-11-21 Top Level Domain Holdings Limited
-// rich : 2013-11-21 I-REGISTRY Ltd., Niederlassung Deutschland
-// VOTO : 2013-11-21 Monolith Registry LLC
-// tools : 2013-11-21 Pioneer North, LLC
-// xn--45q11c : 2013-11-21 Zodiac Scorpio Limited
-// praxi : 2013-12-05 Praxi S.p.A.
-// events : 2013-12-05 Pioneer Maple, LLC
-// flights : 2013-12-05 Fox Station, LLC
-// report : 2013-12-05 Binky Glen, LLC
-// partners : 2013-12-05 Magic Glen, LLC
-// neustar : 2013-12-05 NeuStar, Inc.
-// rentals : 2013-12-05 Big Hollow,LLC
-// catering : 2013-12-05 New Falls. LLC
-// community : 2013-12-05 Fox Orchard, LLC
-// maison : 2013-12-05 Victor Frostbite, LLC
-// parts : 2013-12-05 Sea Goodbye, LLC
-// cleaning : 2013-12-05 Fox Shadow, LLC
-// okinawa : 2013-12-05 BusinessRalliart inc.
-// foundation : 2013-12-05 John Dale, LLC
-// properties : 2013-12-05 Big Pass, LLC
-// vacations : 2013-12-05 Atomic Tigers, LLC
-// productions : 2013-12-05 Magic Birch, LLC
-// industries : 2013-12-05 Outer House, LLC
-// haus : 2013-12-05 Pixie Edge, LLC
-// vision : 2013-12-05 Koko Station, LLC
-// mormon : 2013-12-05 IRI Domain Management, LLC (""Applicant"")
-// cards : 2013-12-05 Foggy Hollow, LLC
-// ink : 2013-12-05 Top Level Design, LLC
-// villas : 2013-12-05 New Sky, LLC
-// consulting : 2013-12-05 Pixie Station, LLC
-// cruises : 2013-12-05 Spring Way, LLC
-// krd : 2013-12-05 KRG Department of Information Technology
-// xyz : 2013-12-05 XYZ.COM LLC
-// dating : 2013-12-05 Pine Fest, LLC
-// exposed : 2013-12-05 Victor Beach, LLC
-// condos : 2013-12-05 Pine House, LLC
-// eus : 2013-12-12 Puntueus Fundazioa
-// Caravan : 2013-12-12 Caravan International, Inc.
-// actor : 2013-12-12 United TLD Holdco Ltd.
-// saarland : 2013-12-12 dotSaarland GmbH
-// yokohama : 2013-12-12 GMO Registry, Inc.
-// pub : 2013-12-12 United TLD Holdco Ltd.
-// xn--p1acf : 2013-12-12 Rusnames Limited
-// ren : 2013-12-12 Beijing Qianxiang Wangjing Technology Development Co., Ltd.
-// fish : 2013-12-12 Fox Woods, LLC
-// BAR : 2013-12-12 Punto 2012 Sociedad Anonima Promotora de Inversion de Capital Variable
-// DNP : 2013-12-13 Dai Nippon Printing Co., Ltd.
-// bid : 2013-12-19 dot Bid Limited
-// supply : 2013-12-19 Half Falls, LLC
-// Miami : 2013-12-19 Top Level Domain Holdings Limited
-// supplies : 2013-12-19 Atomic Fields, LLC
-// quebec : 2013-12-19 PointQuébec Inc
-// MOSCOW : 2013-12-19 Foundation for Assistance for Internet Technologies and Infrastructure Development (FAITID)
-// globo : 2013-12-19 Globo Comunicação e Participações S.A
-// AXA : 2013-12-19 AXA SA
-// xn--80adxhks : 2013-12-19 Foundation for Assistance for Internet Technologies and Infrastructure Development (FAITID)
-// xn--czrs0t : 2013-12-19 Wild Island, LLC
-// vodka : 2013-12-19 Top Level Domain Holdings Limited
-// REST : 2013-12-19 Punto 2012 Sociedad Anonima Promotora de Inversion de Capital Variable
-// frogans : 2013-12-19 OP3FT
-// WTC : 2013-12-19 World Trade Centers Association, Inc.
-// rodeo : 2013-12-19 Top Level Domain Holdings Limited
-// sohu : 2013-12-19 Sohu.com Limited
-// BEST : 2013-12-19 BestTLD Pty Ltd
-// country : 2013-12-19 Top Level Domain Holdings Limited
-// KRED : 2013-12-19 KredTLD Pty Ltd
-// feedback : 2013-12-19 Top Level Spectrum, Inc.
-// work : 2013-12-19 Top Level Domain Holdings Limited
-// luxe : 2014-01-09 Top Level Domain Holdings Limited
-// ryukyu : 2014-01-09 BusinessRalliart inc.
-// autos : 2014-01-09 DERAutos, LLC
-// homes : 2014-01-09 DERHomes, LLC
-// jetzt : 2014-01-09 New TLD Company AB
-// yachts : 2014-01-09 DERYachts, LLC
-// motorcycles : 2014-01-09 DERMotorcycles, LLC
-// mini : 2014-01-09 Bayerische Motoren Werke Aktiengesellschaft
-// ggee : 2014-01-09 GMO Internet, Inc.
-// beer : 2014-01-09 Top Level Domain Holdings Limited
-// xn--1qqw23a : 2014-01-13 Guangzhou YU Wei Information Technology Co., Ltd.
-// college : 2014-01-16 XYZ.COM LLC
-// ovh : 2014-01-16 OVH SAS
-// meet : 2014-01-16 Afilias Limited
-// xn--ses554g : 2014-01-16 HU YI GLOBAL INFORMATION RESOURCES (HOLDING) COMPANY. HONGKONG LIMITED
-// gop : 2014-01-16 Republican State Leadership Committee, Inc.
-// blackfriday : 2014-01-16 Uniregistry, Corp.
-// lacaixa : 2014-01-16 CAIXA D'ESTALVIS I PENSIONS DE BARCELONA
-// xn--czr694b : 2014-01-16 HU YI GLOBAL INFORMATION RESOURCES(HOLDING) COMPANY.HONGKONG LIMITED
-// vegas : 2014-01-16 Dot Vegas, Inc.
-// black : 2014-01-16 Afilias Limited
-// soy : 2014-01-23 Charleston Road Registry Inc.
-// trade : 2014-01-23 Elite Registry Limited
-// gent : 2014-01-23 COMBELL GROUP NV/SA
-// ing : 2014-01-23 Charleston Road Registry Inc.
-// dad : 2014-01-23 Charleston Road Registry Inc.
-// shriram : 2014-01-23 Shriram Capital Ltd.
-// bayern : 2014-01-23 Bayern Connect GmbH
-// scot : 2014-01-23 Dot Scot Registry Limited
-// webcam : 2014-01-23 dot Webcam Limited
-// foo : 2014-01-23 Charleston Road Registry Inc.
-// eat : 2014-01-23 Charleston Road Registry Inc.
-// nyc : 2014-01-23 The City of New York
-// prod : 2014-01-23 Charleston Road Registry Inc.
-// how : 2014-01-23 Charleston Road Registry Inc.
-// day : 2014-01-30 Charleston Road Registry Inc.
-// meme : 2014-01-30 Charleston Road Registry Inc.
-// mov : 2014-01-30 Charleston Road Registry Inc.
-// paris : 2014-01-30 City of Paris
-// boo : 2014-01-30 Charleston Road Registry Inc.
-// new : 2014-01-30 Charleston Road Registry Inc.
-// ifm : 2014-01-30 ifm electronic gmbh
-// life : 2014-02-06 Trixy Oaks, LLC
-// archi : 2014-02-06 STARTING DOT LIMITED
-// spiegel : 2014-02-06 SPIEGEL-Verlag Rudolf Augstein GmbH & Co. KG
-// brussels : 2014-02-06 DNS.be vzw
-// church : 2014-02-06 Holly Fileds, LLC
-// here : 2014-02-06 Charleston Road Registry Inc.
-// dabur : 2014-02-06 Dabur India Limited
-// vlaanderen : 2014-02-06 DNS.be vzw
-// cologne : 2014-02-06 NetCologne Gesellschaft für Telekommunikation mbH
-// xn--kput3i : 2014-02-13 Beijing RITT-Net Technology Development Co., Ltd
-// wme : 2014-02-13 William Morris Endeavor Entertainment, LLC
-// nhk : 2014-02-13 Japan Broadcasting Corporation (NHK)
-// suzuki : 2014-02-20 SUZUKI MOTOR CORPORATION
-// whoswho : 2014-02-20 Who's Who Registry
-// scb : 2014-02-20 The Siam Commercial Bank Public Company Limited ("SCB""\)
-// hamburg : 2014-02-20 Hamburg Top-Level-Domain GmbH
-// services : 2014-02-27 Fox Castle, LLC
-// bzh : 2014-02-27 Association www.bzh
-// rio : 2014-02-27 Empresa Municipal de Informática SA - IPLANRIO
-// cash : 2014-03-07 Delta Lake, LLC
-// gives : 2014-03-07 United TLD Holdco Ltd.
-// hiphop : 2014-03-07 Uniregistry, Corp.
-// degree : 2014-03-07 Puff House, LLC
-// digital : 2014-03-07 Dash Park, LLC
-// rehab : 2014-03-07 United TLD Holdco Ltd.
-// wtf : 2014-03-07 Hidden Way, LLC
-// financial : 2014-03-07 Just Cover, LLC
-// limited : 2014-03-07 Big Fest, LLC
-// discount : 2014-03-07 Holly Hill, LLC
-// fail : 2014-03-07 Atomic Pipe, LLC
-// vet : 2014-03-07 Wild Dale, LLC
-// ngo : 2014-03-07 Public Interest Registry
-// fitness : 2014-03-07 Brice Orchard, LLC
-// schule : 2014-03-07 Outer Moon, LLC
-// navy : 2014-03-07 United TLD Holdco Ltd.
-// bio : 2014-03-07 STARTING DOT LIMITED
-// ong : 2014-03-07 Public Interest Registry
-// town : 2014-03-07 Koko Moon, LLC
-// toys : 2014-03-07 Pioneer Orchard, LLC
-// army : 2014-03-07 United TLD Holdco Ltd.
-// engineering : 2014-03-07 Romeo Canyon
-// capital : 2014-03-07 Delta Mill, LLC
-// exchange : 2014-03-07 Spring Falls, LLC
-// fan : 2014-03-07 Goose Glen, LLC
-// market : 2014-03-07 Victor Way, LLC
-// media : 2014-03-07 Grand Glen, LLC
-// lease : 2014-03-07 Victor Trail, LLC
-// university : 2014-03-07 Little Station, LLC
-// reisen : 2014-03-07 New Cypress, LLC
-// airforce : 2014-03-07 United TLD Holdco Ltd.
-// pictures : 2014-03-07 Foggy Sky, LLC
-// gripe : 2014-03-07 Corn Sunset, LLC
-// engineering : 2014-03-07 United TLD Holdco Ltd.
-// associates : 2014-03-07 Baxter Hill, LLC
-// xn--mxtq1m : 2014-03-07 Net-Chinese Co., Ltd.
-// williamhill : 2014-03-13 William Hill Organization Limited
-// hiv : 2014-03-13 dotHIV gemeinnuetziger e.V.
-// sca : 2014-03-13 SVENSKA CELLULOSA AKTIEBOLAGET SCA (publ)
-// reise : 2014-03-13 dotreise GmbH
-// ===END ICANN DOMAINS===
-// ===BEGIN PRIVATE DOMAINS===
-// Amazon CloudFront : https://aws.amazon.com/cloudfront/
-// Submitted by Donavan Miller <donavanm@amazon.com> 2013-03-22
-// Amazon Elastic Compute Cloud: https://aws.amazon.com/ec2/
-// Submitted by Osman Surkatty <osmans@amazon.com> 2013-04-02
-// Amazon Elastic Beanstalk : https://aws.amazon.com/elasticbeanstalk/
-// Submitted by Adam Stein <astein@amazon.com> 2013-04-02
-// Amazon Elastic Load Balancing : https://aws.amazon.com/elasticloadbalancing/
-// Submitted by Scott Vidmar <svidmar@amazon.com> 2013-03-27
-// Amazon S3 : https://aws.amazon.com/s3/
-// Submitted by Courtney Eckhardt <coec@amazon.com> 2013-03-22
-// BetaInABox
-// Submitted by adrian@betainabox.com 2012-09-13
-// CentralNic : http://www.centralnic.com/names/domains
-// Submitted by registry <gavin.brown@centralnic.com> 2012-09-27
-// Africa.com Web Solutions Ltd : https://registry.africa.com
-// Submitted by Gavin Brown <gavin.brown@centralnic.com> 2014-02-04
-// iDOT Services Limited : http://www.domain.gr.com
-// Submitted by Gavin Brown <gavin.brown@centralnic.com> 2014-02-04
-// Radix FZC : http://domains.in.net
-// Submitted by Gavin Brown <gavin.brown@centralnic.com> 2014-02-04
-// US REGISTRY LLC : http://us.org
-// Submitted by Gavin Brown <gavin.brown@centralnic.com> 2014-02-04
-// co.com Registry, LLC : https://registry.co.com
-// Submitted by Gavin Brown <gavin.brown@centralnic.com> 2014-02-04
-// c.la : http://www.c.la/
-// cloudControl : https://www.cloudcontrol.com/
-// Submitted by Tobias Wilken <tw@cloudcontrol.com> 2013-07-23
-// co.ca : http://registry.co.ca/
-// CoDNS B.V.
-// Cupcake : https://cupcake.io/
-// Submitted by Jonathan Rudenberg <jonathan@cupcake.io> 2013-10-08
-// DreamHost : http://www.dreamhost.com/
-// Submitted by Andrew Farmer <andrew.farmer@dreamhost.com> 2012-10-02
-// DynDNS.com : http://www.dyndns.com/services/dns/dyndns/
-// Fastly Inc. http://www.fastly.com/
-// Submitted by Vladimir Vuksan <vladimir@fastly.com> 2013-05-31
-// GitHub, Inc.
-// Submitted by Ben Toews <btoews@github.com> 2014-02-06
-// GlobeHosting, Inc.
-// Submitted by Zoltan Egresi <egresi@globehosting.com> 2013-07-12
-// Google, Inc.
-// Submitted by Eduardo Vela <evn@google.com> 2012-10-24
-// Heroku : https://www.heroku.com/
-// Submitted by Tom Maher <tmaher@heroku.com> 2013-05-02
-// iki.fi
-// Submitted by Hannu Aronsson <haa@iki.fi> 2009-11-05
-// info.at : http://www.info.at/
-// Michau Enterprises Limited : http://www.co.pl/
-// Microsoft : http://microsoft.com
-// Submitted by Barry Dorrans <bdorrans@microsoft.com> 2014-01-24
-// NYC.mn : http://www.information.nyc.mn
-// Submitted by Matthew Brown <mattbrown@nyc.mn> 2013-03-11
-// Opera Software, A.S.A.
-// Submitted by Yngve Pettersen <yngve@opera.com> 2009-11-26
-// OutSystems
-// Submitted by Duarte Santos <domain-admin@outsystemscloud.com> 2014-03-11
-// Red Hat, Inc. OpenShift : https://openshift.redhat.com/
-// Submitted by Tim Kramer <tkramer@rhcloud.com> 2012-10-24
-// priv.at : http://www.nic.priv.at/
-// Submitted by registry <lendl@nic.at> 2008-06-09
-// ZaNiC : http://www.za.net/
-// Submitted by registry <hostmaster@nic.za.net> 2009-10-03
-// ===END PRIVATE DOMAINS===
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 $tldTree = array('ac' => array('com' => array(),
 'edu' => array(),
 'gov' => array(),
@@ -940,7 +16,8 @@ $tldTree = array('ac' => array('com' => array(),
 'sch' => array(),
 'ac' => array(),
 'gov' => array(),
-'mil' => array()),
+'mil' => array(),
+'blogspot' => array()),
 'aero' => array('accident-investigation' => array(),
 'accident-prevention' => array(),
 'aerobatic' => array(),
@@ -1000,7 +77,6 @@ $tldTree = array('ac' => array('com' => array(),
 'logistics' => array(),
 'magazine' => array(),
 'maintenance' => array(),
-'marketplace' => array(),
 'media' => array(),
 'microlight' => array(),
 'modelling' => array(),
@@ -1023,7 +99,6 @@ $tldTree = array('ac' => array('com' => array(),
 'skydiving' => array(),
 'software' => array(),
 'student' => array(),
-'taxi' => array(),
 'trader' => array(),
 'trading' => array(),
 'trainer' => array(),
@@ -1049,12 +124,9 @@ $tldTree = array('ac' => array('com' => array(),
 'gov' => array(),
 'mil' => array(),
 'net' => array(),
-'org' => array()),
-'am' => array(),
-'an' => array('com' => array(),
-'net' => array(),
 'org' => array(),
-'edu' => array()),
+'blogspot' => array()),
+'am' => array('blogspot' => array()),
 'ao' => array('ed' => array(),
 'gv' => array(),
 'og' => array(),
@@ -1065,8 +137,10 @@ $tldTree = array('ac' => array('com' => array(),
 'ar' => array('com' => array('blogspot' => array()),
 'edu' => array(),
 'gob' => array(),
+'gov' => array(),
 'int' => array(),
 'mil' => array(),
+'musica' => array(),
 'net' => array(),
 'org' => array(),
 'tur' => array()),
@@ -1077,11 +151,15 @@ $tldTree = array('ac' => array('com' => array(),
 'uri' => array(),
 'urn' => array()),
 'as' => array('gov' => array()),
-'asia' => array(),
+'asia' => array('cloudns' => array()),
 'at' => array('ac' => array(),
 'co' => array('blogspot' => array()),
 'gv' => array(),
 'or' => array(),
+'futurehosting' => array(),
+'futuremailing' => array(),
+'ortsinfo' => array('ex' => array('*' => array()),
+'kunden' => array('*' => array())),
 'biz' => array(),
 'info' => array(),
 'priv' => array()),
@@ -1096,15 +174,13 @@ $tldTree = array('ac' => array('com' => array(),
 'tas' => array(),
 'vic' => array(),
 'wa' => array()),
-'gov' => array('act' => array(),
-'qld' => array(),
+'gov' => array('qld' => array(),
 'sa' => array(),
 'tas' => array(),
 'vic' => array(),
 'wa' => array()),
 'asn' => array(),
 'id' => array(),
-'csiro' => array(),
 'info' => array(),
 'conf' => array(),
 'oz' => array(),
@@ -1130,27 +206,27 @@ $tldTree = array('ac' => array('com' => array(),
 'name' => array(),
 'pro' => array(),
 'biz' => array()),
-'ba' => array('org' => array(),
-'net' => array(),
+'ba' => array('com' => array(),
 'edu' => array(),
 'gov' => array(),
 'mil' => array(),
-'unsa' => array(),
-'unbi' => array(),
-'co' => array(),
-'com' => array(),
-'rs' => array()),
+'net' => array(),
+'org' => array(),
+'blogspot' => array()),
 'bb' => array('biz' => array(),
+'co' => array(),
 'com' => array(),
 'edu' => array(),
 'gov' => array(),
 'info' => array(),
 'net' => array(),
 'org' => array(),
-'store' => array()),
+'store' => array(),
+'tv' => array()),
 'bd' => array('*' => array()),
 'be' => array('ac' => array(),
-'blogspot' => array()),
+'blogspot' => array(),
+'transurl' => array('*' => array())),
 'bf' => array('gov' => array()),
 'bg' => array('a' => array(),
 'b' => array(),
@@ -1187,7 +263,8 @@ $tldTree = array('ac' => array('com' => array(),
 '6' => array(),
 '7' => array(),
 '8' => array(),
-'9' => array()),
+'9' => array(),
+'blogspot' => array()),
 'bh' => array('com' => array(),
 'edu' => array(),
 'net' => array(),
@@ -1198,13 +275,18 @@ $tldTree = array('ac' => array('com' => array(),
 'edu' => array(),
 'or' => array(),
 'org' => array()),
-'biz' => array('dyndns' => array(),
+'biz' => array('cloudns' => array(),
+'dyndns' => array(),
 'for-better' => array(),
 'for-more' => array(),
 'for-some' => array(),
 'for-the' => array(),
 'selfip' => array(),
-'webhop' => array()),
+'webhop' => array(),
+'mmafan' => array(),
+'myftp' => array(),
+'no-ip' => array(),
+'dscloud' => array()),
 'bj' => array('asso' => array(),
 'barreau' => array(),
 'gouv' => array(),
@@ -1262,7 +344,33 @@ $tldTree = array('ac' => array('com' => array(),
 'inf' => array(),
 'jor' => array(),
 'jus' => array(),
-'leg' => array(),
+'leg' => array('ac' => array(),
+'al' => array(),
+'am' => array(),
+'ap' => array(),
+'ba' => array(),
+'ce' => array(),
+'df' => array(),
+'es' => array(),
+'go' => array(),
+'ma' => array(),
+'mg' => array(),
+'ms' => array(),
+'mt' => array(),
+'pa' => array(),
+'pb' => array(),
+'pe' => array(),
+'pi' => array(),
+'pr' => array(),
+'rj' => array(),
+'rn' => array(),
+'ro' => array(),
+'rr' => array(),
+'rs' => array(),
+'sc' => array(),
+'se' => array(),
+'sp' => array(),
+'to' => array()),
 'lel' => array(),
 'mat' => array(),
 'med' => array(),
@@ -1270,7 +378,7 @@ $tldTree = array('ac' => array('com' => array(),
 'mp' => array(),
 'mus' => array(),
 'net' => array(),
-'nom' => array(),
+'nom' => array('*' => array()),
 'not' => array(),
 'ntr' => array(),
 'odo' => array(),
@@ -1309,7 +417,7 @@ $tldTree = array('ac' => array('com' => array(),
 'org' => array()),
 'by' => array('gov' => array(),
 'mil' => array(),
-'com' => array(),
+'com' => array('blogspot' => array()),
 'of' => array()),
 'bz' => array('com' => array(),
 'net' => array(),
@@ -1332,17 +440,24 @@ $tldTree = array('ac' => array('com' => array(),
 'sk' => array(),
 'yk' => array(),
 'gc' => array(),
+'awdev' => array('*' => array()),
 'co' => array(),
-'blogspot' => array()),
+'blogspot' => array(),
+'no-ip' => array()),
 'cat' => array(),
-'cc' => array('ftpaccess' => array(),
+'cc' => array('cloudns' => array(),
+'ftpaccess' => array(),
 'game-server' => array(),
 'myphotos' => array(),
-'scrapping' => array()),
+'scrapping' => array(),
+'twmail' => array(),
+'fantasyleague' => array()),
 'cd' => array('gov' => array()),
 'cf' => array('blogspot' => array()),
 'cg' => array(),
-'ch' => array('blogspot' => array()),
+'ch' => array('square7' => array(),
+'blogspot' => array(),
+'gotdns' => array()),
 'ci' => array('org' => array(),
 'or' => array(),
 'com' => array(),
@@ -1363,10 +478,17 @@ $tldTree = array('ac' => array('com' => array(),
 'cl' => array('gov' => array(),
 'gob' => array(),
 'co' => array(),
-'mil' => array()),
-'cm' => array('gov' => array()),
-'cn' => array('ac' => array(),
+'mil' => array(),
+'blogspot' => array()),
+'cm' => array('co' => array(),
 'com' => array(),
+'gov' => array(),
+'net' => array()),
+'cn' => array('ac' => array(),
+'com' => array('amazonaws' => array('compute' => array('*' => array()),
+'cn-north-1' => array('elasticbeanstalk' => array(),
+'s3' => array()),
+'elb' => array('*' => array()))),
 'edu' => array(),
 'gov' => array(),
 'net' => array(),
@@ -1410,7 +532,7 @@ $tldTree = array('ac' => array('com' => array(),
 'mo' => array(),
 'tw' => array()),
 'co' => array('arts' => array(),
-'com' => array(),
+'com' => array('blogspot' => array()),
 'edu' => array(),
 'firm' => array(),
 'gov' => array(),
@@ -1422,39 +544,63 @@ $tldTree = array('ac' => array('com' => array(),
 'org' => array(),
 'rec' => array(),
 'web' => array()),
-'com' => array('amazonaws' => array('compute' => array('ap-northeast-1' => array(),
-'ap-southeast-1' => array(),
-'ap-southeast-2' => array(),
-'eu-west-1' => array(),
-'sa-east-1' => array(),
-'us-gov-west-1' => array(),
-'us-west-1' => array(),
-'us-west-2' => array()),
-'us-east-1' => array(),
-'compute-1' => array('z-1' => array(),
-'z-2' => array()),
-'elb' => array(),
+'com' => array('amazonaws' => array('compute' => array('*' => array()),
+'compute-1' => array('*' => array()),
+'us-east-1' => array('dualstack' => array('s3' => array())),
+'elb' => array('*' => array()),
 's3' => array(),
-'s3-us-west-2' => array(),
-'s3-us-west-1' => array(),
-'s3-eu-west-1' => array(),
+'s3-ap-northeast-1' => array(),
+'s3-ap-northeast-2' => array(),
+'s3-ap-south-1' => array(),
 's3-ap-southeast-1' => array(),
 's3-ap-southeast-2' => array(),
-'s3-ap-northeast-1' => array(),
+'s3-ca-central-1' => array(),
+'s3-eu-central-1' => array(),
+'s3-eu-west-1' => array(),
+'s3-eu-west-2' => array(),
+'s3-external-1' => array(),
+'s3-fips-us-gov-west-1' => array(),
 's3-sa-east-1' => array(),
 's3-us-gov-west-1' => array(),
-'s3-fips-us-gov-west-1' => array(),
+'s3-us-east-2' => array(),
+'s3-us-west-1' => array(),
+'s3-us-west-2' => array(),
+'ap-northeast-2' => array('s3' => array(),
+'dualstack' => array('s3' => array()),
+'s3-website' => array()),
+'ap-south-1' => array('s3' => array(),
+'dualstack' => array('s3' => array()),
+'s3-website' => array()),
+'ca-central-1' => array('s3' => array(),
+'dualstack' => array('s3' => array()),
+'s3-website' => array()),
+'eu-central-1' => array('s3' => array(),
+'dualstack' => array('s3' => array()),
+'s3-website' => array()),
+'eu-west-2' => array('s3' => array(),
+'dualstack' => array('s3' => array()),
+'s3-website' => array()),
+'us-east-2' => array('s3' => array(),
+'dualstack' => array('s3' => array()),
+'s3-website' => array()),
+'ap-northeast-1' => array('dualstack' => array('s3' => array())),
+'ap-southeast-1' => array('dualstack' => array('s3' => array())),
+'ap-southeast-2' => array('dualstack' => array('s3' => array())),
+'eu-west-1' => array('dualstack' => array('s3' => array())),
+'sa-east-1' => array('dualstack' => array('s3' => array())),
 's3-website-us-east-1' => array(),
-'s3-website-us-west-2' => array(),
 's3-website-us-west-1' => array(),
-'s3-website-eu-west-1' => array(),
+'s3-website-us-west-2' => array(),
+'s3-website-ap-northeast-1' => array(),
 's3-website-ap-southeast-1' => array(),
 's3-website-ap-southeast-2' => array(),
-'s3-website-ap-northeast-1' => array(),
-'s3-website-sa-east-1' => array(),
-'s3-website-us-gov-west-1' => array()),
-'elasticbeanstalk' => array(),
+'s3-website-eu-west-1' => array(),
+'s3-website-sa-east-1' => array()),
+'elasticbeanstalk' => array('*' => array()),
+'on-aptible' => array(),
+'myasustor' => array(),
 'betainabox' => array(),
+'bplaced' => array(),
 'ar' => array(),
 'br' => array(),
 'cn' => array(),
@@ -1477,9 +623,11 @@ $tldTree = array('ac' => array('com' => array(),
 'africa' => array(),
 'gr' => array(),
 'co' => array(),
+'xenapponazure' => array(),
 'cloudcontrolled' => array(),
 'cloudcontrolapp' => array(),
 'dreamhosters' => array(),
+'mydrobo' => array(),
 'dyndns-at-home' => array(),
 'dyndns-at-work' => array(),
 'dyndns-blog' => array(),
@@ -1630,19 +778,106 @@ $tldTree = array('ac' => array('com' => array(),
 'space-to-rent' => array(),
 'teaches-yoga' => array(),
 'writesthisblog' => array(),
+'evennode' => array('eu-1' => array(),
+'eu-2' => array(),
+'eu-3' => array(),
+'us-1' => array(),
+'us-2' => array(),
+'us-3' => array()),
+'fbsbx' => array('apps' => array()),
+'firebaseapp' => array(),
+'flynnhub' => array(),
+'freebox-os' => array(),
+'freeboxos' => array(),
 'githubusercontent' => array(),
-'ro' => array(),
+'githubcloud' => array('api' => array('*' => array()),
+'ext' => array('*' => array()),
+'gist' => array()),
+'githubcloudusercontent' => array('*' => array()),
+'0emm' => array('*' => array()),
 'appspot' => array(),
 'blogspot' => array(),
 'codespot' => array(),
 'googleapis' => array(),
 'googlecode' => array(),
+'pagespeedmobilizer' => array(),
+'publishproxy' => array(),
 'withgoogle' => array(),
+'withyoutube' => array(),
 'herokuapp' => array(),
 'herokussl' => array(),
+'joyent' => array('cns' => array('*' => array())),
+'meteorapp' => array('eu' => array()),
+'4u' => array(),
+'nfshost' => array(),
+'blogsyte' => array(),
+'ciscofreak' => array(),
+'damnserver' => array(),
+'ditchyourip' => array(),
+'dnsiskinky' => array(),
+'dynns' => array(),
+'geekgalaxy' => array(),
+'health-carereform' => array(),
+'homesecuritymac' => array(),
+'homesecuritypc' => array(),
+'myactivedirectory' => array(),
+'mysecuritycamera' => array(),
+'net-freaks' => array(),
+'onthewifi' => array(),
+'point2this' => array(),
+'quicksytes' => array(),
+'securitytactics' => array(),
+'serveexchange' => array(),
+'servehumour' => array(),
+'servep2p' => array(),
+'servesarcasm' => array(),
+'stufftoread' => array(),
+'unusualperson' => array(),
+'workisboring' => array(),
+'3utilities' => array(),
+'ddnsking' => array(),
+'myvnc' => array(),
+'servebeer' => array(),
+'servecounterstrike' => array(),
+'serveftp' => array(),
+'servegame' => array(),
+'servehalflife' => array(),
+'servehttp' => array(),
+'serveirc' => array(),
+'servemp3' => array(),
+'servepics' => array(),
+'servequake' => array(),
 'operaunite' => array(),
 'outsystemscloud' => array(),
-'rhcloud' => array()),
+'ownprovider' => array(),
+'pgfog' => array(),
+'pagefrontapp' => array(),
+'gotpantheon' => array(),
+'prgmr' => array('xen' => array()),
+'qa2' => array(),
+'dev-myqnapcloud' => array(),
+'alpha-myqnapcloud' => array(),
+'myqnapcloud' => array(),
+'quipelements' => array('*' => array()),
+'rackmaze' => array(),
+'rhcloud' => array(),
+'logoip' => array(),
+'firewall-gateway' => array(),
+'myshopblocks' => array(),
+'1kapp' => array(),
+'appchizi' => array(),
+'applinzi' => array(),
+'sinaapp' => array(),
+'vipsinaapp' => array(),
+'bounty-full' => array('alpha' => array(),
+'beta' => array()),
+'dsmynas' => array(),
+'familyds' => array(),
+'bloxcms' => array(),
+'townnews-staging' => array(),
+'hk' => array(),
+'remotewd' => array(),
+'yolasite' => array()),
 'coop' => array(),
 'cr' => array('ac' => array(),
 'co' => array(),
@@ -1664,18 +899,71 @@ $tldTree = array('ac' => array('com' => array(),
 'org' => array()),
 'cx' => array('gov' => array(),
 'ath' => array()),
-'cy' => array('*' => array()),
-'cz' => array('blogspot' => array()),
-'de' => array('com' => array(),
+'cy' => array('ac' => array(),
+'biz' => array(),
+'com' => array('blogspot' => array()),
+'ekloges' => array(),
+'gov' => array(),
+'ltd' => array(),
+'name' => array(),
+'net' => array(),
+'org' => array(),
+'parliament' => array(),
+'press' => array(),
+'pro' => array(),
+'tm' => array()),
+'cz' => array('co' => array(),
+'realm' => array(),
+'e4' => array(),
+'blogspot' => array()),
+'de' => array('bplaced' => array(),
+'square7' => array(),
+'com' => array(),
+'cosidns' => array('dyn' => array()),
+'dynamisches-dns' => array(),
+'dnsupdater' => array(),
+'internet-dns' => array(),
+'l-o-g-i-n' => array(),
+'dnshome' => array(),
 'fuettertdasnetz' => array(),
 'isteingeek' => array(),
 'istmein' => array(),
 'lebtimnetz' => array(),
 'leitungsen' => array(),
 'traeumtgerade' => array(),
-'blogspot' => array()),
+'ddnss' => array('dyn' => array(),
+'dyndns' => array()),
+'dyndns1' => array(),
+'dyn-ip24' => array(),
+'home-webserver' => array('dyn' => array()),
+'myhome-server' => array(),
+'goip' => array(),
+'blogspot' => array(),
+'keymachine' => array(),
+'logoip' => array(),
+'firewall-gateway' => array(),
+'my-gateway' => array(),
+'my-router' => array(),
+'spdns' => array(),
+'taifun-dns' => array(),
+'dd-dns' => array(),
+'dray-dns' => array(),
+'draydns' => array(),
+'dyn-vpn' => array(),
+'dynvpn' => array(),
+'mein-vigor' => array(),
+'my-vigor' => array(),
+'my-wan' => array(),
+'syno-ds' => array(),
+'synology-diskstation' => array(),
+'synology-ds' => array()),
 'dj' => array(),
-'dk' => array('blogspot' => array()),
+'dk' => array('biz' => array(),
+'co' => array(),
+'firm' => array(),
+'reg' => array(),
+'store' => array(),
+'blogspot' => array()),
 'dm' => array('com' => array(),
 'net' => array(),
 'org' => array(),
@@ -1717,12 +1005,12 @@ $tldTree = array('ac' => array('com' => array(),
 'riik' => array(),
 'lib' => array(),
 'med' => array(),
-'com' => array(),
+'com' => array('blogspot' => array()),
 'pri' => array(),
 'aip' => array(),
 'org' => array(),
 'fie' => array()),
-'eg' => array('com' => array(),
+'eg' => array('com' => array('blogspot' => array()),
 'edu' => array(),
 'eun' => array(),
 'gov' => array(),
@@ -1737,9 +1025,22 @@ $tldTree = array('ac' => array('com' => array(),
 'org' => array(),
 'gob' => array(),
 'edu' => array()),
-'et' => array('*' => array()),
-'eu' => array(),
+'et' => array('com' => array(),
+'gov' => array(),
+'org' => array(),
+'edu' => array(),
+'biz' => array(),
+'name' => array(),
+'info' => array(),
+'net' => array()),
+'eu' => array('mycd' => array(),
+'cloudns' => array(),
+'wellbeingzone' => array(),
+'spdns' => array(),
+'transurl' => array('*' => array()),
+'diskstation' => array()),
 'fi' => array('aland' => array(),
+'dy' => array(),
 'blogspot' => array(),
 'iki' => array()),
 'fj' => array('*' => array()),
@@ -1769,7 +1070,13 @@ $tldTree = array('ac' => array('com' => array(),
 'pharmacien' => array(),
 'port' => array(),
 'veterinaire' => array(),
-'blogspot' => array()),
+'fbx-os' => array(),
+'fbxos' => array(),
+'freebox-os' => array(),
+'freeboxos' => array(),
+'blogspot' => array(),
+'on-web' => array(),
+'chirurgiens-dentistes-en-france' => array()),
 'ga' => array(),
 'gb' => array(),
 'gd' => array(),
@@ -1783,7 +1090,8 @@ $tldTree = array('ac' => array('com' => array(),
 'gf' => array(),
 'gg' => array('co' => array(),
 'net' => array(),
-'org' => array()),
+'org' => array(),
+'cya' => array()),
 'gh' => array('com' => array(),
 'edu' => array(),
 'gov' => array(),
@@ -1795,7 +1103,11 @@ $tldTree = array('ac' => array('com' => array(),
 'mod' => array(),
 'edu' => array(),
 'org' => array()),
-'gl' => array(),
+'gl' => array('co' => array(),
+'com' => array(),
+'edu' => array(),
+'net' => array(),
+'org' => array()),
 'gm' => array(),
 'gn' => array('ac' => array(),
 'com' => array(),
@@ -1829,7 +1141,10 @@ $tldTree = array('ac' => array('com' => array(),
 'gw' => array(),
 'gy' => array('co' => array(),
 'com' => array(),
-'net' => array()),
+'edu' => array(),
+'gov' => array(),
+'net' => array(),
+'org' => array()),
 'hk' => array('com' => array(),
 'edu' => array(),
 'gov' => array(),
@@ -1851,7 +1166,9 @@ $tldTree = array('ac' => array('com' => array(),
 '组织' => array(),
 '組織' => array(),
 '組织' => array(),
-'blogspot' => array()),
+'blogspot' => array(),
+'ltd' => array(),
+'inc' => array()),
 'hm' => array(),
 'hn' => array('com' => array(),
 'edu' => array(),
@@ -1862,7 +1179,8 @@ $tldTree = array('ac' => array('com' => array(),
 'hr' => array('iz' => array(),
 'from' => array(),
 'name' => array(),
-'com' => array()),
+'com' => array(),
+'blogspot' => array()),
 'ht' => array('com' => array(),
 'shop' => array(),
 'firm' => array(),
@@ -1914,7 +1232,7 @@ $tldTree = array('ac' => array('com' => array(),
 'blogspot' => array()),
 'id' => array('ac' => array(),
 'biz' => array(),
-'co' => array(),
+'co' => array('blogspot' => array()),
 'desa' => array(),
 'go' => array(),
 'mil' => array(),
@@ -1925,8 +1243,14 @@ $tldTree = array('ac' => array('com' => array(),
 'web' => array()),
 'ie' => array('gov' => array(),
 'blogspot' => array()),
-'il' => array('*' => array(),
-'co' => array('blogspot' => array())),
+'il' => array('ac' => array(),
+'co' => array('blogspot' => array()),
+'gov' => array(),
+'idf' => array(),
+'k12' => array(),
+'muni' => array(),
+'net' => array(),
+'org' => array()),
 'im' => array('ac' => array(),
 'co' => array('ltd' => array(),
 'plc' => array()),
@@ -1934,7 +1258,8 @@ $tldTree = array('ac' => array('com' => array(),
 'net' => array(),
 'org' => array(),
 'tt' => array(),
-'tv' => array()),
+'tv' => array(),
+'ro' => array()),
 'in' => array('co' => array(),
 'firm' => array(),
 'net' => array(),
@@ -1947,8 +1272,11 @@ $tldTree = array('ac' => array('com' => array(),
 'res' => array(),
 'gov' => array(),
 'mil' => array(),
+'cloudns' => array(),
 'blogspot' => array()),
-'info' => array('dyndns' => array(),
+'info' => array('cloudns' => array(),
+'dynamic-dns' => array(),
+'dyndns' => array(),
 'barrel-of-knowledge' => array(),
 'barrell-of-knowledge' => array(),
 'for-our' => array(),
@@ -1957,10 +1285,33 @@ $tldTree = array('ac' => array('com' => array(),
 'here-for-more' => array(),
 'knowsitall' => array(),
 'selfip' => array(),
-'webhop' => array()),
+'webhop' => array(),
+'nsupdate' => array(),
+'dvrcam' => array(),
+'ilovecollege' => array(),
+'no-ip' => array()),
 'int' => array('eu' => array()),
 'io' => array('com' => array(),
-'github' => array()),
+'backplaneapp' => array(),
+'boxfuse' => array(),
+'browsersafetymark' => array(),
+'dedyn' => array(),
+'drud' => array(),
+'enonic' => array('customer' => array()),
+'github' => array(),
+'gitlab' => array(),
+'hasura-app' => array(),
+'ngrok' => array(),
+'nid' => array(),
+'pantheonsite' => array(),
+'protonet' => array(),
+'vaporcloud' => array(),
+'hzc' => array(),
+'sandcats' => array(),
+'shiftedit' => array(),
+'lair' => array('apps' => array()),
+'stolos' => array('*' => array()),
+'spacekit' => array()),
 'iq' => array('gov' => array(),
 'edu' => array(),
 'mil' => array(),
@@ -1982,7 +1333,8 @@ $tldTree = array('ac' => array('com' => array(),
 'gov' => array(),
 'org' => array(),
 'int' => array(),
-'cupcake' => array()),
+'cupcake' => array(),
+'blogspot' => array()),
 'it' => array('gov' => array(),
 'edu' => array(),
 'abr' => array(),
@@ -3177,11 +2529,8 @@ $tldTree = array('ac' => array('com' => array(),
 'aso' => array(),
 'choyo' => array(),
 'gyokuto' => array(),
-'hitoyoshi' => array(),
 'kamiamakusa' => array(),
-'kashima' => array(),
 'kikuchi' => array(),
-'kosa' => array(),
 'kumamoto' => array(),
 'mashiki' => array(),
 'mifune' => array(),
@@ -3266,7 +2615,6 @@ $tldTree = array('ac' => array('com' => array(),
 'kakuda' => array(),
 'kami' => array(),
 'kawasaki' => array(),
-'kesennuma' => array(),
 'marumori' => array(),
 'matsushima' => array(),
 'minamisanriku' => array(),
@@ -4051,6 +3399,53 @@ $tldTree = array('ac' => array('com' => array(),
 'uenohara' => array(),
 'yamanakako' => array(),
 'yamanashi' => array()),
+'栃木' => array(),
+'愛知' => array(),
+'愛媛' => array(),
+'兵庫' => array(),
+'熊本' => array(),
+'茨城' => array(),
+'北海道' => array(),
+'千葉' => array(),
+'和歌山' => array(),
+'長崎' => array(),
+'長野' => array(),
+'新潟' => array(),
+'青森' => array(),
+'静岡' => array(),
+'東京' => array(),
+'石川' => array(),
+'埼玉' => array(),
+'三重' => array(),
+'京都' => array(),
+'佐賀' => array(),
+'大分' => array(),
+'大阪' => array(),
+'奈良' => array(),
+'宮城' => array(),
+'宮崎' => array(),
+'富山' => array(),
+'山口' => array(),
+'山形' => array(),
+'山梨' => array(),
+'岩手' => array(),
+'岐阜' => array(),
+'岡山' => array(),
+'島根' => array(),
+'広島' => array(),
+'徳島' => array(),
+'沖縄' => array(),
+'滋賀' => array(),
+'神奈川' => array(),
+'福井' => array(),
+'福岡' => array(),
+'福島' => array(),
+'秋田' => array(),
+'群馬' => array(),
+'香川' => array(),
+'高知' => array(),
+'鳥取' => array(),
+'鹿児島' => array(),
 'kawasaki' => array('*' => array(),
 'city' => array('!' => '')),
 'kitakyushu' => array('*' => array(),
@@ -4066,7 +3461,8 @@ $tldTree = array('ac' => array('com' => array(),
 'yokohama' => array('*' => array(),
 'city' => array('!' => '')),
 'blogspot' => array()),
-'ke' => array('*' => array()),
+'ke' => array('*' => array(),
+'co' => array('blogspot' => array())),
 'kg' => array('org' => array(),
 'net' => array(),
 'com' => array(),
@@ -4158,6 +3554,7 @@ $tldTree = array('ac' => array('com' => array(),
 'per' => array(),
 'com' => array(),
 'org' => array(),
+'bnr' => array(),
 'c' => array()),
 'lb' => array('com' => array(),
 'edu' => array(),
@@ -4169,8 +3566,9 @@ $tldTree = array('ac' => array('com' => array(),
 'co' => array(),
 'org' => array(),
 'edu' => array(),
-'gov' => array()),
-'li' => array(),
+'gov' => array(),
+'oy' => array()),
+'li' => array('blogspot' => array()),
 'lk' => array('gov' => array(),
 'sch' => array(),
 'net' => array(),
@@ -4184,7 +3582,8 @@ $tldTree = array('ac' => array('com' => array(),
 'ltd' => array(),
 'assn' => array(),
 'grp' => array(),
-'hotel' => array()),
+'hotel' => array(),
+'ac' => array()),
 'lr' => array('com' => array(),
 'edu' => array(),
 'gov' => array(),
@@ -4192,8 +3591,9 @@ $tldTree = array('ac' => array('com' => array(),
 'net' => array()),
 'ls' => array('co' => array(),
 'org' => array()),
-'lt' => array('gov' => array()),
-'lu' => array(),
+'lt' => array('gov' => array(),
+'blogspot' => array()),
+'lu' => array('blogspot' => array()),
 'lv' => array('com' => array(),
 'edu' => array(),
 'gov' => array(),
@@ -4220,7 +3620,7 @@ $tldTree = array('ac' => array('com' => array(),
 'press' => array()),
 'mc' => array('tm' => array(),
 'asso' => array()),
-'md' => array(),
+'md' => array('blogspot' => array()),
 'me' => array('co' => array(),
 'net' => array(),
 'org' => array(),
@@ -4228,7 +3628,22 @@ $tldTree = array('ac' => array('com' => array(),
 'ac' => array(),
 'gov' => array(),
 'its' => array(),
-'priv' => array()),
+'priv' => array(),
+'c66' => array(),
+'daplie' => array('localhost' => array()),
+'brasilia' => array(),
+'ddns' => array(),
+'dnsfor' => array(),
+'hopto' => array(),
+'loginto' => array(),
+'noip' => array(),
+'webhop' => array(),
+'diskstation' => array(),
+'dscloud' => array(),
+'i234' => array(),
+'myds' => array(),
+'synology' => array(),
+'yombo' => array()),
 'mg' => array('org' => array(),
 'nom' => array(),
 'gov' => array(),
@@ -4236,7 +3651,8 @@ $tldTree = array('ac' => array('com' => array(),
 'tm' => array(),
 'edu' => array(),
 'mil' => array(),
-'com' => array()),
+'com' => array(),
+'co' => array()),
 'mh' => array(),
 'mil' => array(),
 'mk' => array('com' => array(),
@@ -4245,7 +3661,8 @@ $tldTree = array('ac' => array('com' => array(),
 'edu' => array(),
 'gov' => array(),
 'inf' => array(),
-'name' => array()),
+'name' => array(),
+'blogspot' => array()),
 'ml' => array('com' => array(),
 'edu' => array(),
 'gouv' => array(),
@@ -4263,7 +3680,7 @@ $tldTree = array('ac' => array('com' => array(),
 'org' => array(),
 'edu' => array(),
 'gov' => array()),
-'mobi' => array(),
+'mobi' => array('dscloud' => array()),
 'mp' => array(),
 'mq' => array(),
 'mr' => array('gov' => array(),
@@ -4273,7 +3690,7 @@ $tldTree = array('ac' => array('com' => array(),
 'gov' => array(),
 'net' => array(),
 'org' => array()),
-'mt' => array('com' => array(),
+'mt' => array('com' => array('blogspot' => array()),
 'edu' => array(),
 'net' => array(),
 'org' => array()),
@@ -4869,9 +4286,16 @@ $tldTree = array('ac' => array('com' => array(),
 'gov' => array(),
 'edu' => array(),
 'mil' => array(),
-'name' => array()),
-'mz' => array('*' => array(),
-'teledata' => array('!' => '')),
+'name' => array(),
+'blogspot' => array()),
+'mz' => array('ac' => array(),
+'adv' => array(),
+'co' => array(),
+'edu' => array(),
+'gov' => array(),
+'mil' => array(),
+'net' => array(),
+'org' => array()),
 'na' => array('info' => array(),
 'pro' => array(),
 'name' => array(),
@@ -4893,13 +4317,24 @@ $tldTree = array('ac' => array('com' => array(),
 'his' => array('forgot' => array())),
 'nc' => array('asso' => array()),
 'ne' => array(),
-'net' => array('cloudfront' => array(),
+'net' => array('alwaysdata' => array('*' => array()),
+'cloudfront' => array(),
+'t3l3p0rt' => array(),
+'myfritz' => array(),
+'bplaced' => array(),
+'square7' => array(),
 'gb' => array(),
 'hu' => array(),
 'jp' => array(),
 'se' => array(),
 'uk' => array(),
 'in' => array(),
+'cdn77-ssl' => array(),
+'cdn77' => array('r' => array()),
+'feste-ip' => array(),
+'knx-server' => array(),
+'static-access' => array(),
+'cryptonomic' => array('*' => array()),
 'at-band-camp' => array(),
 'blogdns' => array(),
 'broke-it' => array(),
@@ -4935,14 +4370,43 @@ $tldTree = array('ac' => array('com' => array(),
 'serveftp' => array(),
 'thruhere' => array(),
 'webhop' => array(),
-'fastly' => array('ssl' => array('a' => array(),
-'b' => array(),
-'global' => array()),
+'dynv6' => array(),
+'twmail' => array(),
+'ru' => array(),
+'fastlylb' => array('map' => array()),
+'fastly' => array('freetls' => array(),
+'map' => array(),
 'prod' => array('a' => array(),
+'global' => array()),
+'ssl' => array('a' => array(),
+'b' => array(),
 'global' => array())),
+'cloudfunctions' => array(),
+'moonscale' => array(),
+'ipifony' => array(),
 'azurewebsites' => array(),
 'azure-mobile' => array(),
 'cloudapp' => array(),
+'eating-organic' => array(),
+'mydissent' => array(),
+'myeffect' => array(),
+'mymediapc' => array(),
+'mypsx' => array(),
+'mysecuritycamera' => array(),
+'nhlfan' => array(),
+'no-ip' => array(),
+'pgafan' => array(),
+'privatizehealthinsurance' => array(),
+'bounceme' => array(),
+'ddns' => array(),
+'redirectme' => array(),
+'serveblog' => array(),
+'serveminecraft' => array(),
+'sytes' => array(),
+'rackmaze' => array(),
+'firewall-gateway' => array(),
+'dsmynas' => array(),
+'familyds' => array(),
 'za' => array()),
 'nf' => array('com' => array(),
 'net' => array(),
@@ -4954,19 +4418,35 @@ $tldTree = array('ac' => array('com' => array(),
 'info' => array(),
 'other' => array(),
 'store' => array()),
-'ng' => array('com' => array(),
+'ng' => array('com' => array('blogspot' => array()),
 'edu' => array(),
+'gov' => array(),
+'i' => array(),
+'mil' => array(),
+'mobi' => array(),
 'name' => array(),
 'net' => array(),
 'org' => array(),
-'sch' => array(),
-'gov' => array(),
-'mil' => array(),
-'mobi' => array()),
-'ni' => array('*' => array()),
-'nl' => array('bv' => array(),
+'sch' => array()),
+'ni' => array('ac' => array(),
+'biz' => array(),
 'co' => array(),
-'blogspot' => array()),
+'com' => array(),
+'edu' => array(),
+'gob' => array(),
+'in' => array(),
+'info' => array(),
+'int' => array(),
+'mil' => array(),
+'net' => array(),
+'nom' => array(),
+'org' => array(),
+'web' => array()),
+'nl' => array('bv' => array(),
+'virtueeldomein' => array(),
+'co' => array(),
+'blogspot' => array(),
+'transurl' => array('*' => array())),
 'no' => array('fhs' => array(),
 'vgs' => array(),
 'fylkesbibl' => array(),
@@ -5712,8 +5192,22 @@ $tldTree = array('ac' => array('com' => array(),
 'nu' => array('merseine' => array(),
 'mine' => array(),
 'shacknet' => array()),
-'nz' => array('*' => array(),
-'co' => array('blogspot' => array())),
+'nz' => array('ac' => array(),
+'co' => array('blogspot' => array()),
+'cri' => array(),
+'geek' => array(),
+'gen' => array(),
+'govt' => array(),
+'health' => array(),
+'iwi' => array(),
+'kiwi' => array(),
+'maori' => array(),
+'mil' => array(),
+'māori' => array(),
+'net' => array(),
+'org' => array(),
+'parliament' => array(),
+'school' => array()),
 'om' => array('co' => array(),
 'com' => array(),
 'edu' => array(),
@@ -5723,8 +5217,21 @@ $tldTree = array('ac' => array('com' => array(),
 'net' => array(),
 'org' => array(),
 'pro' => array()),
-'org' => array('ae' => array(),
+'onion' => array(),
+'org' => array('amune' => array('tele' => array()),
+'pimienta' => array(),
+'poivron' => array(),
+'potager' => array(),
+'sweetpepper' => array(),
+'ae' => array(),
 'us' => array(),
+'certmgr' => array(),
+'cdn77' => array('c' => array(),
+'rsc' => array()),
+'cdn77-secure' => array('origin' => array('ssl' => array())),
+'cloudns' => array(),
+'duckdns' => array(),
+'tunk' => array(),
 'dyndns' => array('go' => array(),
 'home' => array()),
 'blogdns' => array(),
@@ -5776,6 +5283,90 @@ $tldTree = array('ac' => array('com' => array(),
 'servegame' => array(),
 'stuff-4-sale' => array(),
 'webhop' => array(),
+'ddnss' => array(),
+'eu' => array('al' => array(),
+'asso' => array(),
+'at' => array(),
+'au' => array(),
+'be' => array(),
+'bg' => array(),
+'ca' => array(),
+'cd' => array(),
+'ch' => array(),
+'cn' => array(),
+'cy' => array(),
+'cz' => array(),
+'de' => array(),
+'dk' => array(),
+'edu' => array(),
+'ee' => array(),
+'es' => array(),
+'fi' => array(),
+'fr' => array(),
+'gr' => array(),
+'hr' => array(),
+'hu' => array(),
+'ie' => array(),
+'il' => array(),
+'in' => array(),
+'int' => array(),
+'is' => array(),
+'it' => array(),
+'jp' => array(),
+'kr' => array(),
+'lt' => array(),
+'lu' => array(),
+'lv' => array(),
+'mc' => array(),
+'me' => array(),
+'mk' => array(),
+'mt' => array(),
+'my' => array(),
+'net' => array(),
+'ng' => array(),
+'nl' => array(),
+'no' => array(),
+'nz' => array(),
+'paris' => array(),
+'pl' => array(),
+'pt' => array(),
+'q-a' => array(),
+'ro' => array(),
+'ru' => array(),
+'se' => array(),
+'si' => array(),
+'sk' => array(),
+'tr' => array(),
+'uk' => array(),
+'us' => array()),
+'twmail' => array(),
+'fedorainfracloud' => array(),
+'fedorapeople' => array(),
+'fedoraproject' => array('cloud' => array()),
+'hepforge' => array(),
+'js' => array(),
+'bmoattachments' => array(),
+'cable-modem' => array(),
+'collegefan' => array(),
+'couchpotatofries' => array(),
+'mlbfan' => array(),
+'mysecuritycamera' => array(),
+'nflfan' => array(),
+'read-books' => array(),
+'ufcfan' => array(),
+'hopto' => array(),
+'myftp' => array(),
+'no-ip' => array(),
+'zapto' => array(),
+'my-firewall' => array(),
+'myfirewall' => array(),
+'spdns' => array(),
+'dsmynas' => array(),
+'familyds' => array(),
+'tuxfamily' => array(),
+'diskstation' => array(),
+'hk' => array(),
+'wmflabs' => array(),
 'za' => array()),
 'pa' => array('ac' => array(),
 'gob' => array(),
@@ -5794,7 +5385,8 @@ $tldTree = array('ac' => array('com' => array(),
 'mil' => array(),
 'org' => array(),
 'com' => array(),
-'net' => array()),
+'net' => array(),
+'blogspot' => array()),
 'pf' => array('com' => array(),
 'org' => array(),
 'edu' => array()),
@@ -5821,12 +5413,14 @@ $tldTree = array('ac' => array('com' => array(),
 'gop' => array(),
 'gos' => array(),
 'info' => array()),
-'pl' => array('aid' => array(),
+'pl' => array('com' => array(),
+'net' => array(),
+'org' => array(),
+'aid' => array(),
 'agro' => array(),
 'atm' => array(),
 'auto' => array(),
 'biz' => array(),
-'com' => array(),
 'edu' => array(),
 'gmina' => array(),
 'gsm' => array(),
@@ -5835,10 +5429,8 @@ $tldTree = array('ac' => array('com' => array(),
 'miasta' => array(),
 'media' => array(),
 'mil' => array(),
-'net' => array(),
 'nieruchomosci' => array(),
 'nom' => array(),
-'org' => array(),
 'pc' => array(),
 'powiat' => array(),
 'priv' => array(),
@@ -5854,21 +5446,53 @@ $tldTree = array('ac' => array('com' => array(),
 'tourism' => array(),
 'travel' => array(),
 'turystyka' => array(),
-'6bone' => array(),
-'art' => array(),
-'mbone' => array(),
-'gov' => array('uw' => array(),
-'um' => array(),
+'gov' => array('ap' => array(),
+'ic' => array(),
+'is' => array(),
+'us' => array(),
+'kmpsp' => array(),
+'kppsp' => array(),
+'kwpsp' => array(),
+'psp' => array(),
+'wskr' => array(),
+'kwp' => array(),
+'mw' => array(),
 'ug' => array(),
+'um' => array(),
+'umig' => array(),
+'ugim' => array(),
 'upow' => array(),
+'uw' => array(),
 'starostwo' => array(),
+'pa' => array(),
+'po' => array(),
+'psse' => array(),
+'pup' => array(),
+'rzgw' => array(),
+'sa' => array(),
 'so' => array(),
 'sr' => array(),
-'po' => array(),
-'pa' => array()),
-'ngo' => array(),
-'irc' => array(),
-'usenet' => array(),
+'wsa' => array(),
+'sko' => array(),
+'uzs' => array(),
+'wiih' => array(),
+'winb' => array(),
+'pinb' => array(),
+'wios' => array(),
+'witd' => array(),
+'wzmiuw' => array(),
+'piw' => array(),
+'wiw' => array(),
+'griw' => array(),
+'wif' => array(),
+'oum' => array(),
+'sdn' => array(),
+'zp' => array(),
+'uppo' => array(),
+'mup' => array(),
+'wuoz' => array(),
+'konsulat' => array(),
+'oirm' => array()),
 'augustow' => array(),
 'babia-gora' => array(),
 'bedzin' => array(),
@@ -5954,7 +5578,6 @@ $tldTree = array('ac' => array('com' => array(),
 'rzeszow' => array(),
 'sanok' => array(),
 'sejny' => array(),
-'siedlce' => array(),
 'slask' => array(),
 'slupsk' => array(),
 'sosnowiec' => array(),
@@ -5989,17 +5612,19 @@ $tldTree = array('ac' => array('com' => array(),
 'zarow' => array(),
 'zgora' => array(),
 'zgorzelec' => array(),
-'gda' => array(),
-'gdansk' => array(),
-'gdynia' => array(),
-'med' => array(),
-'sopot' => array(),
+'beep' => array(),
+'co' => array(),
+'art' => array(),
 'gliwice' => array(),
 'krakow' => array(),
 'poznan' => array(),
 'wroc' => array(),
 'zakopane' => array(),
-'co' => array()),
+'gda' => array(),
+'gdansk' => array(),
+'gdynia' => array(),
+'med' => array(),
+'sopot' => array()),
 'pm' => array(),
 'pn' => array('gov' => array(),
 'co' => array(),
@@ -6020,13 +5645,18 @@ $tldTree = array('ac' => array('com' => array(),
 'est' => array(),
 'prof' => array(),
 'ac' => array()),
-'pro' => array('aca' => array(),
+'pro' => array('aaa' => array(),
+'aca' => array(),
+'acct' => array(),
+'avocat' => array(),
 'bar' => array(),
 'cpa' => array(),
+'eng' => array(),
 'jur' => array(),
 'law' => array(),
 'med' => array(),
-'eng' => array()),
+'recht' => array(),
+'cloudns' => array()),
 'ps' => array('edu' => array(),
 'gov' => array(),
 'sec' => array(),
@@ -6048,7 +5678,8 @@ $tldTree = array('ac' => array('com' => array(),
 'or' => array(),
 'ed' => array(),
 'go' => array(),
-'belau' => array()),
+'belau' => array(),
+'cloudns' => array()),
 'py' => array('com' => array(),
 'coop' => array(),
 'edu' => array(),
@@ -6063,162 +5694,59 @@ $tldTree = array('ac' => array('com' => array(),
 'name' => array(),
 'net' => array(),
 'org' => array(),
-'sch' => array()),
-'re' => array('com' => array(),
-'asso' => array(),
-'nom' => array(),
+'sch' => array(),
 'blogspot' => array()),
-'ro' => array('com' => array(),
-'org' => array(),
-'tm' => array(),
-'nt' => array(),
-'nom' => array(),
-'info' => array(),
-'rec' => array(),
-'arts' => array(),
-'firm' => array(),
-'store' => array(),
-'www' => array(),
-'blogspot' => array()),
-'rs' => array('co' => array(),
-'org' => array(),
-'edu' => array(),
-'ac' => array(),
-'gov' => array(),
-'in' => array()),
-'ru' => array('ac' => array(),
+'re' => array('asso' => array(),
 'com' => array(),
-'edu' => array(),
-'int' => array(),
-'net' => array(),
+'nom' => array(),
+'blogspot' => array()),
+'ro' => array('arts' => array(),
+'com' => array(),
+'firm' => array(),
+'info' => array(),
+'nom' => array(),
+'nt' => array(),
 'org' => array(),
-'pp' => array(),
+'rec' => array(),
+'store' => array(),
+'tm' => array(),
+'www' => array(),
+'shop' => array(),
+'blogspot' => array()),
+'rs' => array('ac' => array(),
+'co' => array(),
+'edu' => array(),
+'gov' => array(),
+'in' => array(),
+'org' => array(),
+'blogspot' => array()),
+'ru' => array('ac' => array(),
+'edu' => array(),
+'gov' => array(),
+'int' => array(),
+'mil' => array(),
+'test' => array(),
 'adygeya' => array(),
-'altai' => array(),
-'amur' => array(),
-'arkhangelsk' => array(),
-'astrakhan' => array(),
 'bashkiria' => array(),
-'belgorod' => array(),
 'bir' => array(),
-'bryansk' => array(),
-'buryatia' => array(),
 'cbg' => array(),
-'chel' => array(),
-'chelyabinsk' => array(),
-'chita' => array(),
-'chukotka' => array(),
-'chuvashia' => array(),
+'com' => array(),
 'dagestan' => array(),
-'dudinka' => array(),
-'e-burg' => array(),
 'grozny' => array(),
-'irkutsk' => array(),
-'ivanovo' => array(),
-'izhevsk' => array(),
-'jar' => array(),
-'joshkar-ola' => array(),
 'kalmykia' => array(),
-'kaluga' => array(),
-'kamchatka' => array(),
-'karelia' => array(),
-'kazan' => array(),
-'kchr' => array(),
-'kemerovo' => array(),
-'khabarovsk' => array(),
-'khakassia' => array(),
-'khv' => array(),
-'kirov' => array(),
-'koenig' => array(),
-'komi' => array(),
-'kostroma' => array(),
-'krasnoyarsk' => array(),
-'kuban' => array(),
-'kurgan' => array(),
-'kursk' => array(),
-'lipetsk' => array(),
-'magadan' => array(),
-'mari' => array(),
-'mari-el' => array(),
+'kustanai' => array(),
 'marine' => array(),
 'mordovia' => array(),
-'mosreg' => array(),
 'msk' => array(),
-'murmansk' => array(),
+'mytis' => array(),
 'nalchik' => array(),
-'nnov' => array(),
 'nov' => array(),
-'novosibirsk' => array(),
-'nsk' => array(),
-'omsk' => array(),
-'orenburg' => array(),
-'oryol' => array(),
-'palana' => array(),
-'penza' => array(),
-'perm' => array(),
-'pskov' => array(),
-'ptz' => array(),
-'rnd' => array(),
-'ryazan' => array(),
-'sakhalin' => array(),
-'samara' => array(),
-'saratov' => array(),
-'simbirsk' => array(),
-'smolensk' => array(),
+'pyatigorsk' => array(),
 'spb' => array(),
-'stavropol' => array(),
-'stv' => array(),
-'surgut' => array(),
-'tambov' => array(),
-'tatarstan' => array(),
-'tom' => array(),
-'tomsk' => array(),
-'tsaritsyn' => array(),
-'tsk' => array(),
-'tula' => array(),
-'tuva' => array(),
-'tver' => array(),
-'tyumen' => array(),
-'udm' => array(),
-'udmurtia' => array(),
-'ulan-ude' => array(),
 'vladikavkaz' => array(),
 'vladimir' => array(),
-'vladivostok' => array(),
-'volgograd' => array(),
-'vologda' => array(),
-'voronezh' => array(),
-'vrn' => array(),
-'vyatka' => array(),
-'yakutia' => array(),
-'yamal' => array(),
-'yaroslavl' => array(),
-'yekaterinburg' => array(),
-'yuzhno-sakhalinsk' => array(),
-'amursk' => array(),
-'baikal' => array(),
-'cmw' => array(),
-'fareast' => array(),
-'jamal' => array(),
-'kms' => array(),
-'k-uralsk' => array(),
-'kustanai' => array(),
-'kuzbass' => array(),
-'magnitka' => array(),
-'mytis' => array(),
-'nakhodka' => array(),
-'nkz' => array(),
-'norilsk' => array(),
-'oskol' => array(),
-'pyatigorsk' => array(),
-'rubtsovsk' => array(),
-'snz' => array(),
-'syzran' => array(),
-'vdonsk' => array(),
-'zgrad' => array(),
-'gov' => array(),
-'mil' => array(),
-'test' => array()),
+'blogspot' => array(),
+'cldmail' => array('hb' => array())),
 'rw' => array('gov' => array(),
 'net' => array(),
 'edu' => array(),
@@ -6293,6 +5821,7 @@ $tldTree = array('ac' => array('com' => array(),
 'x' => array(),
 'y' => array(),
 'z' => array(),
+'com' => array(),
 'blogspot' => array()),
 'sg' => array('com' => array(),
 'net' => array(),
@@ -6305,8 +5834,11 @@ $tldTree = array('ac' => array('com' => array(),
 'net' => array(),
 'gov' => array(),
 'org' => array(),
-'mil' => array()),
-'si' => array(),
+'mil' => array(),
+'hashbang' => array(),
+'platform' => array('*' => array()),
+'now' => array()),
+'si' => array('blogspot' => array()),
 'sj' => array(),
 'sk' => array('blogspot' => array()),
 'sl' => array('com' => array(),
@@ -6321,7 +5853,8 @@ $tldTree = array('ac' => array('com' => array(),
 'gouv' => array(),
 'org' => array(),
 'perso' => array(),
-'univ' => array()),
+'univ' => array(),
+'blogspot' => array()),
 'so' => array('com' => array(),
 'net' => array(),
 'org' => array()),
@@ -6338,7 +5871,58 @@ $tldTree = array('ac' => array('com' => array(),
 'principe' => array(),
 'saotome' => array(),
 'store' => array()),
-'su' => array(),
+'su' => array('abkhazia' => array(),
+'adygeya' => array(),
+'aktyubinsk' => array(),
+'arkhangelsk' => array(),
+'armenia' => array(),
+'ashgabad' => array(),
+'azerbaijan' => array(),
+'balashov' => array(),
+'bashkiria' => array(),
+'bryansk' => array(),
+'bukhara' => array(),
+'chimkent' => array(),
+'dagestan' => array(),
+'east-kazakhstan' => array(),
+'exnet' => array(),
+'georgia' => array(),
+'grozny' => array(),
+'ivanovo' => array(),
+'jambyl' => array(),
+'kalmykia' => array(),
+'kaluga' => array(),
+'karacol' => array(),
+'karaganda' => array(),
+'karelia' => array(),
+'khakassia' => array(),
+'krasnodar' => array(),
+'kurgan' => array(),
+'kustanai' => array(),
+'lenug' => array(),
+'mangyshlak' => array(),
+'mordovia' => array(),
+'msk' => array(),
+'murmansk' => array(),
+'nalchik' => array(),
+'navoi' => array(),
+'north-kazakhstan' => array(),
+'nov' => array(),
+'obninsk' => array(),
+'penza' => array(),
+'pokrovsk' => array(),
+'sochi' => array(),
+'spb' => array(),
+'tashkent' => array(),
+'termez' => array(),
+'togliatti' => array(),
+'troitsk' => array(),
+'tselinograd' => array(),
+'tula' => array(),
+'tuva' => array(),
+'vladikavkaz' => array(),
+'vladimir' => array(),
+'vologda' => array()),
 'sv' => array('com' => array(),
 'edu' => array(),
 'gob' => array(),
@@ -6416,10 +6000,28 @@ $tldTree = array('ac' => array('com' => array(),
 'net' => array(),
 'org' => array(),
 'edu' => array(),
-'mil' => array()),
-'tp' => array(),
-'tr' => array('*' => array(),
-'nic' => array('!' => ''),
+'mil' => array(),
+'vpnplus' => array()),
+'tr' => array('com' => array('blogspot' => array()),
+'info' => array(),
+'biz' => array(),
+'net' => array(),
+'org' => array(),
+'web' => array(),
+'gen' => array(),
+'tv' => array(),
+'av' => array(),
+'dr' => array(),
+'bbs' => array(),
+'name' => array(),
+'tel' => array(),
+'gov' => array(),
+'bel' => array(),
+'pol' => array(),
+'mil' => array(),
+'k12' => array(),
+'edu' => array(),
+'kep' => array(),
 'nc' => array('gov' => array())),
 'travel' => array(),
 'tt' => array('co' => array(),
@@ -6446,7 +6048,7 @@ $tldTree = array('ac' => array('com' => array(),
 'tw' => array('edu' => array(),
 'gov' => array(),
 'mil' => array(),
-'com' => array(),
+'com' => array('mymailer' => array()),
 'net' => array(),
 'org' => array(),
 'idv' => array(),
@@ -6456,6 +6058,7 @@ $tldTree = array('ac' => array('com' => array(),
 '網路' => array(),
 '組織' => array(),
 '商業' => array(),
+'url' => array(),
 'blogspot' => array()),
 'tz' => array('ac' => array(),
 'co' => array(),
@@ -6545,8 +6148,12 @@ $tldTree = array('ac' => array('com' => array(),
 'zhytomyr' => array(),
 'zp' => array(),
 'zt' => array(),
+'biz' => array(),
 'co' => array(),
-'pp' => array()),
+'pp' => array(),
+'cc' => array(),
+'inf' => array(),
+'ltd' => array()),
 'ug' => array('co' => array(),
 'or' => array(),
 'ac' => array(),
@@ -6554,19 +6161,22 @@ $tldTree = array('ac' => array('com' => array(),
 'go' => array(),
 'ne' => array(),
 'com' => array(),
-'org' => array()),
-'uk' => array('*' => array(),
-'sch' => array('*' => array()),
-'bl' => array('!' => ''),
-'british-library' => array('!' => ''),
-'jet' => array('!' => ''),
-'mod' => array('!' => ''),
-'national-library-scotland' => array('!' => ''),
-'nel' => array('!' => ''),
-'nic' => array('!' => ''),
-'nls' => array('!' => ''),
-'parliament' => array('!' => ''),
-'co' => array('blogspot' => array())),
+'org' => array(),
+'blogspot' => array()),
+'uk' => array('ac' => array(),
+'co' => array('blogspot' => array(),
+'no-ip' => array(),
+'wellbeingzone' => array()),
+'gov' => array('service' => array(),
+'homeoffice' => array()),
+'ltd' => array(),
+'me' => array(),
+'net' => array(),
+'nhs' => array(),
+'org' => array(),
+'plc' => array(),
+'police' => array(),
+'sch' => array('*' => array())),
 'us' => array('dni' => array(),
 'fed' => array(),
 'isa' => array(),
@@ -6663,8 +6273,7 @@ $tldTree = array('ac' => array('com' => array(),
 'nc' => array('k12' => array(),
 'cc' => array(),
 'lib' => array()),
-'nd' => array('k12' => array(),
-'cc' => array(),
+'nd' => array('cc' => array(),
 'lib' => array()),
 'ne' => array('k12' => array(),
 'cc' => array(),
@@ -6735,10 +6344,15 @@ $tldTree = array('ac' => array('com' => array(),
 'wy' => array('k12' => array(),
 'cc' => array(),
 'lib' => array()),
+'cloudns' => array(),
+'drud' => array(),
 'is-by' => array(),
 'land-4-sale' => array(),
-'stuff-4-sale' => array()),
-'uy' => array('com' => array(),
+'stuff-4-sale' => array(),
+'golffan' => array(),
+'noip' => array(),
+'pointto' => array()),
+'uy' => array('com' => array('blogspot' => array()),
 'edu' => array(),
 'gub' => array(),
 'mil' => array(),
@@ -6755,15 +6369,22 @@ $tldTree = array('ac' => array('com' => array(),
 'gov' => array(),
 'mil' => array(),
 'edu' => array()),
-'ve' => array('co' => array(),
+'ve' => array('arts' => array(),
+'co' => array(),
 'com' => array(),
 'e12' => array(),
 'edu' => array(),
+'firm' => array(),
+'gob' => array(),
 'gov' => array(),
 'info' => array(),
+'int' => array(),
 'mil' => array(),
 'net' => array(),
 'org' => array(),
+'rec' => array(),
+'store' => array(),
+'tec' => array(),
 'web' => array()),
 'vg' => array(),
 'vi' => array('co' => array(),
@@ -6782,387 +6403,1354 @@ $tldTree = array('ac' => array('com' => array(),
 'info' => array(),
 'name' => array(),
 'pro' => array(),
-'health' => array()),
-'vu' => array(),
+'health' => array(),
+'blogspot' => array()),
+'vu' => array('com' => array(),
+'edu' => array(),
+'net' => array(),
+'org' => array()),
 'wf' => array(),
 'ws' => array('com' => array(),
 'net' => array(),
 'org' => array(),
 'gov' => array(),
 'edu' => array(),
+'advisor' => array('*' => array()),
 'dyndns' => array(),
 'mypets' => array()),
 'yt' => array(),
-'�?�?�?�?�?ت' => array(),
-'�??�??�??�??�??' => array(),
-'�??�??' => array(),
-'�??�?' => array(),
-'�?�?�?�?�?�?�?' => array(),
-'�?ص�?' => array(),
-'�?�?' => array(),
-'�??�??' => array(),
-'�??�??�??�??' => array(),
-'�?�?�?�?ت' => array(),
-'�??�??�??�??�??' => array(),
-'�?�?�?�?' => array(),
-'�??�??�??�??' => array(),
-'�??�??�??�??' => array(),
-'�??�??�??�??�??�??�??' => array(),
-'�?ی�?�?�?' => array(),
-'�?ي�?�?�?' => array(),
-'�?�?�?�?�?�?' => array(),
-'�?��?' => array(),
-'�?�?�?' => array(),
-'�??�??�?��??' => array(),
-'�??�??�??�??�??�??' => array(),
-'�?�?�?غ�?�?' => array(),
-'�?�?�?' => array(),
-'�?�?ي�?ي�?' => array(),
-'�?�?�?�?' => array(),
-'�?�?�?�?ي�?' => array(),
-'�?�?�?' => array(),
-'�?�?' => array(),
-'�?�?�?' => array(),
-'�?�?�?�?�?�?ي�?' => array(),
-'�?�?�?�?�?�?ی�?' => array(),
-'�?�?�?�?�?�?یۃ' => array(),
-'�?�?�?�?�?�?ي�?' => array(),
-'�?�?�?ي�?' => array(),
-'�?�?�?ي�?' => array(),
-'�??�?�??' => array(),
-'�?��??�??�??�??�?��??�?��??�??�??' => array(),
-'�??�??�??' => array(),
-'ت�?�?�?' => array(),
-'�??�??' => array(),
-'�??�??' => array(),
-'�?��??' => array(),
-'ук�?' => array(),
-'�?�?ي�?�?' => array(),
+'امارات' => array(),
+'հայ' => array(),
+'বাংলা' => array(),
+'бел' => array(),
+'中国' => array(),
+'中國' => array(),
+'الجزائر' => array(),
+'مصر' => array(),
+'ею' => array(),
+'გე' => array(),
+'ελ' => array(),
+'香港' => array(),
+'भारत' => array(),
+'بھارت' => array(),
+'భారత్' => array(),
+'ભારત' => array(),
+'ਭਾਰਤ' => array(),
+'ভারত' => array(),
+'இந்தியா' => array(),
+'ایران' => array(),
+'ايران' => array(),
+'عراق' => array(),
+'الاردن' => array(),
+'한국' => array(),
+'қаз' => array(),
+'ලංකා' => array(),
+'இலங்கை' => array(),
+'المغرب' => array(),
+'мкд' => array(),
+'мон' => array(),
+'澳門' => array(),
+'澳门' => array(),
+'مليسيا' => array(),
+'عمان' => array(),
+'پاکستان' => array(),
+'پاكستان' => array(),
+'فلسطين' => array(),
+'срб' => array('пр' => array(),
+'орг' => array(),
+'обр' => array(),
+'од' => array(),
+'упр' => array(),
+'ак' => array()),
+'рф' => array(),
+'قطر' => array(),
+'السعودية' => array(),
+'السعودیة' => array(),
+'السعودیۃ' => array(),
+'السعوديه' => array(),
+'سودان' => array(),
+'新加坡' => array(),
+'சிங்கப்பூர்' => array(),
+'سورية' => array(),
+'سوريا' => array(),
+'ไทย' => array('ศึกษา' => array(),
+'ธุรกิจ' => array(),
+'รัฐบาล' => array(),
+'ทหาร' => array(),
+'เน็ต' => array(),
+'องค์กร' => array()),
+'تونس' => array(),
+'台灣' => array(),
+'台湾' => array(),
+'臺灣' => array(),
+'укр' => array(),
+'اليمن' => array(),
 'xxx' => array(),
 'ye' => array('*' => array()),
-'za' => array('*' => array()),
-'zm' => array('*' => array()),
-'zw' => array('*' => array()),
-'�?�?�?�?�?�?' => array(),
-'�?�?�?�?' => array(),
-'�?�?ك�?' => array(),
-'�??�??' => array(),
-'�??�?�' => array(),
-'camera' => array(),
-'clothing' => array(),
-'lighting' => array(),
-'singles' => array(),
-'ventures' => array(),
-'voyage' => array(),
-'guru' => array(),
-'holdings' => array(),
-'equipment' => array(),
-'bike' => array(),
-'estate' => array(),
-'tattoo' => array(),
-'�?�?' => array(),
-'�??�??�??' => array(),
-'land' => array(),
-'plumbing' => array(),
-'contractors' => array(),
-'sexy' => array(),
-'menu' => array(),
-'�??�?�' => array(),
-'uno' => array(),
-'gallery' => array(),
-'technology' => array(),
-'�??�??' => array(),
-'reviews' => array(),
-'guide' => array(),
-'�??�??�??' => array(),
-'graphics' => array(),
-'construction' => array(),
-'onl' => array(),
-'�??�??�?�' => array(),
-'diamonds' => array(),
-'kiwi' => array(),
-'enterprises' => array(),
-'today' => array(),
-'futbol' => array(),
-'photography' => array(),
-'tips' => array(),
-'directory' => array(),
-'kitchen' => array(),
-'�??�?' => array(),
-'kim' => array(),
-'�??�??' => array(),
-'monash' => array(),
-'wed' => array(),
-'pink' => array(),
-'ruhr' => array(),
-'buzz' => array(),
-'careers' => array(),
-'shoes' => array(),
-'�?�?�?�?' => array(),
-'career' => array(),
-'otsuka' => array(),
-'�??�??' => array(),
-'gift' => array(),
-'recipes' => array(),
-'coffee' => array(),
-'luxury' => array(),
-'domains' => array(),
-'photos' => array(),
-'limo' => array(),
-'viajes' => array(),
-'wang' => array(),
-'democrat' => array(),
-'mango' => array(),
-'cab' => array(),
-'support' => array(),
-'dance' => array(),
-'nagoya' => array(),
-'computer' => array(),
-'wien' => array(),
-'berlin' => array(),
-'codes' => array(),
-'email' => array(),
-'�?�?�?�?�?' => array(),
-'repair' => array(),
-'holiday' => array(),
-'center' => array(),
-'systems' => array(),
-'wiki' => array(),
-'ceo' => array(),
-'international' => array(),
-'solar' => array(),
-'company' => array(),
-'education' => array(),
-'training' => array(),
-'academy' => array(),
-'marketing' => array(),
-'florist' => array(),
-'solutions' => array(),
-'build' => array(),
-'institute' => array(),
-'builders' => array(),
-'red' => array(),
-'blue' => array(),
-'ninja' => array(),
-'business' => array(),
-'gal' => array(),
-'social' => array(),
-'house' => array(),
-'camp' => array(),
-'immobilien' => array(),
-'moda' => array(),
-'glass' => array(),
-'management' => array(),
-'kaufen' => array(),
-'farm' => array(),
-'公益' => array(),
-'政务' => array(),
-'club' => array(),
-'voting' => array(),
-'tokyo' => array(),
-'moe' => array(),
-'guitars' => array(),
-'bargains' => array(),
-'组织机构' => array(),
-'desi' => array(),
-'cool' => array(),
-'boutique' => array(),
-'pics' => array(),
-'орг' => array(),
-'公司' => array(),
-'网络' => array(),
-'cheap' => array(),
-'广东' => array(),
-'photo' => array(),
-'network' => array(),
-'zone' => array(),
-'机构' => array(),
-'link' => array(),
-'qpon' => array(),
-'संगठन' => array(),
-'agency' => array(),
-'tienda' => array(),
-'works' => array(),
-'london' => array(),
-'watch' => array(),
-'rocks' => array(),
-'shiksha' => array(),
-'дети' => array(),
-'budapest' => array(),
-'nrw' => array(),
-'vote' => array(),
-'fishing' => array(),
-'expert' => array(),
-'horse' => array(),
-'christmas' => array(),
-'cooking' => array(),
-'商城' => array(),
-'casa' => array(),
-'rich' => array(),
-'voto' => array(),
-'tools' => array(),
-'八卦' => array(),
-'praxi' => array(),
-'events' => array(),
-'flights' => array(),
-'report' => array(),
-'partners' => array(),
-'neustar' => array(),
-'rentals' => array(),
-'catering' => array(),
-'community' => array(),
-'maison' => array(),
-'parts' => array(),
-'cleaning' => array(),
-'okinawa' => array(),
-'foundation' => array(),
-'properties' => array(),
-'vacations' => array(),
-'productions' => array(),
-'industries' => array(),
-'haus' => array(),
-'vision' => array(),
-'mormon' => array(),
-'cards' => array(),
-'ink' => array(),
-'villas' => array(),
-'consulting' => array(),
-'cruises' => array(),
-'krd' => array(),
-'xyz' => array(),
-'dating' => array(),
-'exposed' => array(),
-'condos' => array(),
-'eus' => array(),
-'caravan' => array(),
-'actor' => array(),
-'saarland' => array(),
-'yokohama' => array(),
-'pub' => array(),
-'рус' => array(),
-'ren' => array(),
-'fish' => array(),
-'bar' => array(),
-'dnp' => array(),
-'bid' => array(),
-'supply' => array(),
-'miami' => array(),
-'supplies' => array(),
-'quebec' => array(),
-'moscow' => array(),
-'globo' => array(),
-'axa' => array(),
-'москва' => array(),
-'商店' => array(),
-'vodka' => array(),
-'rest' => array(),
-'frogans' => array(),
-'wtc' => array(),
-'rodeo' => array(),
-'sohu' => array(),
-'best' => array(),
-'country' => array(),
-'kred' => array(),
-'feedback' => array(),
-'work' => array(),
-'luxe' => array(),
-'ryukyu' => array(),
-'autos' => array(),
-'homes' => array(),
-'jetzt' => array(),
-'yachts' => array(),
-'motorcycles' => array(),
-'mini' => array(),
-'ggee' => array(),
-'beer' => array(),
-'佛山' => array(),
-'college' => array(),
-'ovh' => array(),
-'meet' => array(),
-'网址' => array(),
-'gop' => array(),
-'blackfriday' => array(),
-'lacaixa' => array(),
-'商标' => array(),
-'vegas' => array(),
-'black' => array(),
-'soy' => array(),
-'trade' => array(),
-'gent' => array(),
-'ing' => array(),
-'dad' => array(),
-'shriram' => array(),
-'bayern' => array(),
-'scot' => array(),
-'webcam' => array(),
-'foo' => array(),
-'eat' => array(),
-'nyc' => array(),
-'prod' => array(),
-'how' => array(),
-'day' => array(),
-'meme' => array(),
-'mov' => array(),
-'paris' => array(),
-'boo' => array(),
-'new' => array(),
-'ifm' => array(),
-'life' => array(),
-'archi' => array(),
-'spiegel' => array(),
-'brussels' => array(),
-'church' => array(),
-'here' => array(),
-'dabur' => array(),
-'vlaanderen' => array(),
-'cologne' => array(),
-'手机' => array(),
-'wme' => array(),
-'nhk' => array(),
-'suzuki' => array(),
-'whoswho' => array(),
-'scb' => array(),
-'hamburg' => array(),
-'services' => array(),
-'bzh' => array(),
-'rio' => array(),
-'cash' => array(),
-'gives' => array(),
-'hiphop' => array(),
-'degree' => array(),
-'digital' => array(),
-'rehab' => array(),
-'wtf' => array(),
-'financial' => array(),
-'limited' => array(),
-'discount' => array(),
-'fail' => array(),
-'vet' => array(),
+'za' => array('ac' => array(),
+'agric' => array(),
+'alt' => array(),
+'co' => array('blogspot' => array()),
+'edu' => array(),
+'gov' => array(),
+'grondar' => array(),
+'law' => array(),
+'mil' => array(),
+'net' => array(),
 'ngo' => array(),
-'fitness' => array(),
-'schule' => array(),
-'navy' => array(),
-'bio' => array(),
-'ong' => array(),
-'town' => array(),
-'toys' => array(),
-'army' => array(),
-'engineering' => array(),
-'capital' => array(),
-'exchange' => array(),
-'fan' => array(),
-'market' => array(),
-'media' => array(),
-'lease' => array(),
-'university' => array(),
-'reisen' => array(),
+'nis' => array(),
+'nom' => array(),
+'org' => array(),
+'school' => array(),
+'tm' => array(),
+'web' => array()),
+'zm' => array('ac' => array(),
+'biz' => array(),
+'co' => array(),
+'com' => array(),
+'edu' => array(),
+'gov' => array(),
+'info' => array(),
+'mil' => array(),
+'net' => array(),
+'org' => array(),
+'sch' => array()),
+'zw' => array('ac' => array(),
+'co' => array(),
+'gov' => array(),
+'mil' => array(),
+'org' => array()),
+'aaa' => array(),
+'aarp' => array(),
+'abarth' => array(),
+'abb' => array(),
+'abbott' => array(),
+'abbvie' => array(),
+'abc' => array(),
+'able' => array(),
+'abogado' => array(),
+'abudhabi' => array(),
+'academy' => array(),
+'accenture' => array(),
+'accountant' => array(),
+'accountants' => array(),
+'aco' => array(),
+'active' => array(),
+'actor' => array(),
+'adac' => array(),
+'ads' => array(),
+'adult' => array(),
+'aeg' => array(),
+'aetna' => array(),
+'afamilycompany' => array(),
+'afl' => array(),
+'africa' => array(),
+'agakhan' => array(),
+'agency' => array(),
+'aig' => array(),
+'aigo' => array(),
+'airbus' => array(),
 'airforce' => array(),
-'pictures' => array(),
-'gripe' => array(),
+'airtel' => array(),
+'akdn' => array(),
+'alfaromeo' => array(),
+'alibaba' => array(),
+'alipay' => array(),
+'allfinanz' => array(),
+'allstate' => array(),
+'ally' => array(),
+'alsace' => array(),
+'alstom' => array(),
+'americanexpress' => array(),
+'americanfamily' => array(),
+'amex' => array(),
+'amfam' => array(),
+'amica' => array(),
+'amsterdam' => array(),
+'analytics' => array(),
+'android' => array(),
+'anquan' => array(),
+'anz' => array(),
+'aol' => array(),
+'apartments' => array(),
+'app' => array(),
+'apple' => array(),
+'aquarelle' => array(),
+'arab' => array(),
+'aramco' => array(),
+'archi' => array(),
+'army' => array(),
+'art' => array(),
+'arte' => array(),
+'asda' => array(),
 'associates' => array(),
-'政府' => array(),
-'williamhill' => array(),
+'athleta' => array(),
+'attorney' => array(),
+'auction' => array(),
+'audi' => array(),
+'audible' => array(),
+'audio' => array(),
+'auspost' => array(),
+'author' => array(),
+'auto' => array(),
+'autos' => array(),
+'avianca' => array(),
+'aws' => array(),
+'axa' => array(),
+'azure' => array(),
+'baby' => array(),
+'baidu' => array(),
+'banamex' => array(),
+'bananarepublic' => array(),
+'band' => array(),
+'bank' => array(),
+'bar' => array(),
+'barcelona' => array(),
+'barclaycard' => array(),
+'barclays' => array(),
+'barefoot' => array(),
+'bargains' => array(),
+'baseball' => array(),
+'basketball' => array(),
+'bauhaus' => array(),
+'bayern' => array(),
+'bbc' => array(),
+'bbt' => array(),
+'bbva' => array(),
+'bcg' => array(),
+'bcn' => array(),
+'beats' => array(),
+'beauty' => array(),
+'beer' => array(),
+'bentley' => array(),
+'berlin' => array(),
+'best' => array(),
+'bestbuy' => array(),
+'bet' => array(),
+'bharti' => array(),
+'bible' => array(),
+'bid' => array(),
+'bike' => array(),
+'bing' => array(),
+'bingo' => array(),
+'bio' => array(),
+'black' => array(),
+'blackfriday' => array(),
+'blanco' => array(),
+'blockbuster' => array(),
+'blog' => array(),
+'bloomberg' => array(),
+'blue' => array(),
+'bms' => array(),
+'bmw' => array(),
+'bnl' => array(),
+'bnpparibas' => array(),
+'boats' => array(),
+'boehringer' => array(),
+'bofa' => array(),
+'bom' => array(),
+'bond' => array(),
+'boo' => array(),
+'book' => array(),
+'booking' => array(),
+'boots' => array(),
+'bosch' => array(),
+'bostik' => array(),
+'boston' => array(),
+'bot' => array(),
+'boutique' => array(),
+'box' => array(),
+'bradesco' => array(),
+'bridgestone' => array(),
+'broadway' => array(),
+'broker' => array(),
+'brother' => array(),
+'brussels' => array(),
+'budapest' => array(),
+'bugatti' => array(),
+'build' => array(),
+'builders' => array(),
+'business' => array(),
+'buy' => array(),
+'buzz' => array(),
+'bzh' => array(),
+'cab' => array(),
+'cafe' => array(),
+'cal' => array(),
+'call' => array(),
+'calvinklein' => array(),
+'cam' => array(),
+'camera' => array(),
+'camp' => array(),
+'cancerresearch' => array(),
+'canon' => array(),
+'capetown' => array(),
+'capital' => array(),
+'capitalone' => array(),
+'car' => array(),
+'caravan' => array(),
+'cards' => array(),
+'care' => array(),
+'career' => array(),
+'careers' => array(),
+'cars' => array(),
+'cartier' => array(),
+'casa' => array(),
+'case' => array(),
+'caseih' => array(),
+'cash' => array(),
+'casino' => array(),
+'catering' => array(),
+'catholic' => array(),
+'cba' => array(),
+'cbn' => array(),
+'cbre' => array(),
+'cbs' => array(),
+'ceb' => array(),
+'center' => array(),
+'ceo' => array(),
+'cern' => array(),
+'cfa' => array(),
+'cfd' => array(),
+'chanel' => array(),
+'channel' => array(),
+'chase' => array(),
+'chat' => array(),
+'cheap' => array(),
+'chintai' => array(),
+'chloe' => array(),
+'christmas' => array(),
+'chrome' => array(),
+'chrysler' => array(),
+'church' => array(),
+'cipriani' => array(),
+'circle' => array(),
+'cisco' => array(),
+'citadel' => array(),
+'citi' => array(),
+'citic' => array(),
+'city' => array(),
+'cityeats' => array(),
+'claims' => array(),
+'cleaning' => array(),
+'click' => array(),
+'clinic' => array(),
+'clinique' => array(),
+'clothing' => array(),
+'cloud' => array('myfusion' => array(),
+'statics' => array('*' => array()),
+'magentosite' => array('*' => array()),
+'vapor' => array(),
+'sensiosite' => array('*' => array())),
+'club' => array('cloudns' => array()),
+'clubmed' => array(),
+'coach' => array(),
+'codes' => array(),
+'coffee' => array(),
+'college' => array(),
+'cologne' => array(),
+'comcast' => array(),
+'commbank' => array(),
+'community' => array(),
+'company' => array(),
+'compare' => array(),
+'computer' => array(),
+'comsec' => array(),
+'condos' => array(),
+'construction' => array(),
+'consulting' => array(),
+'contact' => array(),
+'contractors' => array(),
+'cooking' => array(),
+'cookingchannel' => array(),
+'cool' => array(),
+'corsica' => array(),
+'country' => array(),
+'coupon' => array(),
+'coupons' => array(),
+'courses' => array(),
+'credit' => array(),
+'creditcard' => array(),
+'creditunion' => array(),
+'cricket' => array(),
+'crown' => array(),
+'crs' => array(),
+'cruise' => array(),
+'cruises' => array(),
+'csc' => array(),
+'cuisinella' => array(),
+'cymru' => array(),
+'cyou' => array(),
+'dabur' => array(),
+'dad' => array(),
+'dance' => array(),
+'data' => array(),
+'date' => array(),
+'dating' => array(),
+'datsun' => array(),
+'day' => array(),
+'dclk' => array(),
+'dds' => array(),
+'deal' => array(),
+'dealer' => array(),
+'deals' => array(),
+'degree' => array(),
+'delivery' => array(),
+'dell' => array(),
+'deloitte' => array(),
+'delta' => array(),
+'democrat' => array(),
+'dental' => array(),
+'dentist' => array(),
+'desi' => array(),
+'design' => array(),
+'dev' => array(),
+'dhl' => array(),
+'diamonds' => array(),
+'diet' => array(),
+'digital' => array(),
+'direct' => array(),
+'directory' => array(),
+'discount' => array(),
+'discover' => array(),
+'dish' => array(),
+'diy' => array(),
+'dnp' => array(),
+'docs' => array(),
+'doctor' => array(),
+'dodge' => array(),
+'dog' => array(),
+'doha' => array(),
+'domains' => array(),
+'dot' => array(),
+'download' => array(),
+'drive' => array(),
+'dtv' => array(),
+'dubai' => array(),
+'duck' => array(),
+'dunlop' => array(),
+'duns' => array(),
+'dupont' => array(),
+'durban' => array(),
+'dvag' => array(),
+'dvr' => array(),
+'earth' => array(),
+'eat' => array(),
+'eco' => array(),
+'edeka' => array(),
+'education' => array(),
+'email' => array(),
+'emerck' => array(),
+'energy' => array(),
+'engineer' => array(),
+'engineering' => array(),
+'enterprises' => array(),
+'epost' => array(),
+'epson' => array(),
+'equipment' => array(),
+'ericsson' => array(),
+'erni' => array(),
+'esq' => array(),
+'estate' => array('compute' => array('*' => array())),
+'esurance' => array(),
+'etisalat' => array(),
+'eurovision' => array(),
+'eus' => array('party' => array('user' => array())),
+'events' => array(),
+'everbank' => array(),
+'exchange' => array(),
+'expert' => array(),
+'exposed' => array(),
+'express' => array(),
+'extraspace' => array(),
+'fage' => array(),
+'fail' => array(),
+'fairwinds' => array(),
+'faith' => array('ybo' => array()),
+'family' => array(),
+'fan' => array(),
+'fans' => array(),
+'farm' => array('storj' => array()),
+'farmers' => array(),
+'fashion' => array(),
+'fast' => array(),
+'fedex' => array(),
+'feedback' => array(),
+'ferrari' => array(),
+'ferrero' => array(),
+'fiat' => array(),
+'fidelity' => array(),
+'fido' => array(),
+'film' => array(),
+'final' => array(),
+'finance' => array(),
+'financial' => array(),
+'fire' => array(),
+'firestone' => array(),
+'firmdale' => array(),
+'fish' => array(),
+'fishing' => array(),
+'fit' => array('ptplus' => array()),
+'fitness' => array(),
+'flickr' => array(),
+'flights' => array(),
+'flir' => array(),
+'florist' => array(),
+'flowers' => array(),
+'fly' => array(),
+'foo' => array(),
+'food' => array(),
+'foodnetwork' => array(),
+'football' => array(),
+'ford' => array(),
+'forex' => array(),
+'forsale' => array(),
+'forum' => array(),
+'foundation' => array(),
+'fox' => array(),
+'free' => array(),
+'fresenius' => array(),
+'frl' => array(),
+'frogans' => array(),
+'frontdoor' => array(),
+'frontier' => array(),
+'ftr' => array(),
+'fujitsu' => array(),
+'fujixerox' => array(),
+'fun' => array(),
+'fund' => array(),
+'furniture' => array(),
+'futbol' => array(),
+'fyi' => array(),
+'gal' => array(),
+'gallery' => array(),
+'gallo' => array(),
+'gallup' => array(),
+'game' => array(),
+'games' => array(),
+'gap' => array(),
+'garden' => array(),
+'gbiz' => array(),
+'gdn' => array(),
+'gea' => array(),
+'gent' => array(),
+'genting' => array(),
+'george' => array(),
+'ggee' => array(),
+'gift' => array(),
+'gifts' => array(),
+'gives' => array(),
+'giving' => array(),
+'glade' => array(),
+'glass' => array(),
+'gle' => array(),
+'global' => array(),
+'globo' => array(),
+'gmail' => array(),
+'gmbh' => array(),
+'gmo' => array(),
+'gmx' => array(),
+'godaddy' => array(),
+'gold' => array(),
+'goldpoint' => array(),
+'golf' => array(),
+'goo' => array(),
+'goodhands' => array(),
+'goodyear' => array(),
+'goog' => array(),
+'google' => array(),
+'gop' => array(),
+'got' => array(),
+'grainger' => array(),
+'graphics' => array(),
+'gratis' => array(),
+'green' => array(),
+'gripe' => array(),
+'grocery' => array(),
+'group' => array(),
+'guardian' => array(),
+'gucci' => array(),
+'guge' => array(),
+'guide' => array(),
+'guitars' => array(),
+'guru' => array(),
+'hair' => array(),
+'hamburg' => array(),
+'hangout' => array(),
+'haus' => array(),
+'hbo' => array(),
+'hdfc' => array(),
+'hdfcbank' => array(),
+'health' => array(),
+'healthcare' => array(),
+'help' => array(),
+'helsinki' => array(),
+'here' => array(),
+'hermes' => array(),
+'hgtv' => array(),
+'hiphop' => array(),
+'hisamitsu' => array(),
+'hitachi' => array(),
 'hiv' => array(),
+'hkt' => array(),
+'hockey' => array(),
+'holdings' => array(),
+'holiday' => array(),
+'homedepot' => array(),
+'homegoods' => array(),
+'homes' => array(),
+'homesense' => array(),
+'honda' => array(),
+'honeywell' => array(),
+'horse' => array(),
+'hospital' => array(),
+'host' => array(),
+'hosting' => array('opencraft' => array()),
+'hot' => array(),
+'hoteles' => array(),
+'hotels' => array(),
+'hotmail' => array(),
+'house' => array(),
+'how' => array(),
+'hsbc' => array(),
+'htc' => array(),
+'hughes' => array(),
+'hyatt' => array(),
+'hyundai' => array(),
+'ibm' => array(),
+'icbc' => array(),
+'ice' => array(),
+'icu' => array(),
+'ieee' => array(),
+'ifm' => array(),
+'ikano' => array(),
+'imamat' => array(),
+'imdb' => array(),
+'immo' => array(),
+'immobilien' => array(),
+'industries' => array(),
+'infiniti' => array(),
+'ing' => array(),
+'ink' => array(),
+'institute' => array(),
+'insurance' => array(),
+'insure' => array(),
+'intel' => array(),
+'international' => array(),
+'intuit' => array(),
+'investments' => array(),
+'ipiranga' => array(),
+'irish' => array(),
+'iselect' => array(),
+'ismaili' => array(),
+'ist' => array(),
+'istanbul' => array(),
+'itau' => array(),
+'itv' => array(),
+'iveco' => array(),
+'iwc' => array(),
+'jaguar' => array(),
+'java' => array(),
+'jcb' => array(),
+'jcp' => array(),
+'jeep' => array(),
+'jetzt' => array(),
+'jewelry' => array(),
+'jio' => array(),
+'jlc' => array(),
+'jll' => array(),
+'jmp' => array(),
+'jnj' => array(),
+'joburg' => array(),
+'jot' => array(),
+'joy' => array(),
+'jpmorgan' => array(),
+'jprs' => array(),
+'juegos' => array(),
+'juniper' => array(),
+'kaufen' => array(),
+'kddi' => array(),
+'kerryhotels' => array(),
+'kerrylogistics' => array(),
+'kerryproperties' => array(),
+'kfh' => array(),
+'kia' => array(),
+'kim' => array(),
+'kinder' => array(),
+'kindle' => array(),
+'kitchen' => array(),
+'kiwi' => array(),
+'koeln' => array(),
+'komatsu' => array(),
+'kosher' => array(),
+'kpmg' => array(),
+'kpn' => array(),
+'krd' => array('co' => array(),
+'edu' => array()),
+'kred' => array(),
+'kuokgroup' => array(),
+'kyoto' => array(),
+'lacaixa' => array(),
+'ladbrokes' => array(),
+'lamborghini' => array(),
+'lamer' => array(),
+'lancaster' => array(),
+'lancia' => array(),
+'lancome' => array(),
+'land' => array('static' => array('dev' => array(),
+'sites' => array())),
+'landrover' => array(),
+'lanxess' => array(),
+'lasalle' => array(),
+'lat' => array(),
+'latino' => array(),
+'latrobe' => array(),
+'law' => array(),
+'lawyer' => array(),
+'lds' => array(),
+'lease' => array(),
+'leclerc' => array(),
+'lefrak' => array(),
+'legal' => array(),
+'lego' => array(),
+'lexus' => array(),
+'lgbt' => array(),
+'liaison' => array(),
+'lidl' => array(),
+'life' => array(),
+'lifeinsurance' => array(),
+'lifestyle' => array(),
+'lighting' => array(),
+'like' => array(),
+'lilly' => array(),
+'limited' => array(),
+'limo' => array(),
+'lincoln' => array(),
+'linde' => array(),
+'link' => array('cyon' => array(),
+'mypep' => array()),
+'lipsy' => array(),
+'live' => array(),
+'living' => array(),
+'lixil' => array(),
+'loan' => array(),
+'loans' => array(),
+'locker' => array(),
+'locus' => array(),
+'loft' => array(),
+'lol' => array(),
+'london' => array(),
+'lotte' => array(),
+'lotto' => array(),
+'love' => array(),
+'lpl' => array(),
+'lplfinancial' => array(),
+'ltd' => array(),
+'ltda' => array(),
+'lundbeck' => array(),
+'lupin' => array(),
+'luxe' => array(),
+'luxury' => array(),
+'macys' => array(),
+'madrid' => array(),
+'maif' => array(),
+'maison' => array(),
+'makeup' => array(),
+'man' => array(),
+'management' => array('router' => array()),
+'mango' => array(),
+'map' => array(),
+'market' => array(),
+'marketing' => array(),
+'markets' => array(),
+'marriott' => array(),
+'marshalls' => array(),
+'maserati' => array(),
+'mattel' => array(),
+'mba' => array(),
+'mcd' => array(),
+'mcdonalds' => array(),
+'mckinsey' => array(),
+'med' => array(),
+'media' => array(),
+'meet' => array(),
+'melbourne' => array(),
+'meme' => array(),
+'memorial' => array(),
+'men' => array(),
+'menu' => array(),
+'meo' => array(),
+'merckmsd' => array(),
+'metlife' => array(),
+'miami' => array(),
+'microsoft' => array(),
+'mini' => array(),
+'mint' => array(),
+'mit' => array(),
+'mitsubishi' => array(),
+'mlb' => array(),
+'mls' => array(),
+'mma' => array(),
+'mobile' => array(),
+'mobily' => array(),
+'moda' => array(),
+'moe' => array(),
+'moi' => array(),
+'mom' => array(),
+'monash' => array(),
+'money' => array(),
+'monster' => array(),
+'montblanc' => array(),
+'mopar' => array(),
+'mormon' => array(),
+'mortgage' => array(),
+'moscow' => array(),
+'moto' => array(),
+'motorcycles' => array(),
+'mov' => array(),
+'movie' => array(),
+'movistar' => array(),
+'msd' => array(),
+'mtn' => array(),
+'mtpc' => array(),
+'mtr' => array(),
+'mutual' => array(),
+'nab' => array(),
+'nadex' => array(),
+'nagoya' => array(),
+'nationwide' => array(),
+'natura' => array(),
+'navy' => array(),
+'nba' => array(),
+'nec' => array(),
+'netbank' => array(),
+'netflix' => array(),
+'network' => array('alces' => array('*' => array())),
+'neustar' => array(),
+'new' => array(),
+'newholland' => array(),
+'news' => array(),
+'next' => array(),
+'nextdirect' => array(),
+'nexus' => array(),
+'nfl' => array(),
+'ngo' => array(),
+'nhk' => array(),
+'nico' => array(),
+'nike' => array(),
+'nikon' => array(),
+'ninja' => array(),
+'nissan' => array(),
+'nissay' => array(),
+'nokia' => array(),
+'northwesternmutual' => array(),
+'norton' => array(),
+'now' => array(),
+'nowruz' => array(),
+'nowtv' => array(),
+'nra' => array(),
+'nrw' => array(),
+'ntt' => array(),
+'nyc' => array(),
+'obi' => array(),
+'observer' => array(),
+'off' => array(),
+'office' => array(),
+'okinawa' => array(),
+'olayan' => array(),
+'olayangroup' => array(),
+'oldnavy' => array(),
+'ollo' => array(),
+'omega' => array(),
+'one' => array('homelink' => array()),
+'ong' => array(),
+'onl' => array(),
+'online' => array(),
+'onyourside' => array(),
+'ooo' => array(),
+'open' => array(),
+'oracle' => array(),
+'orange' => array(),
+'organic' => array(),
+'orientexpress' => array(),
+'origins' => array(),
+'osaka' => array(),
+'otsuka' => array(),
+'ott' => array(),
+'ovh' => array('nerdpol' => array()),
+'page' => array(),
+'pamperedchef' => array(),
+'panasonic' => array(),
+'panerai' => array(),
+'paris' => array(),
+'pars' => array(),
+'partners' => array(),
+'parts' => array(),
+'party' => array('ybo' => array()),
+'passagens' => array(),
+'pay' => array(),
+'pccw' => array(),
+'pet' => array(),
+'pfizer' => array(),
+'pharmacy' => array(),
+'phd' => array(),
+'philips' => array(),
+'phone' => array(),
+'photo' => array(),
+'photography' => array(),
+'photos' => array(),
+'physio' => array(),
+'piaget' => array(),
+'pics' => array(),
+'pictet' => array(),
+'pictures' => array(),
+'pid' => array(),
+'pin' => array(),
+'ping' => array(),
+'pink' => array(),
+'pioneer' => array(),
+'pizza' => array(),
+'place' => array(),
+'play' => array(),
+'playstation' => array(),
+'plumbing' => array(),
+'plus' => array(),
+'pnc' => array(),
+'pohl' => array(),
+'poker' => array(),
+'politie' => array(),
+'porn' => array(),
+'pramerica' => array(),
+'praxi' => array(),
+'press' => array(),
+'prime' => array(),
+'prod' => array(),
+'productions' => array(),
+'prof' => array(),
+'progressive' => array(),
+'promo' => array(),
+'properties' => array(),
+'property' => array(),
+'protection' => array(),
+'pru' => array(),
+'prudential' => array(),
+'pub' => array(),
+'pwc' => array(),
+'qpon' => array(),
+'quebec' => array(),
+'quest' => array(),
+'qvc' => array(),
+'racing' => array(),
+'radio' => array(),
+'raid' => array(),
+'read' => array(),
+'realestate' => array(),
+'realtor' => array(),
+'realty' => array(),
+'recipes' => array(),
+'red' => array(),
+'redstone' => array(),
+'redumbrella' => array(),
+'rehab' => array(),
+'reise' => array(),
+'reisen' => array(),
+'reit' => array(),
+'reliance' => array(),
+'ren' => array(),
+'rent' => array(),
+'rentals' => array(),
+'repair' => array(),
+'report' => array(),
+'republican' => array(),
+'rest' => array(),
+'restaurant' => array(),
+'review' => array('ybo' => array()),
+'reviews' => array(),
+'rexroth' => array(),
+'rich' => array(),
+'richardli' => array(),
+'ricoh' => array(),
+'rightathome' => array(),
+'ril' => array(),
+'rio' => array(),
+'rip' => array(),
+'rmit' => array(),
+'rocher' => array(),
+'rocks' => array(),
+'rodeo' => array(),
+'rogers' => array(),
+'room' => array(),
+'rsvp' => array(),
+'rugby' => array(),
+'ruhr' => array(),
+'run' => array(),
+'rwe' => array(),
+'ryukyu' => array(),
+'saarland' => array(),
+'safe' => array(),
+'safety' => array(),
+'sakura' => array(),
+'sale' => array(),
+'salon' => array(),
+'samsclub' => array(),
+'samsung' => array(),
+'sandvik' => array(),
+'sandvikcoromant' => array(),
+'sanofi' => array(),
+'sap' => array(),
+'sapo' => array(),
+'sarl' => array(),
+'sas' => array(),
+'save' => array(),
+'saxo' => array(),
+'sbi' => array(),
+'sbs' => array(),
 'sca' => array(),
-'reise' => array());
+'scb' => array(),
+'schaeffler' => array(),
+'schmidt' => array(),
+'scholarships' => array(),
+'school' => array(),
+'schule' => array(),
+'schwarz' => array(),
+'science' => array('ybo' => array()),
+'scjohnson' => array(),
+'scor' => array(),
+'scot' => array(),
+'search' => array(),
+'seat' => array(),
+'secure' => array(),
+'security' => array(),
+'seek' => array(),
+'select' => array(),
+'sener' => array(),
+'services' => array(),
+'ses' => array(),
+'seven' => array(),
+'sew' => array(),
+'sex' => array(),
+'sexy' => array(),
+'sfr' => array(),
+'shangrila' => array(),
+'sharp' => array(),
+'shaw' => array(),
+'shell' => array(),
+'shia' => array(),
+'shiksha' => array(),
+'shoes' => array(),
+'shop' => array(),
+'shopping' => array(),
+'shouji' => array(),
+'show' => array(),
+'showtime' => array(),
+'shriram' => array(),
+'silk' => array(),
+'sina' => array(),
+'singles' => array(),
+'site' => array('cyon' => array(),
+'platformsh' => array('*' => array())),
+'ski' => array(),
+'skin' => array(),
+'sky' => array(),
+'skype' => array(),
+'sling' => array(),
+'smart' => array(),
+'smile' => array(),
+'sncf' => array(),
+'soccer' => array(),
+'social' => array(),
+'softbank' => array(),
+'software' => array(),
+'sohu' => array(),
+'solar' => array(),
+'solutions' => array(),
+'song' => array(),
+'sony' => array(),
+'soy' => array(),
+'space' => array('stackspace' => array(),
+'uber' => array(),
+'xs4all' => array()),
+'spiegel' => array(),
+'spot' => array(),
+'spreadbetting' => array(),
+'srl' => array(),
+'srt' => array(),
+'stada' => array(),
+'staples' => array(),
+'star' => array(),
+'starhub' => array(),
+'statebank' => array(),
+'statefarm' => array(),
+'statoil' => array(),
+'stc' => array(),
+'stcgroup' => array(),
+'stockholm' => array(),
+'storage' => array(),
+'store' => array(),
+'stream' => array(),
+'studio' => array(),
+'study' => array(),
+'style' => array(),
+'sucks' => array(),
+'supplies' => array(),
+'supply' => array(),
+'support' => array(),
+'surf' => array(),
+'surgery' => array(),
+'suzuki' => array(),
+'swatch' => array(),
+'swiftcover' => array(),
+'swiss' => array(),
+'sydney' => array(),
+'symantec' => array(),
+'systems' => array('knightpoint' => array()),
+'tab' => array(),
+'taipei' => array(),
+'talk' => array(),
+'taobao' => array(),
+'target' => array(),
+'tatamotors' => array(),
+'tatar' => array(),
+'tattoo' => array(),
+'tax' => array(),
+'taxi' => array(),
+'tci' => array(),
+'tdk' => array(),
+'team' => array(),
+'tech' => array(),
+'technology' => array(),
+'telecity' => array(),
+'telefonica' => array(),
+'temasek' => array(),
+'tennis' => array(),
+'teva' => array(),
+'thd' => array(),
+'theater' => array(),
+'theatre' => array(),
+'tiaa' => array(),
+'tickets' => array(),
+'tienda' => array(),
+'tiffany' => array(),
+'tips' => array(),
+'tires' => array(),
+'tirol' => array(),
+'tjmaxx' => array(),
+'tjx' => array(),
+'tkmaxx' => array(),
+'tmall' => array(),
+'today' => array(),
+'tokyo' => array(),
+'tools' => array(),
+'top' => array(),
+'toray' => array(),
+'toshiba' => array(),
+'total' => array(),
+'tours' => array(),
+'town' => array(),
+'toyota' => array(),
+'toys' => array(),
+'trade' => array('ybo' => array()),
+'trading' => array(),
+'training' => array(),
+'travelchannel' => array(),
+'travelers' => array(),
+'travelersinsurance' => array(),
+'trust' => array(),
+'trv' => array(),
+'tube' => array(),
+'tui' => array(),
+'tunes' => array(),
+'tushu' => array(),
+'tvs' => array(),
+'ubank' => array(),
+'ubs' => array(),
+'uconnect' => array(),
+'unicom' => array(),
+'university' => array(),
+'uno' => array(),
+'uol' => array(),
+'ups' => array(),
+'vacations' => array(),
+'vana' => array(),
+'vanguard' => array(),
+'vegas' => array(),
+'ventures' => array(),
+'verisign' => array(),
+'versicherung' => array(),
+'vet' => array(),
+'viajes' => array(),
+'video' => array(),
+'vig' => array(),
+'viking' => array(),
+'villas' => array(),
+'vin' => array(),
+'vip' => array(),
+'virgin' => array(),
+'visa' => array(),
+'vision' => array(),
+'vista' => array(),
+'vistaprint' => array(),
+'viva' => array(),
+'vivo' => array(),
+'vlaanderen' => array(),
+'vodka' => array(),
+'volkswagen' => array(),
+'volvo' => array(),
+'vote' => array(),
+'voting' => array(),
+'voto' => array(),
+'voyage' => array(),
+'vuelos' => array(),
+'wales' => array(),
+'walmart' => array(),
+'walter' => array(),
+'wang' => array(),
+'wanggou' => array(),
+'warman' => array(),
+'watch' => array(),
+'watches' => array(),
+'weather' => array(),
+'weatherchannel' => array(),
+'webcam' => array(),
+'weber' => array(),
+'website' => array(),
+'wed' => array(),
+'wedding' => array(),
+'weibo' => array(),
+'weir' => array(),
+'whoswho' => array(),
+'wien' => array(),
+'wiki' => array(),
+'williamhill' => array(),
+'win' => array(),
+'windows' => array(),
+'wine' => array(),
+'winners' => array(),
+'wme' => array(),
+'wolterskluwer' => array(),
+'woodside' => array(),
+'work' => array(),
+'works' => array(),
+'world' => array(),
+'wow' => array(),
+'wtc' => array(),
+'wtf' => array(),
+'xbox' => array(),
+'xerox' => array(),
+'xfinity' => array(),
+'xihuan' => array(),
+'xin' => array(),
+'कॉम' => array(),
+'セール' => array(),
+'佛山' => array(),
+'慈善' => array(),
+'集团' => array(),
+'在线' => array(),
+'大众汽车' => array(),
+'点看' => array(),
+'คอม' => array(),
+'八卦' => array(),
+'موقع' => array(),
+'公益' => array(),
+'公司' => array(),
+'香格里拉' => array(),
+'网站' => array(),
+'移动' => array(),
+'我爱你' => array(),
+'москва' => array(),
+'католик' => array(),
+'онлайн' => array(),
+'сайт' => array(),
+'联通' => array(),
+'קום' => array(),
+'时尚' => array(),
+'微博' => array(),
+'淡马锡' => array(),
+'ファッション' => array(),
+'орг' => array(),
+'नेट' => array(),
+'ストア' => array(),
+'삼성' => array(),
+'商标' => array(),
+'商店' => array(),
+'商城' => array(),
+'дети' => array(),
+'ポイント' => array(),
+'新闻' => array(),
+'工行' => array(),
+'家電' => array(),
+'كوم' => array(),
+'中文网' => array(),
+'中信' => array(),
+'娱乐' => array(),
+'谷歌' => array(),
+'電訊盈科' => array(),
+'购物' => array(),
+'クラウド' => array(),
+'通販' => array(),
+'网店' => array(),
+'संगठन' => array(),
+'餐厅' => array(),
+'网络' => array(),
+'ком' => array(),
+'诺基亚' => array(),
+'食品' => array(),
+'飞利浦' => array(),
+'手表' => array(),
+'手机' => array(),
+'ارامكو' => array(),
+'العليان' => array(),
+'اتصالات' => array(),
+'بازار' => array(),
+'موبايلي' => array(),
+'ابوظبي' => array(),
+'كاثوليك' => array(),
+'همراه' => array(),
+'닷컴' => array(),
+'政府' => array(),
+'شبكة' => array(),
+'بيتك' => array(),
+'عرب' => array(),
+'机构' => array(),
+'组织机构' => array(),
+'健康' => array(),
+'рус' => array(),
+'珠宝' => array(),
+'大拿' => array(),
+'みんな' => array(),
+'グーグル' => array(),
+'世界' => array(),
+'書籍' => array(),
+'网址' => array(),
+'닷넷' => array(),
+'コム' => array(),
+'天主教' => array(),
+'游戏' => array(),
+'vermögensberater' => array(),
+'vermögensberatung' => array(),
+'企业' => array(),
+'信息' => array(),
+'嘉里大酒店' => array(),
+'嘉里' => array(),
+'广东' => array(),
+'政务' => array(),
+'xperia' => array(),
+'xyz' => array('fhapp' => array()),
+'yachts' => array(),
+'yahoo' => array(),
+'yamaxun' => array(),
+'yandex' => array(),
+'yodobashi' => array(),
+'yoga' => array(),
+'yokohama' => array(),
+'you' => array(),
+'youtube' => array(),
+'yun' => array(),
+'zappos' => array(),
+'zara' => array(),
+'zero' => array(),
+'zip' => array(),
+'zippo' => array(),
+'zone' => array('triton' => array('*' => array())),
+'zuerich' => array());
 ?>

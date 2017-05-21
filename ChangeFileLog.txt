@@ -1,3 +1,13 @@
+v2.00 - 05/20/17
+	- New Feature: Updated code to support Toplines new API
+	- New Feature: Updated code to support WHMCS v7
+ 	- Minor bug fixes
+	--- Changed Files ----
+	modules/addons/sitebuilder/effectiveTLDs.inc.php
+	modules/addons/sitebuilder/sitebuilder.php
+	modules/addons/sitebuilder/sitebuilder_functions.php
+	modules/addons/sitebuilder/hooks.php
+
 v1.15 - 02/10/16
 	- New Feature: Updated code to support WHMCS v6
 	--- Changed Files ----
