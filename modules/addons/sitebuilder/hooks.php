@@ -85,7 +85,8 @@ function sitebuilder_client_area_page($vars)
 		{
 			// Inject Regular Login Link
 			$blnLoginURLValid = Topline_DisplayProductDetailsLoginLink($intClientRID,$intServiceRID,true);
-			if($blnLoginURLValid == true)
+			$strShowNonTrialEditSiteLink = Topline_GetGlobalModuleSetting('txtShowNonTrialEditSiteLink',true);
+			if($blnLoginURLValid == true && $strShowNonTrialEditSiteLink != "0")
 			{
 				$strLoginLinkText = $_LANG["toplineloginlinktext"];
 				$strURLToPrintData = Topline_GetClientAreaProductLoginLinkHTML();

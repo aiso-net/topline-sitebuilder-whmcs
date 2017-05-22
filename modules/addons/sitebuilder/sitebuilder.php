@@ -1,6 +1,6 @@
 <?php
 //-----------------------------------------
-// Version 2.02 - 5/20/17
+// Version 2.03 - 5/22/17
 // cPanel 11.27.x and later. 
 // WHMCS 5.0 or later.
 //-----------------------------------------
@@ -14,7 +14,7 @@ function sitebuilder_config() {
 	$configarray = array(
 			"name" => "Topline SiteBuilder Module",
 			"description" => "This module allows integration with the topline sitebuilder.",
-			"version" => "2.02",
+			"version" => "2.03",
 			"author" => "Topline",
 			"language" => "english",
 			"fields" => array(
@@ -42,7 +42,6 @@ function sitebuilder_activate() {
 	$query = "CREATE TABLE IF NOT EXISTS `mod_sitebuilder_servers` (`intRecordID` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY , `tblservers_id` INT(11), `txtFTPHostname` VARCHAR(150), `txtFTPHomeDirectory` VARCHAR(150), `intFTPPort` INT(6), `intFTPMode` INT(1))";
 	$result = mysql_query($query);
 
-	//$query = "CREATE TABLE IF NOT EXISTS `mod_sitebuilder_settings` (`intRecordID` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY , `txtGlobalYolaUserIDProductCustomFieldName` VARCHAR(150), `txtGlobalYolaFTPUsernameProductCustomFieldName` VARCHAR(150), `txtGlobalYolaFTPPasswordProductCustomFieldName` VARCHAR(150), `txtGlobalFTPHostname` VARCHAR(150), `txtGlobalFTPHomeDirectory` VARCHAR(150), `intGlobalFTPPort` INT(6), `intGlobalFTPMode` INT(2), `txtTrialWord` VARCHAR(50))";
 	$query = "CREATE TABLE IF NOT EXISTS `mod_sitebuilder_settings` (`txtSetting` text , `txtValue` text)";
 	$result = mysql_query($query);
 
@@ -71,6 +70,8 @@ function sitebuilder_deactivate() {
 
 function sitebuilder_upgrade($vars) {
 	$version = $vars['version'];
+
+	return "";
  
 	// Run SQL Updates for V1.04 or lower to V1.05
 	if ($version < 1.05) {

@@ -42,6 +42,8 @@ WHMCS Upgrade Plan Function: &nbsp;<select name="strUpgradeFunctionToRun"><optio
 <br/><br/>
 Use Default cPanel FTP Account For Topline FTP Access &nbsp;<select name="strUsecPanelFirstFTPAcct"><option value="0" {if $strUsecPanelFirstFTPAcct eq "" || $strUsecPanelFirstFTPAcct eq "0"} selected{/if}>No</option><option value="1" {if $strUsecPanelFirstFTPAcct eq "1"} selected{/if}>Yes</option></select>
 <br/><br/>
+Show Non-Trial Edit Site Link&nbsp;<select name="strShowNonTrialEditSiteLink"><option value="1" {if $strShowNonTrialEditSiteLink eq "" || $strShowNonTrialEditSiteLink eq "1"} selected{/if}>Yes</option><option value="0" {if $strShowNonTrialEditSiteLink eq "0"} selected{/if}>No</option></select>
+<br/><br/>
 
 <input type="submit" name="submit" value="Save">
 </form>

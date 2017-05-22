@@ -1,3 +1,13 @@
+v2.03 - 05/22/17
+	- New Feature: Added ability to disable edit site button in client area just in case of custom template that may already have link
+	- Bug Fix: Fixed an issue causing 500 error with WHMCS 7.2 and higher
+ 	- Fixed code that got backported that caused module not to work in v2.02
+	--- Changed Files ----
+	modules/addons/sitebuilder/sitebuilder.php
+	modules/addons/sitebuilder/sitebuilder_functions.php
+	modules/addons/sitebuilder/hooks.php
+	modules/addons/sitebuilder/templates/globalsettings.tpl
+
 v2.02 - 05/20/17
  	- Minor bug fix
 	--- Changed Files ----
